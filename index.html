@@ -6,11 +6,8 @@
     
     <div id="explanation"></div>
     
-    <h2>Let's talk about cats</h2>
-    <ul id="cats"></ul>
-
-    <h2>Let's learn a thing or two</h2>
-    <ul id="courses"></ul>
+    <h2>Current Requests:</h2>
+    <ul id="requests"></ul>
 
     <!-- Don't need jQuery for Tabletop, but using it for this example -->
     <!-- <script type="text/javascript" src="https://raw.githubusercontent.com/jsoma/tabletop/master/examples/common/jquery.js"></script> !-->
@@ -24,30 +21,24 @@
       $(document).ready( function() {
         Tabletop.init( { key: public_spreadsheet_url,
                          callback: showInfo,
-                         wanted: [ "Cats", "Courses" ],
+                         wanted: [ "Requests"],
                          debug: true } )
       })
         
       function showInfo(data, tabletop) {
-        $("#table_info").text("We found the tables " + tabletop.model_names.join(", "));
+        $("#table_info").text("[DEBUGGING] We found the tables " + tabletop.model_names.join(", "));
 
         $.each( tabletop.sheets(), function(i, sheet) {
-          $("#table_info").append("<p>" + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
+          $("#table_info").append("<p>[DEBUGGING] " + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
         });
-
-        $.each( tabletop.sheets("Cats").all(), function(i, cat) {
-          var cat_li = $('<li><h4>' + cat.name + '</h4></li>')
-          cat_li.append(cat.description);
-          cat_li.appendTo("#cats");
+		
+        $.each( tabletop.sheets("Requests").all(), function(i, requests) {
+          var cat_li = $('<li><h4>' + requests.Handle + '</h4></li>')
+          cat_li.append(requests.Level);
+          cat_li.append("<p>Quality: " + requests.HeadQuality + "</p>");
+          cat_li.appendTo("#requests");
         })
-
-        $.each( tabletop.sheets("Courses").all(), function(i, course) {
-          var cat_li = $('<li><h4>' + course.title + '</h4></li>')
-          cat_li.append(course.description);
-          cat_li.append("<p>Cost: $" + course.cost + "</p>");
-          cat_li.appendTo("#courses");
-        })
-        
+      
       }
 
       document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");    
