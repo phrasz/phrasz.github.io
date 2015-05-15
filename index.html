@@ -21,7 +21,7 @@
       $(document).ready( function() {
         Tabletop.init( { key: public_spreadsheet_url,
                          callback: showInfo,
-                         wanted: [ "Requests,Fulfillments"],
+                         wanted: [ "Requests", "Fulfillments" ],
                          debug: true } )
       })
         
@@ -33,7 +33,7 @@
         });
 		
         $.each( tabletop.sheets("Requests").all(), function(i, requests) {
-          var cat_li = $('<li><h4>' + requests.Handle + '</h4></li>')
+          var cat_li = $('<li><h4>' + requests.Handle + '(submitted on: ' + requests.Timestamp + ')</h4></li>')
           cat_li.append(requests.Level);
           cat_li.append("<p>Quality: " + requests.HeadQuality + "</p>");
           cat_li.appendTo("#requests");
