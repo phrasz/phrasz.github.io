@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <body>
-  <font color="white">
+  <!--<font color="white">!-->
+  <font color="black">
     <div id="table_info"></div>
     
     <div id="explanation"></div>
     
-    <h2>Current Requests:</h2>
     <ul id="requests"></ul>
 
     <!-- Don't need jQuery for Tabletop, but using it for this example -->
@@ -22,26 +22,48 @@
         Tabletop.init( { key: public_spreadsheet_url,
                          callback: showInfo,
                          wanted: [ "Requests", "Fulfillments" ],
-                         debug: true } )
+                         debug: false } )
       })
         
       function showInfo(data, tabletop) {
-        $("#table_info").text("[DEBUGGING] We found the tables " + tabletop.model_names.join(", "));
+		var cat_li;
+	    $("#table_info").text("We found the tables " + tabletop.model_names.join(", "));  
 
-        $.each( tabletop.sheets(), function(i, sheet) {
-          $("#table_info").append("<p>[DEBUGGING] " + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
-        });
 		
-        $.each( tabletop.sheets("Requests").all(), function(i, requests) {
-          var cat_li = $('<li><h4>' + requests.Handle + '(submitted on: ' + requests.Timestamp + ')</h4></li>')
-          cat_li.append(requests.Level);
-          cat_li.append("<p>Quality: " + requests.HeadQuality + "</p>");
-          cat_li.appendTo("#requests");
-        })
-      
-      }
+		$.each( tabletop.sheets(), function(i, sheet) {
+			$("#table_info").append("<p>" + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
+		});
+		
+//        $("#table_info").text("");
+		cat_li=$('<h2>Current Requests:</h2>');
+		cat_li.appendTo("#table_info");
+        
+		$.each( tabletop.sheets("Requests").all(), function(i, requestsData) {
+			//var found=0;
+			var printed=0;
+			var name="example";
+			$.each( tabletop.sheets("Fulfillments").all(), function(i, fullfillData) {
 
-      document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");    
+				if(requestsData.Timestamp != fullfillData.OrderDate && printed != 1){
+					cat_li = $('<li><h4>' + requestsData.Handle + " (submitted on: "+ requestsData.Timestamp + ')</h4></li>');
+					cat_li.append(" Comparing: " + requestsData.Timestamp +" to "+ fullfillData.OrderDate +"<br>");
+					cat_li.appendTo("#table_info");
+					printed=1;
+				}
+				else{
+					cat_li.append("SKIPPING: "+ fullfillData.Handle +"<br><br><br>");
+									cat_li.appendTo("#table_info");
+
+				}
+			})
+		
+			cat_li.appendTo("#table_info");
+        })
+	
+
+	}
+	  
+
     </script>
   </font>
   </body>
