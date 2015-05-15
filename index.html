@@ -16,12 +16,12 @@
 	<script src="http://pastebin.com/raw.php?i=WtLCSUwe"></script>
     <script type="text/javascript">
       //var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AmYzu_s7QHsmdE5OcDE1SENpT1g2R2JEX2tnZ3ZIWHc&output=html';
-		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU&output=html';
+		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
 
       $(document).ready( function() {
         Tabletop.init( { key: public_spreadsheet_url,
                          callback: showInfo,
-                         wanted: [ "Requests"],
+                         wanted: [ "Requests,Fulfillments"],
                          debug: true } )
       })
         
