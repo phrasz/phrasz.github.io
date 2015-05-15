@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <body>
-  <!--<font color="white">!-->
-  <font color="black">
+  <font color="white">
+  <!--<font color="black">!-->
     <div id="table_info"></div>
     
     <div id="explanation"></div>
@@ -27,36 +27,34 @@
         
       function showInfo(data, tabletop) {
 		var cat_li;
-	    $("#table_info").text("We found the tables " + tabletop.model_names.join(", "));  
+	    //$("#table_info").text("We found the tables " + tabletop.model_names.join(", "));  
 
-		
+		/*
 		$.each( tabletop.sheets(), function(i, sheet) {
 			$("#table_info").append("<p>" + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
 		});
+		*/
 		
 //        $("#table_info").text("");
 		cat_li=$('<h2>Current Requests:</h2>');
 		cat_li.appendTo("#table_info");
         
 		$.each( tabletop.sheets("Requests").all(), function(i, requestsData) {
-			//var found=0;
-			var printed=0;
+			var found=0;
 			var name="example";
+			//Parse through the Fulfillment table for a match between requests and fulfillments
 			$.each( tabletop.sheets("Fulfillments").all(), function(i, fullfillData) {
+				if(requestsData.Handle === fullfillData.Handle && requestsData.Timestamp === fullfillData.OrderDate){
+					found=1;
+				}
 
-				if(requestsData.Timestamp != fullfillData.OrderDate && printed != 1){
-					cat_li = $('<li><h4>' + requestsData.Handle + " (submitted on: "+ requestsData.Timestamp + ')</h4></li>');
-					cat_li.append(" Comparing: " + requestsData.Timestamp +" to "+ fullfillData.OrderDate +"<br>");
+			})
+
+			if(found === 0){//If the request has NOT been fulfilled, then display
+					cat_li = $('<h4>' + requestsData.Handle + " (submitted on: "+ requestsData.Timestamp + ')</h4>');
 					cat_li.appendTo("#table_info");
 					printed=1;
-				}
-				else{
-					cat_li.append("SKIPPING: "+ fullfillData.Handle +"<br><br><br>");
-									cat_li.appendTo("#table_info");
-
-				}
-			})
-		
+			}
 			cat_li.appendTo("#table_info");
         })
 	
