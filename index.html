@@ -18,6 +18,22 @@
     <script type="text/javascript">
 		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
 
+		//Other Vars: "Timestamp", "Handle", "Level", "Fullfilled", "Fullfilled By", "Cost"
+		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"]
+
+		var Head=["HeadQuality", "HeadTrait", "HeadMotif", "HeadEnchant", "HeadSet", "HeadCost"];
+		var Chest=["ChestQuality", "ChestTrait", "ChestMotif", "ChestEnchant", "ChestSet", "ChestCost"];
+		var Legs=["LegsQuality",  "LegsTrait", "LegsMotif", "LegsEnchant", "LegsSet"];
+		var Feet=["FeetQuality",  "FeetTrait", "FeetMotif", "FeetEnchant", "FeetSet"];
+		var Shoulder=["ShoulderQuality",  "ShoulderTrait", "ShoulderMotif", "ShoulderEnchant", "ShoulderSet"];
+		var Hand=["HandQuality",  "HandTrait", "HandMotif", "HandEnchant", "HandSet"];
+		var Belt=["BeltQuality",  "BeltTrait", "BeltMotif", "BeltEnchant", "BeltSet"];
+		var Shield=["ShieldQuality", "ShieldTrait", "ShieldMotif", "ShieldEnchant", "ShieldSet"];
+		var Weapon1=["Weapon1Quality",  "Weapon1Trait", "Weapon1Motif", "Weapon1Enchant",  "Weapon1Set"];
+		var Weapon2=["Weapon2Quality", "Weapon2Trait", "Weapon2Motif", "Weapon2Enchant", "Weapon2Set"];
+		var Weapon3=["Weapon3Quality", "Weapon3Trait",  "Weapon3Motif", "Weapon3Enchant", "Weapon3Set"];
+
+		
       $(document).ready( function() {
         Tabletop.init( { key: public_spreadsheet_url,
                          callback: showInfo,
@@ -26,36 +42,86 @@
       })
         
       function showInfo(data, tabletop) {
-		var cat_li;
-		cat_li=$('<h1><u><b>Current Requests</b></u></h1>');
-		cat_li.appendTo("#table_info");
-        
-		$.each( tabletop.sheets("Requests").all(), function(i, requestsData) {
+		//var SectionHeader;
+		//SectionHeader=$("<h1><u><b>Current Requests</b></u></h1>");
+		$("<h1><u><b>Current Requests</b></u></h1>").appendTo("#table_info");
+		
+		var RequestRowData=tabletop.sheets("Requests").all();
+		var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
+		
+		var i,j;
+		for(i=0; i < RequestRowData.length;i++){
 			var found=0;
-			var name="example";
-			//Parse through the Fulfillment table for a match between requests and fulfillments
-			$.each( tabletop.sheets("Fulfillments").all(), function(i, fullfillData) {
-				if(requestsData.Handle === fullfillData.Handle && requestsData.Timestamp === fullfillData.OrderDate){
+			var AllMemberData="";
+			var MemberData_Items="";
+			var MemberData_Description="";
+			//console.log("Handle: "+RequestRowData[i].Handle);
+			for(j=0; j < FulfillmentsRowData;j++){
+				if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
 					found=1;
 				}
-
-			})
-        
-
-		
-			if(found === 0){//If the request has NOT been fulfilled, then display
-					cat_li = $('<h4>' + requestsData.Handle + " (submitted on: "+ requestsData.Timestamp + ')</h4>');
-					cat_li.appendTo("#table_info");
-					printed=1;
-					cat_li.appendTo("#table_info");
-					$.each( tabletop.sheets(), function(i, sheet) {		
-						$("#table_info").append("<p>" + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
-					});
 			}
+			
+			if(found === 0){//If the request has NOT been fulfilled, then display
+				//cat_li = $('<h3>' + RequestRowData[i].Handle + "</h3>(submitted on: "+ RequestRowData[i].Timestamp + ')<br>');
+				AllMemberData += "<h3>" + RequestRowData[i].Handle + "</h3>(submitted on: "+ RequestRowData[i].Timestamp + ")<br>'";
+				
+				
+						<!-- PART 1 : TABS LIST !-->
+		$("<ul class=\"nav nav-tabs\">").appendTo("#table_info");
+		$("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#home\">Hand</a></li>").appendTo("#table_info");
+		$("	<li><a data-toggle=\"tab\" href=\"#menu1\">Head</a></li>").appendTo("#table_info");
+		$("	<li><a data-toggle=\"tab\" href=\"#menu2\">Shoulder</a></li>").appendTo("#table_info");
+		$("	<li><a data-toggle=\"tab\" href=\"#menu3\">Shield</a></li>").appendTo("#table_info");
+		$("</ul>").appendTo("#table_info")
+				
+//				AllMemberData.appendTo("#table_info");
+				//printed=1;
+				//cat_li.appendTo("#table_info");
 
-        })
+				//Print Head
+				PrintGearHTML(Head,RequestRowData);
+
+			}
+		}
+
+	}
 	
+	function PrintGearHTML(ItemArray, Data){
+	var List;
+		//DEBUGGGING: Dump all the fields
+		for(var i=0; i<ItemArray.length;i++){
+			console.log("Hello World!");
+		}
+		/*
+		<!-- PART 1 : TABS LIST !-->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">Hand</a></li>
+			<li><a data-toggle="tab" href="#menu1">Head</a></li>
+			<li><a data-toggle="tab" href="#menu2">Shoulder</a></li>
+			<li><a data-toggle="tab" href="#menu3">Shield</a></li>
+		</ul>
 
+		<!-- PART 1 : TABS CONTENT !-->
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active" style="color:white;">
+				<h3>Hand</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div id="menu1" class="tab-pane fade" style="color:white;">
+				<h3>Menu 1</h3>
+					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<div id="menu2" class="tab-pane fade" style="color:white;">
+				<h3>Menu 2</h3>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			</div>
+			<div id="menu3" class="tab-pane fade" style="color:white;">
+				<h3>Menu 3</h3>
+					<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			</div>
+		</div>
+  */
 	}
 	  
 
@@ -223,6 +289,14 @@
 		<br><INPUT type="submit" value="Send"> <INPUT type="reset">
 	</div>
 	</form>
+	
+<hr>
+
+
+
+  <!--<p><strong>Tip:</strong> Change data-toggle="tab" to data-toggle="pill" to make pills toggable.</p>!-->
+
+
 
   </body>
 </html>
