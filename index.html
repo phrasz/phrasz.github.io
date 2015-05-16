@@ -27,7 +27,7 @@
         
       function showInfo(data, tabletop) {
 		var cat_li;
-		cat_li=$('<h2>Current Requests:</h2>');
+		cat_li=$('<h1><u><b>Current Requests</b></u></h1>');
 		cat_li.appendTo("#table_info");
         
 		$.each( tabletop.sheets("Requests").all(), function(i, requestsData) {
@@ -40,13 +40,19 @@
 				}
 
 			})
+        
 
+		
 			if(found === 0){//If the request has NOT been fulfilled, then display
 					cat_li = $('<h4>' + requestsData.Handle + " (submitted on: "+ requestsData.Timestamp + ')</h4>');
 					cat_li.appendTo("#table_info");
 					printed=1;
+					cat_li.appendTo("#table_info");
+					$.each( tabletop.sheets(), function(i, sheet) {		
+						$("#table_info").append("<p>" + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
+					});
 			}
-			cat_li.appendTo("#table_info");
+
         })
 	
 
@@ -56,7 +62,7 @@
     </script>
 	</font>
 	<hr>
-	<h1 style="color:#FFFFFF">Example Expansion</h1>
+	<h1 style="color:#FFFFFF"><u><b>Crafting Order Request</b></u></h1>
 	
 	<form style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">
 	<div class="panel-group" id="accordion">
@@ -65,7 +71,7 @@
 		
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4 class="panel-title" style="color:#262626"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
+				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
 				Add Head</a>
 				</h4>
