@@ -20,6 +20,15 @@
 
 		//Other Vars: "Timestamp", "Handle", "Level", "Fullfilled", "Fullfilled By", "Cost"
 		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"];
+		var CategoriesPresent= [];
+		/* 
+		//To show if array can have values pushed/stored and then reset
+		console.log("Categories Present: "+CategoriesPresent.length);
+		CategoriesPresent=[1,2,3,4,5];
+		console.log("Categories Present: "+CategoriesPresent.length);
+		CategoriesPresent=[];
+		console.log("Categories Present: "+CategoriesPresent.length);
+		*/
 
 		var Head=["HeadQuality", "HeadTrait", "HeadMotif", "HeadEnchant", "HeadSet", "HeadCost"];
 		var Chest=["ChestQuality", "ChestTrait", "ChestMotif", "ChestEnchant", "ChestSet", "ChestCost"];
@@ -80,6 +89,11 @@
 			<li><a data-toggle="tab" href="#menu3">Shield</a></li>
 		</ul>
 */
+			for(k=0;k<Head.length;k++){
+				console.log("This is the Element of Head: "+Head[k]);
+//				console.log("This is the Value of Head: "+RequestRowData[i].Head[k]); //How doe we store are the .Objects as a list and parse through?
+			}
+
 			//$("<ul class=\"nav nav-tabs\">").appendTo("#table_info");
 			AllMemberData+="<ul class=\"nav nav-tabs\">";
 			//var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"]
