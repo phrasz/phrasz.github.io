@@ -69,10 +69,16 @@
 				
 						<!-- PART 1 : TABS LIST !-->
 		$("<ul class=\"nav nav-tabs\">").appendTo("#table_info");
-		$("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#home\">Hand</a></li>").appendTo("#table_info");
-		$("	<li><a data-toggle=\"tab\" href=\"#menu1\">Head</a></li>").appendTo("#table_info");
-		$("	<li><a data-toggle=\"tab\" href=\"#menu2\">Shoulder</a></li>").appendTo("#table_info");
-		$("	<li><a data-toggle=\"tab\" href=\"#menu3\">Shield</a></li>").appendTo("#table_info");
+		//var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"]
+		for(var k=1;i<= Categories.length;k++){
+//			$("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu"+k+"\">"+Categories[k-1]+"</a></li>").appendTo("#table_info");
+			console.log("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu"+ k +"\">"+ Categories[k-1] +"</a></li>");
+		}
+
+		//$("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#home\">Hand</a></li>").appendTo("#table_info");
+		//$("	<li><a data-toggle=\"tab\" href=\"#menu1\">Head</a></li>").appendTo("#table_info");
+		//$("	<li><a data-toggle=\"tab\" href=\"#menu2\">Shoulder</a></li>").appendTo("#table_info");
+		//$("	<li><a data-toggle=\"tab\" href=\"#menu3\">Shield</a></li>").appendTo("#table_info");
 		$("</ul>").appendTo("#table_info")
 				
 //				AllMemberData.appendTo("#table_info");
@@ -90,9 +96,9 @@
 	function PrintGearHTML(ItemArray, Data){
 	var List;
 		//DEBUGGGING: Dump all the fields
-		for(var i=0; i<ItemArray.length;i++){
-			console.log("Hello World!");
-		}
+		//for(var i=0; i<ItemArray.length;i++){
+		//	console.log("Hello World!");
+		//}
 		/*
 		<!-- PART 1 : TABS LIST !-->
 		<ul class="nav nav-tabs">
