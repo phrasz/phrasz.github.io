@@ -19,7 +19,7 @@
 		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
 
 		//Other Vars: "Timestamp", "Handle", "Level", "Fullfilled", "Fullfilled By", "Cost"
-		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"]
+		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"];
 
 		var Head=["HeadQuality", "HeadTrait", "HeadMotif", "HeadEnchant", "HeadSet", "HeadCost"];
 		var Chest=["ChestQuality", "ChestTrait", "ChestMotif", "ChestEnchant", "ChestSet", "ChestCost"];
@@ -41,7 +41,7 @@
                          debug: false } )
       })
         
-      function showInfo(data, tabletop) {
+      function showInfo(data, tabletop){
 		//var SectionHeader;
 		//SectionHeader=$("<h1><u><b>Current Requests</b></u></h1>");
 		$("<h1><u><b>Current Requests</b></u></h1>").appendTo("#table_info");
@@ -49,8 +49,10 @@
 		var RequestRowData=tabletop.sheets("Requests").all();
 		var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
 		
-		var i,j;
+		var i,j,k;
+		
 		for(i=0; i < RequestRowData.length;i++){
+		
 			var found=0;
 			var AllMemberData="";
 			var MemberData_Items="";
@@ -63,43 +65,13 @@
 			}
 			
 			if(found === 0){//If the request has NOT been fulfilled, then display
+			$("<hr>").appendTo("#table_info");
+			AllMemberData="";
 				//cat_li = $('<h3>' + RequestRowData[i].Handle + "</h3>(submitted on: "+ RequestRowData[i].Timestamp + ')<br>');
-				AllMemberData += "<h3>" + RequestRowData[i].Handle + "</h3>(submitted on: "+ RequestRowData[i].Timestamp + ")<br>'";
-				
-				
-						<!-- PART 1 : TABS LIST !-->
-		$("<ul class=\"nav nav-tabs\">").appendTo("#table_info");
-		//var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"]
-		for(var k=1;i<= Categories.length;k++){
-//			$("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu"+k+"\">"+Categories[k-1]+"</a></li>").appendTo("#table_info");
-			console.log("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu"+ k +"\">"+ Categories[k-1] +"</a></li>");
-		}
+				$("<h3>Request "+(i+1)+": "+ RequestRowData[i].Handle + "</h3>(submitted on: "+ RequestRowData[i].Timestamp + ")<br>").appendTo("#table_info");
+				//AllMemberData += "<h3>" + RequestRowData[i].Handle + "</h3>(submitted on: "+ RequestRowData[i].Timestamp + ")<br>'";
 
-		//$("	<li class=\"active\"><a data-toggle=\"tab\" href=\"#home\">Hand</a></li>").appendTo("#table_info");
-		//$("	<li><a data-toggle=\"tab\" href=\"#menu1\">Head</a></li>").appendTo("#table_info");
-		//$("	<li><a data-toggle=\"tab\" href=\"#menu2\">Shoulder</a></li>").appendTo("#table_info");
-		//$("	<li><a data-toggle=\"tab\" href=\"#menu3\">Shield</a></li>").appendTo("#table_info");
-		$("</ul>").appendTo("#table_info")
-				
-//				AllMemberData.appendTo("#table_info");
-				//printed=1;
-				//cat_li.appendTo("#table_info");
-
-				//Print Head
-				PrintGearHTML(Head,RequestRowData);
-
-			}
-		}
-
-	}
-	
-	function PrintGearHTML(ItemArray, Data){
-	var List;
-		//DEBUGGGING: Dump all the fields
-		//for(var i=0; i<ItemArray.length;i++){
-		//	console.log("Hello World!");
-		//}
-		/*
+/*				
 		<!-- PART 1 : TABS LIST !-->
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#home">Hand</a></li>
@@ -107,8 +79,23 @@
 			<li><a data-toggle="tab" href="#menu2">Shoulder</a></li>
 			<li><a data-toggle="tab" href="#menu3">Shield</a></li>
 		</ul>
-
-		<!-- PART 1 : TABS CONTENT !-->
+*/
+			//$("<ul class=\"nav nav-tabs\">").appendTo("#table_info");
+			AllMemberData+="<ul class=\"nav nav-tabs\">";
+			//var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"]
+			//	$("		<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestRowData[i].Handle+"menu1\">"+ Categories[0] +"</a></li>").appendTo("#table_info");
+			AllMemberData+="		<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestRowData[i].Handle+"menu1\">"+ Categories[0] +"</a></li>";
+			for(k=2; k<=Categories.length; k++){
+				//$("		<li><a data-toggle=\"tab\" href=\"#"+RequestRowData[i].Handle+"menu"+ k +"\">"+ Categories[k-1] +"</a></li>").appendTo("#table_info");
+				AllMemberData+="		<li><a data-toggle=\"tab\" href=\"#"+RequestRowData[i].Handle+"menu"+ k +"\">"+ Categories[k-1] +"</a></li>";
+			}
+			//$("</ul>").appendTo("#table_info");
+			AllMemberData+="</ul>";
+			//console.log(AllMemberData);
+			$(AllMemberData).appendTo("#table_info");
+			
+/*
+		<!-- PART 2 : TABS CONTENT !-->
 		<div class="tab-content">
 			<div id="home" class="tab-pane fade in active" style="color:white;">
 				<h3>Hand</h3>
@@ -127,7 +114,79 @@
 					<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
 			</div>
 		</div>
-  */
+*/
+			AllMemberData="";
+//			$("<div class=\"tab-content\">").appendTo("#table_info");
+			AllMemberData+="<div class=\"tab-content\">";
+			
+			for(k=1; k<=Categories.length; k++){
+				if(k===1){
+				//$("		<div id=\""+RequestRowData[i].Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">").appendTo("#table_info");
+				AllMemberData+="		<div id=\""+RequestRowData[i].Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">";
+				}
+				else{
+				//$("		<div id=\""+RequestRowData[i].Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">").appendTo("#table_info");
+				AllMemberData+="		<div id=\""+RequestRowData[i].Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
+				}
+				//$("			<h3>"+Categories[k-1]+"</h3>").appendTo("#table_info");
+				//$("				<p>").appendTo("#table_info");
+				//$("					Test").appendTo("#table_info");
+				//$("				</p>").appendTo("#table_info");
+				//$("		</div>").appendTo("#table_info");
+				AllMemberData+="			<h3>"+Categories[k-1]+"</h3>";
+				AllMemberData+="				<p>";
+				AllMemberData+="					Test";
+				AllMemberData+="				</p>";
+				AllMemberData+="		</div>";
+			}
+			//$("</div>").appendTo("#table_info");
+			AllMemberData+="</div>";
+			$(AllMemberData).appendTo("#table_info");
+				//printed=1;
+				//cat_li.appendTo("#table_info");
+
+				//Print Head
+				PrintGearHTML(Head,RequestRowData);
+
+			}
+		}
+	}
+	
+	function PrintGearHTML(ItemArray, Data){
+	var List;
+		//DEBUGGGING: Dump all the fields
+		//for(var i=0; i<ItemArray.length;i++){
+		//	console.log("Hello World!");
+		//}
+/*		
+		<!-- PART 1 : TABS LIST !-->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">Hand</a></li>
+			<li><a data-toggle="tab" href="#menu1">Head</a></li>
+			<li><a data-toggle="tab" href="#menu2">Shoulder</a></li>
+			<li><a data-toggle="tab" href="#menu3">Shield</a></li>
+		</ul>
+
+		<!-- PART 2 : TABS CONTENT !-->
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active" style="color:white;">
+				<h3>Hand</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div id="menu1" class="tab-pane fade" style="color:white;">
+				<h3>Menu 1</h3>
+					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<div id="menu2" class="tab-pane fade" style="color:white;">
+				<h3>Menu 2</h3>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			</div>
+			<div id="menu3" class="tab-pane fade" style="color:white;">
+				<h3>Menu 3</h3>
+					<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			</div>
+		</div>
+ */ 
 	}
 	  
 
@@ -295,14 +354,6 @@
 		<br><INPUT type="submit" value="Send"> <INPUT type="reset">
 	</div>
 	</form>
-	
-<hr>
-
-
-
-  <!--<p><strong>Tip:</strong> Change data-toggle="tab" to data-toggle="pill" to make pills toggable.</p>!-->
-
-
 
   </body>
 </html>
