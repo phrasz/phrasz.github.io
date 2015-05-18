@@ -19,8 +19,6 @@
 		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
 
 		//Other Vars: "Timestamp", "Handle", "Level", "Fullfilled", "Fullfilled By", "Cost"
-		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"];
-		var CategoriesPresent= [];
 		
 		var DebugFlag=0;
 				
@@ -36,6 +34,40 @@
 		var Weapon2=["Weapon2Quality", "Weapon2Trait", "Weapon2Motif", "Weapon2Enchant", "Weapon2Set"];
 		var Weapon3=["Weapon3Quality", "Weapon3Trait",  "Weapon3Motif", "Weapon3Enchant", "Weapon3Set"];
 
+		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"];
+		var CategoriesData=[Head,Chest,Legs,Feet,Shoulder,Hand,Belt,Shield,Weapon1,Weapon2,Weapon3];
+		var CategoriesPresent= [];
+		var EmptyArray=[];
+		
+		/*
+		Array.prototype.atIndices = function(ind) {
+			var result = [];
+			for (var i = 0; i < arguments.length; i++) {
+				if (arguments[i] in this)
+					result.push(this[arguments[i]])
+				}
+			return result;        
+		}
+		*/
+		
+		/*
+		function pluck(arr, indices) {
+			var result = [];
+			var result2 = [];
+			i = 0;
+			len = indices.length;
+
+			for (; i < len; i++) {
+				result.push(arr[indices[i]]);
+			}
+			if(result===result2){
+				return null;
+			}
+			else{
+				return result;
+			}
+		}
+		*/
 		
       $(document).ready( function() {
         Tabletop.init( { key: public_spreadsheet_url,
@@ -50,10 +82,10 @@
 		var RequestRowData=tabletop.sheets("Requests").all();
 		var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
 		
-		var i,j,k;
-		
+		var i,j,k,l;
+		var RequestCounter=1;
 		for(i=0; i < RequestRowData.length;i++){
-		
+			
 			var found=0;
 			var AllMemberData="";
 
@@ -65,24 +97,57 @@
 			}
 			
 			if(found === 0){//If the request has NOT been fulfilled, then display
-				AllMemberData=GenerateRequestTabList(Categories,i,RequestRowData[i]) + GenerateRequestTabList_Content(Categories,RequestRowData[i]);
-				$(AllMemberData).appendTo("#table_info");
+				var ItemCategoryFound=0;
+				for(j=0;j<Categories.length;j++){
+					//ItemCategoryFound=CheckForGear(CategoriesData[j],RequestRowData[i]);
+					//if(ItemCategoryFound===1){
+					if(CheckForGear(CategoriesData[j],RequestRowData[i])){
+						//console.log("Checking: "+Categories[j]);
+						CategoriesPresent.push(Categories[j]);
+					}
+				}
+				if(CategoriesPresent.length>=1){
+					//console.log(RequestRowData[i].Handle+" has "+CategoriesPresent+" values present");
+					AllMemberData=GenerateRequestTabList(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]) + GenerateRequestTabList_Content(Categories,CategoriesPresent,RequestRowData[i]);
+					$(AllMemberData).appendTo("#table_info");
+					RequestCounter++;
+				}
+
 			}
 		}
 	}
 	
-	function GenerateRequestTabList(ListForMenu,RequestNumber,RequestorData){
+	//function CheckForGear(Categories,RequestorData){
+	//	return
+	//}
+	
+	function GenerateRequestTabList(ListForMenu,ListRestrictions,RequestNumber,RequestorData){
+		var FirstItemFound=0;
 		var MenuList="<hr><h3>Request "+(RequestNumber+1)+": "+ RequestorData.Handle + "</h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
 		MenuList+="<ul class=\"nav nav-tabs\">";
-		MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestorData.Handle+"menu1\">"+ ListForMenu[0] +"</a></li>";
-		for(var k=2; k<=ListForMenu.length; k++){
-			MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k-1] +"</a></li>";
+		for(var k=1; k<=ListForMenu.length; k++){
+			var ListItemValid=0;
+			for(l=0;l<ListRestrictions.length;l++){
+				if(ListForMenu[k]===ListRestrictions[l]){
+					ListItemValid=1;
+					break;
+				}
+			}
+			if(ListItemValid===1){
+				if(FirstItemFound===0){
+					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestorData.Handle+"menu1\">"+ ListForMenu[k] +"</a></li>";
+					FirstItemFound=1;
+				}
+				else{	
+					MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k-1] +"</a></li>";
+				}
+			}
 		}
 		MenuList+="</ul>";		
 		return MenuList;
 	}
 	
-	function GenerateRequestTabList_Content(ListOfItems,RequestorData){
+	function GenerateRequestTabList_Content(ListOfItems,ListRestrictions,RequestorData){
 		var MenuListData="";
 			MenuListData+="<div class=\"tab-content\">";
 			for(var k=1; k<=ListOfItems.length; k++){
@@ -98,7 +163,7 @@
 				
 				//Ex: Print Head
 				if(DebugFlag===0){
-					PrintGearHTML(Head,RequestorData);
+					//PrintGearHTML(Head,RequestorData);
 					DebugFlag=1;
 				}
 				MenuListData+="				</p>";
@@ -108,13 +173,17 @@
 		return MenuListData;
 	}
 	
-	function PrintGearHTML(ItemArray, Data){
-		var List;
+	function CheckForGear(ItemArray, Data){
 			//DEBUGGGING: Dump all the fields
-			for(var i=0; i<ItemArray.length;i++){
-				console.log("This is the ItemArray: "+ItemArray);
-				console.log("This is "+ItemArray[i]+"'s data: "+Data.$(ItemArray).get(i));
+				//console.log("This is the ItemArray: "+ItemArray);
+				for(var i=0; i<$(ItemArray).length;i++){
+				if(Data[ItemArray[i]]!=""){
+					//console.log("This is "+ItemArray[i]+"'s data: "+Data[ItemArray[i]]);
+					return 1;
+				}
+				
 			} 
+			return 0;
 	}
 	  
 
