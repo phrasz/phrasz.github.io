@@ -1,0 +1,734 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head>
+<link rel="shortcut icon" href="https://ssl.gstatic.com/docs/spreadsheets/forms/favicon_jfk2.png" type="image/x-icon">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10; chrome=1;">
+<meta name="fragment" content="!">
+<meta name="viewport" content="width=device-width">
+<base target="_blank">
+<title>Armor Request</title>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,700">
+
+<link href='/static/forms/client/css/737958268-formview_st_ltr.css' type='text/css' rel='stylesheet'>
+<style type="text/css">
+body {
+  background-color: rgb(36,36,36);
+}
+
+.ss-form-container, .ss-resp-card {
+  background-color: rgb(36,36,36);
+}
+
+.ss-footer, .ss-response-footer {
+  background-color: rgb(36,36,36);
+}
+
+.ss-grid-row-odd {
+  background-color: rgb(23,23,23);
+}
+
+.ss-form-container, .ss-resp-card {
+  border-color: rgb(212,212,212);
+}
+
+.ss-form-title {
+  text-align: left;
+}
+
+.ss-form-title[dir="rtl"] {
+  text-align: right;
+}
+
+.ss-form-desc {
+  text-align: left;
+}
+
+.ss-form-desc[dir="rtl"] {
+  text-align: right;
+}
+
+.ss-header-image-container {
+  height: 0;
+}
+
+.ss-item {
+  font-size: 1.080rem;
+}
+
+.ss-choices {
+  font-size: 1.000rem;
+}
+
+body {
+  font-family: "Roboto";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 1.080rem;
+  font-style: normal;
+}
+
+.ss-record-username-message {
+  font-family: "Roboto";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 1.080rem;
+  font-style: normal;
+}
+
+.ss-form-title {
+  font-family: "Roboto";
+  color: rgb(255,255,255);
+  font-weight: 400;
+  font-size: 2.460rem;
+  font-style: normal;
+}
+
+.ss-confirmation {
+  font-family: "Roboto";
+  color: rgb(255,255,255);
+  font-weight: 400;
+  font-size: 2.460rem;
+  font-style: normal;
+}
+
+.ss-page-title, .ss-section-title {
+  font-family: "Roboto";
+  color: rgb(255,255,255);
+  font-weight: 400;
+  font-size: 1.845rem;
+  font-style: normal;
+}
+
+.ss-form-desc, .ss-page-description, .ss-section-description {
+  font-family: "Roboto";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 1.080rem;
+  font-style: normal;
+}
+
+.ss-resp-content {
+  font-family: "Roboto";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 1.080rem;
+  font-style: normal;
+}
+
+.ss-q-title {
+  font-family: "Roboto";
+  color: rgb(255,255,255);
+  font-weight: 700;
+  font-size: 1.080rem;
+  font-style: normal;
+}
+
+.ss-embeddable-object-container .ss-q-title {
+  font-family: "Roboto";
+  color: rgb(255,255,255);
+  font-weight: 700;
+  font-size: 1.845rem;
+  font-style: normal;
+}
+
+.ss-q-help, .ss-q-time-hint {
+  font-family: "Roboto";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 1.000rem;
+  font-style: normal;
+}
+
+.ss-choice-label, .video-secondary-text, .ss-gridrow-leftlabel, .ss-gridnumber, .ss-scalenumber, .ss-leftlabel, .ss-rightlabel {
+  font-family: "Roboto";
+  color: rgb(80,80,80);
+  font-weight: 400;
+  font-size: 1.000rem;
+  font-style: normal;
+}
+
+.error-message, .required-message, .ss-required-asterisk {
+  font-family: "Roboto";
+  color: rgb(212,108,96);
+  font-weight: 400;
+  font-size: 1.000rem;
+  font-style: normal;
+}
+
+.ss-send-email-receipt {
+  font-family: "Roboto";
+  color: rgb(255,255,255);
+  font-weight: 400;
+  font-size: 1.000rem;
+  font-style: normal;
+}
+
+.ss-password-warning {
+  font-family: "Arial";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 1.000rem;
+  font-style: italic;
+}
+
+.disclaimer {
+  font-family: "Arial";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 0.850rem;
+  font-style: normal;
+}
+
+.ss-footer-content {
+  font-family: "Arial";
+  color: rgb(138,138,138);
+  font-weight: 400;
+  font-size: 1.000rem;
+  font-style: normal;
+}
+
+.progress-label {
+  font-family: "Roboto";
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 1.000rem;
+  font-style: normal;
+}
+
+a:link {
+  color: rgb(121,121,255);
+}
+
+a:visited {
+  color: rgb(149,129,182);
+}
+
+a:active {
+  color: rgb(255,58,58);
+}
+
+input[type='text'], input:not([type]), textarea {
+  font-size: 1.000rem;
+}
+
+.error, .required, .errorbox-bad {
+  border-color: rgb(212,108,96);
+}
+
+.jfk-progressBar-nonBlocking .progress-bar-thumb {
+  background-color: rgb(140,140,140);
+}
+
+.ss-logo-image {
+  background-image: url('//ssl.gstatic.com/docs/forms/forms_logo_small_light.png');
+  background-size: 108px 21px;
+  width: 108px;
+  height: 21px;
+}
+
+@media screen and (-webkit-device-pixel-ratio: 2) {
+.ss-logo-image {
+  background-image: url('//ssl.gstatic.com/docs/forms/forms_logo_small_light_2x.png');
+}
+}
+
+</style>
+
+
+<link href='/static/forms/client/css/3145455273-mobile_formview_st_ltr.css' type='text/css' rel='stylesheet' media='screen and (max-device-width: 721px)'>
+
+<script type="text/javascript">
+          /**
+ * @license
+ *
+ * H5F 1.1.1
+ * See https://github.com/ryanseddon/H5F/ for details.
+ *
+ * Copyright (c) 2013 Ryan Seddon
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+(function(e,t){"function"==typeof define&&define.amd?define(t):"object"==typeof module&&module.exports?module.exports=t():e.H5F=t()})(this,function(){var e,t,a,i,n,r,l,s,o,u,d,c,v,p,f,m,b,h,g,y,w,C,N,A,E,$,x=document,k=x.createElement("input"),q=/^[a-zA-Z0-9.!#$%&'*+-\/=?\^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,M=/[a-z][\-\.+a-z]*:\/\//i,L=/^(input|select|textarea)$/i;return r=function(e,t){var a=!e.nodeType||!1,i={validClass:"valid",invalidClass:"error",requiredClass:"required",placeholderClass:"placeholder",onSubmit:Function.prototype,onInvalid:Function.prototype};if("object"==typeof t)for(var r in i)t[r]===void 0&&(t[r]=i[r]);if(n=t||i,a)for(var s=0,o=e.length;o>s;s++)l(e[s]);else l(e)},l=function(a){var i,r=a.elements,l=r.length,c=!!a.attributes.novalidate;if(g(a,"invalid",o,!0),g(a,"blur",o,!0),g(a,"input",o,!0),g(a,"keyup",o,!0),g(a,"focus",o,!0),g(a,"change",o,!0),g(a,"click",u,!0),g(a,"submit",function(i){return e=!0,t||c||a.checkValidity()?(n.onSubmit.call(a,i),void 0):(w(i),void 0)},!1),!v())for(a.checkValidity=function(){return d(a)};l--;)i=!!r[l].attributes.required,"fieldset"!==r[l].nodeName.toLowerCase()&&s(r[l])},s=function(e){var t=e,a=h(t),n={type:t.getAttribute("type"),pattern:t.getAttribute("pattern"),placeholder:t.getAttribute("placeholder")},r=/^(email|url)$/i,l=/^(input|keyup)$/i,s=r.test(n.type)?n.type:n.pattern?n.pattern:!1,o=p(t,s),u=m(t,"step"),v=m(t,"min"),b=m(t,"max"),g=!(""===t.validationMessage||void 0===t.validationMessage);t.checkValidity=function(){return d.call(this,t)},t.setCustomValidity=function(e){c.call(t,e)},t.validity={valueMissing:a,patternMismatch:o,rangeUnderflow:v,rangeOverflow:b,stepMismatch:u,customError:g,valid:!(a||o||u||v||b||g)},n.placeholder&&!l.test(i)&&f(t)},o=function(e){var t=C(e)||e,a=/^(input|keyup|focusin|focus|change)$/i,r=/^(submit|image|button|reset)$/i,l=/^(checkbox|radio)$/i,u=!0;!L.test(t.nodeName)||r.test(t.type)||r.test(t.nodeName)||(i=e.type,v()||s(t),t.validity.valid&&(""!==t.value||l.test(t.type))||t.value!==t.getAttribute("placeholder")&&t.validity.valid?(A(t,[n.invalidClass,n.requiredClass]),N(t,n.validClass)):a.test(i)?t.validity.valueMissing&&A(t,[n.requiredClass,n.invalidClass,n.validClass]):t.validity.valueMissing?(A(t,[n.invalidClass,n.validClass]),N(t,n.requiredClass)):t.validity.valid||(A(t,[n.validClass,n.requiredClass]),N(t,n.invalidClass)),"input"===i&&u&&(y(t.form,"keyup",o,!0),u=!1))},d=function(t){var a,i,r,l,s,u=!1;if("form"===t.nodeName.toLowerCase()){a=t.elements;for(var d=0,c=a.length;c>d;d++)i=a[d],r=!!i.attributes.disabled,l=!!i.attributes.required,s=!!i.attributes.pattern,"fieldset"!==i.nodeName.toLowerCase()&&!r&&(l||s&&l)&&(o(i),i.validity.valid||u||(e&&i.focus(),u=!0,n.onInvalid.call(t,i)));return!u}return o(t),t.validity.valid},c=function(e){var t=this;t.validationMessage=e},u=function(e){var a=C(e);a.attributes.formnovalidate&&"submit"===a.type&&(t=!0)},v=function(){return E(k,"validity")&&E(k,"checkValidity")},p=function(e,t){if("email"===t)return!q.test(e.value);if("url"===t)return!M.test(e.value);if(t){var i=e.getAttribute("placeholder"),n=e.value;return a=RegExp("^(?:"+t+")$"),n===i?!1:""===n?!1:!a.test(e.value)}return!1},f=function(e){var t={placeholder:e.getAttribute("placeholder")},a=/^(focus|focusin|submit)$/i,r=/^(input|textarea)$/i,l=/^password$/i,s=!!("placeholder"in k);s||!r.test(e.nodeName)||l.test(e.type)||(""!==e.value||a.test(i)?e.value===t.placeholder&&a.test(i)&&(e.value="",A(e,n.placeholderClass)):(e.value=t.placeholder,g(e.form,"submit",function(){i="submit",f(e)},!0),N(e,n.placeholderClass)))},m=function(e,t){var a=parseInt(e.getAttribute("min"),10)||0,i=parseInt(e.getAttribute("max"),10)||!1,n=parseInt(e.getAttribute("step"),10)||1,r=parseInt(e.value,10),l=(r-a)%n;return h(e)||isNaN(r)?"number"===e.getAttribute("type")?!0:!1:"step"===t?e.getAttribute("step")?0!==l:!1:"min"===t?e.getAttribute("min")?a>r:!1:"max"===t?e.getAttribute("max")?r>i:!1:void 0},b=function(e){var t=!!e.attributes.required;return t?h(e):!1},h=function(e){var t=e.getAttribute("placeholder"),a=/^(checkbox|radio)$/i,i=!!e.attributes.required;return!(!i||""!==e.value&&e.value!==t&&(!a.test(e.type)||$(e)))},g=function(e,t,a,i){E(window,"addEventListener")?e.addEventListener(t,a,i):E(window,"attachEvent")&&window.event!==void 0&&("blur"===t?t="focusout":"focus"===t&&(t="focusin"),e.attachEvent("on"+t,a))},y=function(e,t,a,i){E(window,"removeEventListener")?e.removeEventListener(t,a,i):E(window,"detachEvent")&&window.event!==void 0&&e.detachEvent("on"+t,a)},w=function(e){e=e||window.event,e.stopPropagation&&e.preventDefault?(e.stopPropagation(),e.preventDefault()):(e.cancelBubble=!0,e.returnValue=!1)},C=function(e){return e=e||window.event,e.target||e.srcElement},N=function(e,t){var a;e.className?(a=RegExp("(^|\\s)"+t+"(\\s|$)"),a.test(e.className)||(e.className+=" "+t)):e.className=t},A=function(e,t){var a,i,n="object"==typeof t?t.length:1,r=n;if(e.className)if(e.className===t)e.className="";else for(;n--;)a=RegExp("(^|\\s)"+(r>1?t[n]:t)+"(\\s|$)"),i=e.className.match(a),i&&3===i.length&&(e.className=e.className.replace(a,i[1]&&i[2]?" ":""))},E=function(e,t){var a=typeof e[t],i=RegExp("^function|object$","i");return!!(i.test(a)&&e[t]||"unknown"===a)},$=function(e){for(var t=document.getElementsByName(e.name),a=0;t.length>a;a++)if(t[a].checked)return!0;return!1},{setup:r}});
+
+        </script>
+<link rel="alternate" type="text/xml+oembed" href="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/oembed?url=https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/viewform&amp;format=xml">
+<meta property="og:title" content="Armor Request"><meta property="og:type" content="article"><meta property="og:site_name" content="Google Docs"><meta property="og:url" content="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/viewform?usp=embed_facebook"><meta property="og:image" content="https://lh4.googleusercontent.com/d57sCOcHeLq57dG97ukKlvNsNTJnm-SLsdyQ3IDs1wSU9eXuW0nL7PJTpIb-aXeNN7I=w1200-h630-p"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="player"><meta name="twitter:title" content="Armor Request"><meta name="twitter:url" content="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/viewform?usp=embed_twitter"><meta name="twitter:image" content="https://lh4.googleusercontent.com/d57sCOcHeLq57dG97ukKlvNsNTJnm-SLsdyQ3IDs1wSU9eXuW0nL7PJTpIb-aXeNN7I=w435-h251-p-b1-c0x00999999"><meta name="twitter:player:width" content="435"><meta name="twitter:player:height" content="251"><meta name="twitter:player" content="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/viewform?embedded=true&amp;usp=embed_twitter"><meta name="twitter:description" content="Google Drive"><meta name="twitter:site" content="@googledocs">
+</head>
+<body dir="ltr" class="ss-base-body"><div itemscope itemtype="http://schema.org/CreativeWork/FormObject"><meta itemprop="name" content="Armor Request">
+
+
+<meta itemprop="url" content="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/viewform">
+<meta itemprop="embedUrl" content="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/viewform?embedded=true">
+<meta itemprop="faviconUrl" content="https://ssl.gstatic.com/docs/spreadsheets/forms/favicon_jfk2.png">
+
+
+
+
+<div class="ss-form-container"><div class="ss-header-image-container"><div class="ss-header-image-image"><div class="ss-header-image-sizer"></div></div></div>
+<div class="ss-top-of-page"><div class="ss-form-heading"><h1 class="ss-form-title" dir="ltr">Armor Request</h1>
+
+
+<div class="ss-required-asterisk" aria-hidden="true">* Required</div></div></div>
+<div class="ss-form"><form action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse" method="POST" id="ss-form" target="_self" onsubmit=""><ol role="list" class="ss-question-list" style="padding-left: 0">
+<div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1702613869"><div class="ss-q-title">Handle
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.1702613869" value="" class="ss-q-short" id="entry_1702613869" dir="auto" aria-label="Handle  " aria-required="true" required="" title="">
+<div class="error-message" id="1583448631_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_653355245"><div class="ss-q-title">Level
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.653355245" value="" class="ss-q-short" id="entry_653355245" dir="auto" aria-label="Level  " aria-required="true" required="" title="">
+<div class="error-message" id="1724093297_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1489240183"><div class="ss-q-title">HeadQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1489240183" id="entry_1489240183" aria-label="HeadQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1017937000"><div class="ss-q-title">HeadTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1017937000" id="entry_1017937000" aria-label="HeadTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_767263300"><div class="ss-q-title">HeadMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.767263300" id="entry_767263300" aria-label="HeadMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_436565891"><div class="ss-q-title">HeadEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.436565891" id="entry_436565891" aria-label="HeadEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1990979763"><div class="ss-q-title">HeadSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1990979763" id="entry_1990979763" aria-label="HeadSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1011545115"><div class="ss-q-title">ChestQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1011545115" id="entry_1011545115" aria-label="ChestQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_312751114"><div class="ss-q-title">ChestTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.312751114" id="entry_312751114" aria-label="ChestTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1189271429"><div class="ss-q-title">ChestMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1189271429" id="entry_1189271429" aria-label="ChestMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_148234119"><div class="ss-q-title">ChestEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.148234119" id="entry_148234119" aria-label="ChestEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_40788225"><div class="ss-q-title">ChestSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.40788225" id="entry_40788225" aria-label="ChestSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1690161499"><div class="ss-q-title">LegsQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1690161499" id="entry_1690161499" aria-label="LegsQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1694582759"><div class="ss-q-title">LegsTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1694582759" id="entry_1694582759" aria-label="LegsTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1250355338"><div class="ss-q-title">LegsMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1250355338" id="entry_1250355338" aria-label="LegsMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1611112354"><div class="ss-q-title">LegsEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1611112354" id="entry_1611112354" aria-label="LegsEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_532744097"><div class="ss-q-title">LegsSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.532744097" id="entry_532744097" aria-label="LegsSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1720439721"><div class="ss-q-title">FeetQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1720439721" id="entry_1720439721" aria-label="FeetQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1133296374"><div class="ss-q-title">FeetTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1133296374" id="entry_1133296374" aria-label="FeetTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_424999932"><div class="ss-q-title">FeetMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.424999932" id="entry_424999932" aria-label="FeetMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1526629927"><div class="ss-q-title">FeetEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1526629927" id="entry_1526629927" aria-label="FeetEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2100830732"><div class="ss-q-title">FeetSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2100830732" id="entry_2100830732" aria-label="FeetSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2000701700"><div class="ss-q-title">ShoulderQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2000701700" id="entry_2000701700" aria-label="ShoulderQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1529761946"><div class="ss-q-title">ShoulderTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1529761946" id="entry_1529761946" aria-label="ShoulderTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1732407402"><div class="ss-q-title">ShoulderMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1732407402" id="entry_1732407402" aria-label="ShoulderMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1663559739"><div class="ss-q-title">ShoulderEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1663559739" id="entry_1663559739" aria-label="ShoulderEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1302141828"><div class="ss-q-title">ShoulderSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1302141828" id="entry_1302141828" aria-label="ShoulderSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1647162210"><div class="ss-q-title">HandQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1647162210" id="entry_1647162210" aria-label="HandQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1965655231"><div class="ss-q-title">HandTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1965655231" id="entry_1965655231" aria-label="HandTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_231658116"><div class="ss-q-title">HandMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.231658116" id="entry_231658116" aria-label="HandMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_129223191"><div class="ss-q-title">HandEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.129223191" id="entry_129223191" aria-label="HandEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1978182581"><div class="ss-q-title">HandSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1978182581" id="entry_1978182581" aria-label="HandSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1840350699"><div class="ss-q-title">BeltQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1840350699" id="entry_1840350699" aria-label="BeltQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1853553952"><div class="ss-q-title">BeltTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1853553952" id="entry_1853553952" aria-label="BeltTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_651044863"><div class="ss-q-title">BeltMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.651044863" id="entry_651044863" aria-label="BeltMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_290252240"><div class="ss-q-title">BeltEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.290252240" id="entry_290252240" aria-label="BeltEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2071263967"><div class="ss-q-title">BeltSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2071263967" id="entry_2071263967" aria-label="BeltSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1836915879"><div class="ss-q-title">ShieldQuality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1836915879" id="entry_1836915879" aria-label="ShieldQuality  "><option value=""></option>
+<option value="HeavyGreen">HeavyGreen</option> <option value="HeavyBlue">HeavyBlue</option> <option value="HeavyPurple">HeavyPurple</option> <option value="HeavyYellow">HeavyYellow</option> <option value="MediumGreen">MediumGreen</option> <option value="MediumBlue">MediumBlue</option> <option value="MediumPurple">MediumPurple</option> <option value="MediumYellow">MediumYellow</option> <option value="LightGreen">LightGreen</option> <option value="LightBlue">LightBlue</option> <option value="LightPurple">LightPurple</option> <option value="LightYellow">LightYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_236191693"><div class="ss-q-title">ShieldTrait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.236191693" id="entry_236191693" aria-label="ShieldTrait  "><option value=""></option>
+<option value="Divines">Divines</option> <option value="Exploration">Exploration</option> <option value="Impenetrable">Impenetrable</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Reinforced">Reinforced</option> <option value="Sturdy">Sturdy</option> <option value="Training">Training</option> <option value="Well Fitted">Well Fitted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_467832442"><div class="ss-q-title">ShieldMotif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.467832442" id="entry_467832442" aria-label="ShieldMotif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_634343502"><div class="ss-q-title">ShieldEnchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.634343502" id="entry_634343502" aria-label="ShieldEnchant  "><option value=""></option>
+<option value="HealthGreen">HealthGreen</option> <option value="HealthBlue">HealthBlue</option> <option value="HealthPurple">HealthPurple</option> <option value="HealthYellow">HealthYellow</option> <option value="MagickaGreen">MagickaGreen</option> <option value="MagickaBlue">MagickaBlue</option> <option value="MagickaPurple">MagickaPurple</option> <option value="MagickaYellow">MagickaYellow</option> <option value="StaminaGreen">StaminaGreen</option> <option value="StaminaBlue">StaminaBlue</option> <option value="StaminaPurple">StaminaPurple</option> <option value="StaminaYellow">StaminaYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1007589099"><div class="ss-q-title">ShieldSet
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1007589099" id="entry_1007589099" aria-label="ShieldSet  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_698259331"><div class="ss-q-title">Weapon1Quality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.698259331" id="entry_698259331" aria-label="Weapon1Quality  "><option value=""></option>
+<option value="AxeGreen">AxeGreen</option> <option value="AxeBlue">AxeBlue</option> <option value="AxePurple">AxePurple</option> <option value="AxeYellow">AxeYellow</option> <option value="SwordGreen">SwordGreen</option> <option value="SwordBlue">SwordBlue</option> <option value="SwordPurple">SwordPurple</option> <option value="SwordYellow">SwordYellow</option> <option value="MaceGreen">MaceGreen</option> <option value="MaceBlue">MaceBlue</option> <option value="MacePurple">MacePurple</option> <option value="MaceYellow">MaceYellow</option> <option value="DaggerGreen">DaggerGreen</option> <option value="DaggerBlue">DaggerBlue</option> <option value="DaggerPurple">DaggerPurple</option> <option value="DaggerYellow">DaggerYellow</option> <option value="2-HAxeGreen">2-HAxeGreen</option> <option value="2-HAxeBlue">2-HAxeBlue</option> <option value="2-HAxePurple">2-HAxePurple</option> <option value="2-HAxeYellow">2-HAxeYellow</option> <option value="2-HSwordGreen">2-HSwordGreen</option> <option value="2-HSwordBlue">2-HSwordBlue</option> <option value="2-HSwordPurple">2-HSwordPurple</option> <option value="2-HSwordYellow">2-HSwordYellow</option> <option value="2-HMaceGreen">2-HMaceGreen</option> <option value="2-HMaceBlue">2-HMaceBlue</option> <option value="2-HMacePurple">2-HMacePurple</option> <option value="2-HMaceYellow">2-HMaceYellow</option> <option value="FireStaffGreen">FireStaffGreen</option> <option value="FireStaffBlue">FireStaffBlue</option> <option value="FireStaffPurple">FireStaffPurple</option> <option value="FireStaffYellow">FireStaffYellow</option> <option value="IceStaffGreen">IceStaffGreen</option> <option value="IceStaffBlue">IceStaffBlue</option> <option value="IceStaffPurple">IceStaffPurple</option> <option value="IceStaffYellow">IceStaffYellow</option> <option value="LightningStaffGreen">LightningStaffGreen</option> <option value="LightningStaffBlue">LightningStaffBlue</option> <option value="LightningStaffPurple">LightningStaffPurple</option> <option value="LightningStaffYellow">LightningStaffYellow</option> <option value="RestorationStaffGreen">RestorationStaffGreen</option> <option value="RestorationStaffBlue">RestorationStaffBlue</option> <option value="RestorationStaffPurple">RestorationStaffPurple</option> <option value="RestorationStaffYellow">RestorationStaffYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1607674200"><div class="ss-q-title">Weapon1Trait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1607674200" id="entry_1607674200" aria-label="Weapon1Trait  "><option value=""></option>
+<option value="Charged">Charged</option> <option value="Defending">Defending</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Powered">Powered</option> <option value="Precise">Precise</option> <option value="Sharpened">Sharpened</option> <option value="Training">Training</option> <option value="Weighted">Weighted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_889769491"><div class="ss-q-title">Weapon1Motif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.889769491" id="entry_889769491" aria-label="Weapon1Motif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_606898063"><div class="ss-q-title">Weapon1Enchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.606898063" id="entry_606898063" aria-label="Weapon1Enchant  "><option value=""></option>
+<option value="FrostGreen">FrostGreen</option> <option value="FrostBlue">FrostBlue</option> <option value="FrostPurple">FrostPurple</option> <option value="FrostYellow">FrostYellow</option> <option value="FoulnessGreen">FoulnessGreen</option> <option value="FoulnessBlue">FoulnessBlue</option> <option value="FoulnessPurple">FoulnessPurple</option> <option value="FoulnessYellow">FoulnessYellow</option> <option value="PoisonGreen">PoisonGreen</option> <option value="PoisonBlue">PoisonBlue</option> <option value="PoisonPurple">PoisonPurple</option> <option value="PoisonYellow">PoisonYellow</option> <option value="ShockGreen">ShockGreen</option> <option value="ShockBlue">ShockBlue</option> <option value="ShockPurple">ShockPurple</option> <option value="ShockYellow">ShockYellow</option> <option value="RageGreen">RageGreen</option> <option value="RageBlue">RageBlue</option> <option value="RagePurple">RagePurple</option> <option value="RageYellow">RageYellow</option> <option value="FlameGreen">FlameGreen</option> <option value="FlameBlue">FlameBlue</option> <option value="FlamePurple">FlamePurple</option> <option value="FlameYellow">FlameYellow</option> <option value="HardeningGreen">HardeningGreen</option> <option value="HardeningBlue">HardeningBlue</option> <option value="HardeningPurple">HardeningPurple</option> <option value="HardeningYellow">HardeningYellow</option> <option value="AbsorbMagickaGreen">AbsorbMagickaGreen</option> <option value="AbsorbMagickaBlue">AbsorbMagickaBlue</option> <option value="AbsorbMagickaPurple">AbsorbMagickaPurple</option> <option value="AbsorbMagickaYellow">AbsorbMagickaYellow</option> <option value="AbsorbHealthGreen">AbsorbHealthGreen</option> <option value="AbsorbHealthBlue">AbsorbHealthBlue</option> <option value="AbsorbHealthPurple">AbsorbHealthPurple</option> <option value="AbsorbHealthYellow">AbsorbHealthYellow</option> <option value="DecreaseHealthGreen">DecreaseHealthGreen</option> <option value="DecreaseHealthBlue">DecreaseHealthBlue</option> <option value="DecreaseHealthPurple">DecreaseHealthPurple</option> <option value="DecreaseHealthYellow">DecreaseHealthYellow</option> <option value="WeakeningGreen">WeakeningGreen</option> <option value="WeakeningBlue">WeakeningBlue</option> <option value="WeakeningPurple">WeakeningPurple</option> <option value="WeakeningYellow">WeakeningYellow</option> <option value="AbsorbStaminaGreen">AbsorbStaminaGreen</option> <option value="AbsorbStaminaBlue">AbsorbStaminaBlue</option> <option value="AbsorbStaminaPurple">AbsorbStaminaPurple</option> <option value="AbsorbStaminaYellow">AbsorbStaminaYellow</option> <option value="CrushingGreen">CrushingGreen</option> <option value="CrushingBlue">CrushingBlue</option> <option value="CrushingPurple">CrushingPurple</option> <option value="CrushingYellow">CrushingYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2033475650"><div class="ss-q-title">Weapon1Set
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2033475650" id="entry_2033475650" aria-label="Weapon1Set  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1638219941"><div class="ss-q-title">Weapon2Quality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1638219941" id="entry_1638219941" aria-label="Weapon2Quality  "><option value=""></option>
+<option value="AxeGreen">AxeGreen</option> <option value="AxeBlue">AxeBlue</option> <option value="AxePurple">AxePurple</option> <option value="AxeYellow">AxeYellow</option> <option value="SwordGreen">SwordGreen</option> <option value="SwordBlue">SwordBlue</option> <option value="SwordPurple">SwordPurple</option> <option value="SwordYellow">SwordYellow</option> <option value="MaceGreen">MaceGreen</option> <option value="MaceBlue">MaceBlue</option> <option value="MacePurple">MacePurple</option> <option value="MaceYellow">MaceYellow</option> <option value="DaggerGreen">DaggerGreen</option> <option value="DaggerBlue">DaggerBlue</option> <option value="DaggerPurple">DaggerPurple</option> <option value="DaggerYellow">DaggerYellow</option> <option value="2-HAxeGreen">2-HAxeGreen</option> <option value="2-HAxeBlue">2-HAxeBlue</option> <option value="2-HAxePurple">2-HAxePurple</option> <option value="2-HAxeYellow">2-HAxeYellow</option> <option value="2-HSwordGreen">2-HSwordGreen</option> <option value="2-HSwordBlue">2-HSwordBlue</option> <option value="2-HSwordPurple">2-HSwordPurple</option> <option value="2-HSwordYellow">2-HSwordYellow</option> <option value="2-HMaceGreen">2-HMaceGreen</option> <option value="2-HMaceBlue">2-HMaceBlue</option> <option value="2-HMacePurple">2-HMacePurple</option> <option value="2-HMaceYellow">2-HMaceYellow</option> <option value="FireStaffGreen">FireStaffGreen</option> <option value="FireStaffBlue">FireStaffBlue</option> <option value="FireStaffPurple">FireStaffPurple</option> <option value="FireStaffYellow">FireStaffYellow</option> <option value="IceStaffGreen">IceStaffGreen</option> <option value="IceStaffBlue">IceStaffBlue</option> <option value="IceStaffPurple">IceStaffPurple</option> <option value="IceStaffYellow">IceStaffYellow</option> <option value="LightningStaffGreen">LightningStaffGreen</option> <option value="LightningStaffBlue">LightningStaffBlue</option> <option value="LightningStaffPurple">LightningStaffPurple</option> <option value="LightningStaffYellow">LightningStaffYellow</option> <option value="RestorationStaffGreen">RestorationStaffGreen</option> <option value="RestorationStaffBlue">RestorationStaffBlue</option> <option value="RestorationStaffPurple">RestorationStaffPurple</option> <option value="RestorationStaffYellow">RestorationStaffYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_211567754"><div class="ss-q-title">Weapon2Trait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.211567754" id="entry_211567754" aria-label="Weapon2Trait  "><option value=""></option>
+<option value="Charged">Charged</option> <option value="Defending">Defending</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Powered">Powered</option> <option value="Precise">Precise</option> <option value="Sharpened">Sharpened</option> <option value="Training">Training</option> <option value="Weighted">Weighted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1510285845"><div class="ss-q-title">Weapon2Motif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1510285845" id="entry_1510285845" aria-label="Weapon2Motif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1562249603"><div class="ss-q-title">Weapon2Enchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1562249603" id="entry_1562249603" aria-label="Weapon2Enchant  "><option value=""></option>
+<option value="FrostGreen">FrostGreen</option> <option value="FrostBlue">FrostBlue</option> <option value="FrostPurple">FrostPurple</option> <option value="FrostYellow">FrostYellow</option> <option value="FoulnessGreen">FoulnessGreen</option> <option value="FoulnessBlue">FoulnessBlue</option> <option value="FoulnessPurple">FoulnessPurple</option> <option value="FoulnessYellow">FoulnessYellow</option> <option value="PoisonGreen">PoisonGreen</option> <option value="PoisonBlue">PoisonBlue</option> <option value="PoisonPurple">PoisonPurple</option> <option value="PoisonYellow">PoisonYellow</option> <option value="ShockGreen">ShockGreen</option> <option value="ShockBlue">ShockBlue</option> <option value="ShockPurple">ShockPurple</option> <option value="ShockYellow">ShockYellow</option> <option value="RageGreen">RageGreen</option> <option value="RageBlue">RageBlue</option> <option value="RagePurple">RagePurple</option> <option value="RageYellow">RageYellow</option> <option value="FlameGreen">FlameGreen</option> <option value="FlameBlue">FlameBlue</option> <option value="FlamePurple">FlamePurple</option> <option value="FlameYellow">FlameYellow</option> <option value="HardeningGreen">HardeningGreen</option> <option value="HardeningBlue">HardeningBlue</option> <option value="HardeningPurple">HardeningPurple</option> <option value="HardeningYellow">HardeningYellow</option> <option value="AbsorbMagickaGreen">AbsorbMagickaGreen</option> <option value="AbsorbMagickaBlue">AbsorbMagickaBlue</option> <option value="AbsorbMagickaPurple">AbsorbMagickaPurple</option> <option value="AbsorbMagickaYellow">AbsorbMagickaYellow</option> <option value="AbsorbHealthGreen">AbsorbHealthGreen</option> <option value="AbsorbHealthBlue">AbsorbHealthBlue</option> <option value="AbsorbHealthPurple">AbsorbHealthPurple</option> <option value="AbsorbHealthYellow">AbsorbHealthYellow</option> <option value="DecreaseHealthGreen">DecreaseHealthGreen</option> <option value="DecreaseHealthBlue">DecreaseHealthBlue</option> <option value="DecreaseHealthPurple">DecreaseHealthPurple</option> <option value="DecreaseHealthYellow">DecreaseHealthYellow</option> <option value="WeakeningGreen">WeakeningGreen</option> <option value="WeakeningBlue">WeakeningBlue</option> <option value="WeakeningPurple">WeakeningPurple</option> <option value="WeakeningYellow">WeakeningYellow</option> <option value="AbsorbStaminaGreen">AbsorbStaminaGreen</option> <option value="AbsorbStaminaBlue">AbsorbStaminaBlue</option> <option value="AbsorbStaminaPurple">AbsorbStaminaPurple</option> <option value="AbsorbStaminaYellow">AbsorbStaminaYellow</option> <option value="CrushingGreen">CrushingGreen</option> <option value="CrushingBlue">CrushingBlue</option> <option value="CrushingPurple">CrushingPurple</option> <option value="CrushingYellow">CrushingYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2093391613"><div class="ss-q-title">Weapon2Set
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2093391613" id="entry_2093391613" aria-label="Weapon2Set  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_484526695"><div class="ss-q-title">Weapon3Quality
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.484526695" id="entry_484526695" aria-label="Weapon3Quality  "><option value=""></option>
+<option value="AxeGreen">AxeGreen</option> <option value="AxeBlue">AxeBlue</option> <option value="AxePurple">AxePurple</option> <option value="AxeYellow">AxeYellow</option> <option value="SwordGreen">SwordGreen</option> <option value="SwordBlue">SwordBlue</option> <option value="SwordPurple">SwordPurple</option> <option value="SwordYellow">SwordYellow</option> <option value="MaceGreen">MaceGreen</option> <option value="MaceBlue">MaceBlue</option> <option value="MacePurple">MacePurple</option> <option value="MaceYellow">MaceYellow</option> <option value="DaggerGreen">DaggerGreen</option> <option value="DaggerBlue">DaggerBlue</option> <option value="DaggerPurple">DaggerPurple</option> <option value="DaggerYellow">DaggerYellow</option> <option value="2-HAxeGreen">2-HAxeGreen</option> <option value="2-HAxeBlue">2-HAxeBlue</option> <option value="2-HAxePurple">2-HAxePurple</option> <option value="2-HAxeYellow">2-HAxeYellow</option> <option value="2-HSwordGreen">2-HSwordGreen</option> <option value="2-HSwordBlue">2-HSwordBlue</option> <option value="2-HSwordPurple">2-HSwordPurple</option> <option value="2-HSwordYellow">2-HSwordYellow</option> <option value="2-HMaceGreen">2-HMaceGreen</option> <option value="2-HMaceBlue">2-HMaceBlue</option> <option value="2-HMacePurple">2-HMacePurple</option> <option value="2-HMaceYellow">2-HMaceYellow</option> <option value="FireStaffGreen">FireStaffGreen</option> <option value="FireStaffBlue">FireStaffBlue</option> <option value="FireStaffPurple">FireStaffPurple</option> <option value="FireStaffYellow">FireStaffYellow</option> <option value="IceStaffGreen">IceStaffGreen</option> <option value="IceStaffBlue">IceStaffBlue</option> <option value="IceStaffPurple">IceStaffPurple</option> <option value="IceStaffYellow">IceStaffYellow</option> <option value="LightningStaffGreen">LightningStaffGreen</option> <option value="LightningStaffBlue">LightningStaffBlue</option> <option value="LightningStaffPurple">LightningStaffPurple</option> <option value="LightningStaffYellow">LightningStaffYellow</option> <option value="RestorationStaffGreen">RestorationStaffGreen</option> <option value="RestorationStaffBlue">RestorationStaffBlue</option> <option value="RestorationStaffPurple">RestorationStaffPurple</option> <option value="RestorationStaffYellow">RestorationStaffYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1467971831"><div class="ss-q-title">Weapon3Trait
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.1467971831" id="entry_1467971831" aria-label="Weapon3Trait  "><option value=""></option>
+<option value="Charged">Charged</option> <option value="Defending">Defending</option> <option value="Infused">Infused</option> <option value="Nirnhoned">Nirnhoned</option> <option value="Powered">Powered</option> <option value="Precise">Precise</option> <option value="Sharpened">Sharpened</option> <option value="Training">Training</option> <option value="Weighted">Weighted</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_686541906"><div class="ss-q-title">Weapon3Motif
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.686541906" id="entry_686541906" aria-label="Weapon3Motif  "><option value=""></option>
+<option value="High Elf">High Elf</option> <option value="Wood Elf">Wood Elf</option> <option value="Khajiit">Khajiit</option> <option value="Argonian">Argonian</option> <option value="Nord">Nord</option> <option value="Dark Elf">Dark Elf</option> <option value="Breton">Breton</option> <option value="Orc">Orc</option> <option value="Red Guard">Red Guard</option> <option value="Ancient Elf">Ancient Elf</option> <option value="Barbaric">Barbaric</option> <option value="Primal">Primal</option> <option value="Daedric">Daedric</option> <option value="Imperial">Imperial</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_692256660"><div class="ss-q-title">Weapon3Enchant
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.692256660" id="entry_692256660" aria-label="Weapon3Enchant  "><option value=""></option>
+<option value="FrostGreen">FrostGreen</option> <option value="FrostBlue">FrostBlue</option> <option value="FrostPurple">FrostPurple</option> <option value="FrostYellow">FrostYellow</option> <option value="FoulnessGreen">FoulnessGreen</option> <option value="FoulnessBlue">FoulnessBlue</option> <option value="FoulnessPurple">FoulnessPurple</option> <option value="FoulnessYellow">FoulnessYellow</option> <option value="PoisonGreen">PoisonGreen</option> <option value="PoisonBlue">PoisonBlue</option> <option value="PoisonPurple">PoisonPurple</option> <option value="PoisonYellow">PoisonYellow</option> <option value="ShockGreen">ShockGreen</option> <option value="ShockBlue">ShockBlue</option> <option value="ShockPurple">ShockPurple</option> <option value="ShockYellow">ShockYellow</option> <option value="RageGreen">RageGreen</option> <option value="RageBlue">RageBlue</option> <option value="RagePurple">RagePurple</option> <option value="RageYellow">RageYellow</option> <option value="FlameGreen">FlameGreen</option> <option value="FlameBlue">FlameBlue</option> <option value="FlamePurple">FlamePurple</option> <option value="FlameYellow">FlameYellow</option> <option value="HardeningGreen">HardeningGreen</option> <option value="HardeningBlue">HardeningBlue</option> <option value="HardeningPurple">HardeningPurple</option> <option value="HardeningYellow">HardeningYellow</option> <option value="AbsorbMagickaGreen">AbsorbMagickaGreen</option> <option value="AbsorbMagickaBlue">AbsorbMagickaBlue</option> <option value="AbsorbMagickaPurple">AbsorbMagickaPurple</option> <option value="AbsorbMagickaYellow">AbsorbMagickaYellow</option> <option value="AbsorbHealthGreen">AbsorbHealthGreen</option> <option value="AbsorbHealthBlue">AbsorbHealthBlue</option> <option value="AbsorbHealthPurple">AbsorbHealthPurple</option> <option value="AbsorbHealthYellow">AbsorbHealthYellow</option> <option value="DecreaseHealthGreen">DecreaseHealthGreen</option> <option value="DecreaseHealthBlue">DecreaseHealthBlue</option> <option value="DecreaseHealthPurple">DecreaseHealthPurple</option> <option value="DecreaseHealthYellow">DecreaseHealthYellow</option> <option value="WeakeningGreen">WeakeningGreen</option> <option value="WeakeningBlue">WeakeningBlue</option> <option value="WeakeningPurple">WeakeningPurple</option> <option value="WeakeningYellow">WeakeningYellow</option> <option value="AbsorbStaminaGreen">AbsorbStaminaGreen</option> <option value="AbsorbStaminaBlue">AbsorbStaminaBlue</option> <option value="AbsorbStaminaPurple">AbsorbStaminaPurple</option> <option value="AbsorbStaminaYellow">AbsorbStaminaYellow</option> <option value="CrushingGreen">CrushingGreen</option> <option value="CrushingBlue">CrushingBlue</option> <option value="CrushingPurple">CrushingPurple</option> <option value="CrushingYellow">CrushingYellow</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2086256414"><div class="ss-q-title">Weapon3Set
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2086256414" id="entry_2086256414" aria-label="Weapon3Set  "><option value=""></option>
+<option value="Night&#39;s Silence">Night&#39;s Silence</option> <option value="Ashen Grip">Ashen Grip</option> <option value="Death&#39;s Wind">Death&#39;s Wind</option> <option value="Torug&#39;s Pact">Torug&#39;s Pact</option> <option value="Seducer">Seducer</option> <option value="Twilight&#39;s Embrace">Twilight&#39;s Embrace</option> <option value="Whitestrake&#39;s Retribution">Whitestrake&#39;s Retribution</option> <option value="Hist Bark">Hist Bark</option> <option value="Magnus&#39; Gift">Magnus&#39; Gift</option> <option value="Alessia&#39;s Bulwark">Alessia&#39;s Bulwark</option> <option value="Song of Lamae">Song of Lamae</option> <option value="Vampire&#39;s Kiss">Vampire&#39;s Kiss</option> <option value="Hunding&#39;s Rage">Hunding&#39;s Rage</option> <option value="Willow&#39;s Path">Willow&#39;s Path</option> <option value="Night Mother&#39;s Gaze">Night Mother&#39;s Gaze</option> <option value="Spectre&#39;s Eye">Spectre&#39;s Eye</option> <option value="Oblivion&#39;s Foe">Oblivion&#39;s Foe</option> <option value="Eyes of Mara">Eyes of Mara</option> <option value="Kagrenac&#39;s Hope">Kagrenac&#39;s Hope</option> <option value="Orgnum&#39;s Scales">Orgnum&#39;s Scales</option> <option value="Shalidor&#39;s Curse">Shalidor&#39;s Curse</option> <option value="Way of the Arena">Way of the Arena</option> <option value="Twice Born Star">Twice Born Star</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_64024218"><div class="ss-q-title">Cost
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.64024218" value="" class="ss-q-short" id="entry_64024218" dir="auto" aria-label="Cost  " title="">
+<div class="error-message" id="983457675_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div>
+<input type="hidden" name="draftResponse" value="[,,&quot;1121080280203421070&quot;]
+">
+<input type="hidden" name="pageHistory" value="0">
+
+
+<input type="hidden" name="fbzx" value="1121080280203421070">
+
+<div class="ss-item ss-navigate"><table id="navigation-table"><tbody><tr><td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
+<input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action ">
+<div class="ss-password-warning ss-secondary-text">Never submit passwords through Google Forms.</div></td>
+</tr></tbody></table></div></ol></form></div>
+<div class="ss-footer"><div class="ss-attribution"></div>
+<div class="ss-legal"><div class="disclaimer-separator"></div>
+<div class="disclaimer" dir="ltr"><div class="powered-by-logo"><span class="powered-by-text">Powered by</span>
+<a href="https://www.google.com/forms/about/?utm_source=product&amp;utm_medium=forms_logo&amp;utm_campaign=forms"><div class="ss-logo-container ss-logo-css-container"><div class="ss-logo-image"></div>
+<span class="aria-only-help">Google Forms</span></div></a></div>
+<div class="ss-terms"><span class="disclaimer-msg">This content is neither created nor endorsed by Google.</span>
+<br>
+<a href="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/reportabuse?source=https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/viewform">Report Abuse</a>
+-
+<a href="http://www.google.com/accounts/TOS">Terms of Service</a>
+-
+<a href="http://www.google.com/google-d-s/terms.html">Additional Terms</a></div></div></div></div>
+
+<div id="docs-aria-speakable" class="docs-a11y-ariascreenreader-speakable docs-offscreen" aria-live="assertive" role="region" aria-atomic></div></div>
+<a class="ss-edit-link" href="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/edit">Edit this form</a>
+
+<script type='text/javascript' src='/static/forms/client/js/1365388097-formviewer_prd.js'></script>
+<script type="text/javascript">H5F.setup(document.getElementById('ss-form'));
+          _initFormViewer(
+            "[100,,[]\n]\n");</script></div></body></html>
