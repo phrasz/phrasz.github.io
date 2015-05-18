@@ -21,7 +21,9 @@
 		//Other Vars: "Timestamp", "Handle", "Level", "Fullfilled", "Fullfilled By", "Cost"
 		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"];
 		var CategoriesPresent= [];
-
+		
+		var DebugFlag=0;
+				
 		var Head=["HeadQuality", "HeadTrait", "HeadMotif", "HeadEnchant", "HeadSet", "HeadCost"];
 		var Chest=["ChestQuality", "ChestTrait", "ChestMotif", "ChestEnchant", "ChestSet", "ChestCost"];
 		var Legs=["LegsQuality",  "LegsTrait", "LegsMotif", "LegsEnchant", "LegsSet"];
@@ -55,7 +57,8 @@
 			var found=0;
 			var AllMemberData="";
 
-			for(j=0; j < FulfillmentsRowData;j++){ //See if a request exists (via a Handle and Timestamp) in BOTH of the sheets
+			//See if a request exists (via a Handle and Timestamp) in BOTH of the sheets --> implies the request has been fulfilled
+			for(j=0; j < FulfillmentsRowData;j++){
 				if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
 					found=1;
 				}
@@ -94,8 +97,10 @@
 				MenuListData+="					Test";
 				
 				//Ex: Print Head
-				PrintGearHTML(Head,RequestorData);
-
+				if(DebugFlag===0){
+					PrintGearHTML(Head,RequestorData);
+					DebugFlag=1;
+				}
 				MenuListData+="				</p>";
 				MenuListData+="		</div>";
 			}
@@ -106,9 +111,10 @@
 	function PrintGearHTML(ItemArray, Data){
 		var List;
 			//DEBUGGGING: Dump all the fields
-			//for(var i=0; i<ItemArray.length;i++){
-			//	console.log("Hello World!");
-			//} 
+			for(var i=0; i<ItemArray.length;i++){
+				console.log("This is the ItemArray: "+ItemArray);
+				console.log("This is "+ItemArray[i]+"'s data: "+Data.$(ItemArray).get(i));
+			} 
 	}
 	  
 
