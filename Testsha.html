@@ -1,0 +1,83 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>jsSHA - SHA Hashes in JavaScript</title>
+	<script type="text/javascript" src="sha256.js"></script>
+	<script type="text/javascript">
+		function calcHash() {
+			try {
+				var hashInput = document.getElementById("hashInputText");
+				var hashInputType = document.getElementById("hashInputType");
+				var hashVariant = document.getElementById("hashVariant");
+				var hashRounds = document.getElementById("hashRounds");
+				var hashOutputType = document.getElementById("hashOutputType");
+				var hashOutput = document.getElementById("hashOutputText");
+				var hashObj = new jsSHA(hashInput.value, hashInputType.options[hashInputType.selectedIndex].value);
+				hashOutput.value = hashObj.getHash(
+					hashVariant.options[hashVariant.selectedIndex].value,
+					hashOutputType.options[hashOutputType.selectedIndex].value,
+					parseInt(hashRounds.value, 10)
+				);
+			} catch(e) {
+				hashOutput.value = e
+			}
+		}
+	</script>
+</head>
+<body onload="calcHash()">
+	<div id="container">
+		<div>
+			<form action="#" method="get">
+				<fieldset>
+					<legend>Hashing Demo</legend>
+					<p>
+						Simply insert your text to be hashed, input type, the SHA variant you wish to use, and the output format.<br />
+						<span style="font-size: 12px">Note: You may have to scroll the output text for longer length hashes</span>
+					</p>
+					<div>
+						<label for="hashInputText">Input Text:</label><input type="text" size="75" name="hashInputText" id="hashInputText" onkeyup="calcHash()" />
+					</div>
+					<div>
+						<label for="hashInputType">Input Type:</label>
+						<select name="hashInputType" id="hashInputType" onchange="calcHash()">
+							<option selected="selected">TEXT</option>
+						</select>
+					</div>
+					<div>
+						<label for="hashVariant">SHA Variant:</label>
+						<select name="hashVariant" id="hashVariant" onchange="calcHash()">
+							<option>SHA-256</option>
+						</select>
+					</div>
+					<div>
+						<label for="hashRounds">Number of Rounds:</label><input type="text" size="5" name="hashRounds" id="hashRounds" value="1" onkeyup="calcHash()" />
+					</div>
+					<div>
+						<label for="hashOutputType">Output Type:</label>
+						<select name="hashOutputType" id="hashOutputType" onchange="calcHash()">
+							<option value="B64" selected="selected">Base-64</option>
+						</select>
+					</div>
+					<div>
+						<label for="hashOutputText">Output Hash:</label>
+						<input type="text" size="75" name="hashOutputText" id="hashOutputText" style="background-color: #b1ceed" />
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2442290-9']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</body>
+</html>
