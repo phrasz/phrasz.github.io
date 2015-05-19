@@ -39,35 +39,7 @@
 		var CategoriesPresent= [];
 		var EmptyArray=[];
 		var ValidWords=[];
-		/*
-		Array.prototype.atIndices = function(ind) {
-			var result = [];
-			for (var i = 0; i < arguments.length; i++) {
-				if (arguments[i] in this)
-					result.push(this[arguments[i]])
-				}
-			return result;        
-		}
-		*/
-		
-		/*
-		function pluck(arr, indices) {
-			var result = [];
-			var result2 = [];
-			i = 0;
-			len = indices.length;
 
-			for (; i < len; i++) {
-				result.push(arr[indices[i]]);
-			}
-			if(result===result2){
-				return null;
-			}
-			else{
-				return result;
-			}
-		}
-		*/
 		
       $(document).ready( function() {
         Tabletop.init( { key: public_spreadsheet_url,
@@ -84,7 +56,16 @@
 		
 		var i,j,k,l;
 		var RequestCounter=1;
-		for(i=0; i < RequestRowData.length;i++){
+		var TotalUsers;
+		
+		//Exceptiopn handling:
+		if(RequestRowData.length <=0 ){
+			TotalUsers=1;
+		}
+		else{
+			TotalUsers=RequestRowData.length;
+		}		
+		for(i=0; i < TotalUsers;i++){
 			
 			var found=0;
 			var AllMemberData="";
@@ -102,7 +83,7 @@
 					//ItemCategoryFound=CheckForGear(CategoriesData[j],RequestRowData[i]);
 					//if(ItemCategoryFound===1){
 					if(CheckForGear(CategoriesData[j],RequestRowData[i])){
-						//console.log("Checking: "+Categories[j]);
+						console.log("Checking: "+Categories[j]);
 						CategoriesPresent.push(Categories[j]);
 					}
 				}
@@ -197,168 +178,41 @@
 
     </script>
 	</font>
-	<hr>
-	<h1 style="color:#FFFFFF"><u><b>Crafting Order Request</b></u></h1>
-	
-	<form style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">
-	<div class="panel-group" id="accordion">
-		<LABEL for="entry_1702613869">Handle: </LABEL> <INPUT name="entry.1702613869" type="text" id="entry_1702613869">
-		<br><LABEL for="entry_653355245">Level: </LABEL> <INPUT name="entry.653355245" type="text" id="entry_653355245">
-		
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-				Add Head</a>
-				</h4>
-			</div>
-			<div id="collapse1" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-				Add Chest</a>
-				</h4>
-			</div>
-			<div id="collapse2" class="panel-collapse collapse">
-				<div class="panel-body">
-				
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-				Add Legs</a>
-				</h4>
-			</div>
-			<div id="collapse3" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-				Add Feet</a>
-				</h4>
-			</div>
-			<div id="collapse4" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-				Add Shoulders</a>
-				</h4>
-			</div>
-			<div id="collapse5" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-				Add Hand</a>
-				</h4>
-			</div>
-			<div id="collapse6" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
-				Add Belt</a>
-				</h4>
-			</div>
-			<div id="collapse7" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
-				Add Shield</a>
-				</h4>
-			</div>
-			<div id="collapse8" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse9">
-				Add Weapon 1</a>
-				</h4>
-			</div>
-			<div id="collapse9" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse10">
-				Add Weapon 2</a>
-				</h4>
-			</div>
-			<div id="collapse10" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse11">
-				Add Weapon 3</a>
-				</h4>
-			</div>
-			<div id="collapse11" class="panel-collapse collapse">
-				<div class="panel-body">
-
-				</div>
-			</div>
-		</div>
-		<br><INPUT type="submit" value="Send"> <INPUT type="reset">
-	</div>
-	</form>
 
   </body>
 </html>
+
+<!--
+
+		/*
+		Array.prototype.atIndices = function(ind) {
+			var result = [];
+			for (var i = 0; i < arguments.length; i++) {
+				if (arguments[i] in this)
+					result.push(this[arguments[i]])
+				}
+			return result;        
+		}
+		*/
+		
+		/*
+		function pluck(arr, indices) {
+			var result = [];
+			var result2 = [];
+			i = 0;
+			len = indices.length;
+
+			for (; i < len; i++) {
+				result.push(arr[indices[i]]);
+			}
+			if(result===result2){
+				return null;
+			}
+			else{
+				return result;
+			}
+		}
+		*/
+
+
+!-->
