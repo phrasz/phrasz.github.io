@@ -56,25 +56,8 @@
                          callback: showRequestInfo,
                          wanted: [ "Requests", "Fulfillments" ],
                          debug: false } )
-						 
-		    $("select").change(function(){
-            $( "select option:selected").each(function(){
-                if($(this).attr("value")=="Player1"){
-                    $(".box").hide();
-                    $(".red").show();
-                }
-                if($(this).attr("value")=="Player2"){
-                    $(".box").hide();
-                    $(".green").show();
-                }
-                if($(this).attr("value")=="Player3"){
-                    $(".box").hide();
-                    $(".blue").show();
-                }
-            });
-        }).change();
       })
-        
+      
 	function showRequestInfo(data, tabletop){
 		$("<h1><u><b>Current Requests</b></u></h1>").appendTo("#table_info");
 		
@@ -262,20 +245,19 @@
 !-->  
 <hr>
 <font color="white">
-<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-    <ul id="myTab" class="nav nav-tabs" role="tablist">
-      <!--<li role="presentation" class=""><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Home</a></li>!-->
-      <!--<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Profile</a></li>!-->
-      <li role="presentation" class="dropdown active" data-live-search="true">
-        <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+<!-- data-live-search="true" !-->
+<div>
+    <ul class="nav nav-tabs">
+      <li class="dropdown active">
+        <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Select Player  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
+        <ul class="dropdown-menu" id="myTabDrop1-contents">
           <li class="active"><a href="#dropdown1" tabindex="-1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="true">@fat</a></li>
           <li class=""><a href="#dropdown2" tabindex="-1" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">@mdo</a></li>
         </ul>
       </li>
     </ul>
     <div id="myTabContent" class="tab-content">
-      <div role="tabpanel" class="tab-pane fade" id="home" aria-labelledby="home-tab">
+      <div role="tabpanel" class="tab-pane fade" id="home">
         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
       </div>
       <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
@@ -293,6 +275,38 @@
   </font>
   </body>
   </html>
+
+<!--
+		/*
+		Array.prototype.atIndices = function(ind) {
+			var result = [];
+			for (var i = 0; i < arguments.length; i++) {
+				if (arguments[i] in this)
+					result.push(this[arguments[i]])
+				}
+			return result;        
+		}
+		*/
+		
+		/*
+		function pluck(arr, indices) {
+			var result = [];
+			var result2 = [];
+			i = 0;
+			len = indices.length;
+
+			for (; i < len; i++) {
+				result.push(arr[indices[i]]);
+			}
+			if(result===result2){
+				return null;
+			}
+			else{
+				return result;
+			}
+		}
+		*/
+!-->
 
 <!--
 		/*
