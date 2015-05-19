@@ -35,7 +35,7 @@
 		var Weapon3=["Weapon3Quality", "Weapon3Trait",  "Weapon3Motif", "Weapon3Enchant", "Weapon3Set"];
 
 		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"];
-		var CategoriesData=[Head,Chest,Legs,Feet,Shoulder,Hand,Belt,Shield,Weapon1,Weapon2,Weapon3];
+		//var CategoriesData=[Head,Chest,Legs,Feet,Shoulder,Hand,Belt,Shield,Weapon1,Weapon2,Weapon3];
 		var CategoriesPresent= [];
 		var EmptyArray=[];
 		var ValidWords=[];
@@ -58,7 +58,7 @@
 		var RequestCounter=1;
 		var TotalUsers;
 		
-		//Exceptiopn handling:
+		//Exception handling:
 		if(RequestRowData.length <=0 ){
 			TotalUsers=1;
 		}
@@ -66,7 +66,7 @@
 			TotalUsers=RequestRowData.length;
 		}		
 		for(i=0; i < TotalUsers;i++){
-			
+			CategoriesPresent=[];
 			var found=0;
 			var AllMemberData="";
 			//See if a request exists (via a Handle and Timestamp) in BOTH of the sheets --> implies the request has been fulfilled
@@ -77,19 +77,56 @@
 			}
 			
 			if(found === 0){//If the request has NOT been fulfilled, then display
-				console.log("Processing "+RequestRowData[i].Handle+"'s data...");
+				console.log("\n\nProcessing "+RequestRowData[i].Handle+"'s data...");
 				var ItemCategoryFound=0;
-				for(j=0;j<Categories.length;j++){
+				//for(j=0;j<CategoriesData.size();j++){
+					//console.log("\tCategoriesData size: "+CategoriesData.size());
+					//console.log("\t\tChecking: "+Categories[j]);
 					//ItemCategoryFound=CheckForGear(CategoriesData[j],RequestRowData[i]);
-					//if(ItemCategoryFound===1){
-					if(CheckForGear(CategoriesData[j],RequestRowData[i])){
-						console.log("Checking: "+Categories[j]);
-						CategoriesPresent.push(Categories[j]);
+					if(CheckForGear(Head,RequestRowData[i])){
+						CategoriesPresent.push("Head");
 					}
-				}
-				if(CategoriesPresent.length>=1){
-					console.log("\t"+RequestRowData[i].Handle+" has "+CategoriesPresent+" values present");
-					AllMemberData=GenerateRequestTabList(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]) + GenerateRequestTabList_Content(Categories,CategoriesPresent,RequestRowData[i]);
+					if(CheckForGear(Chest,RequestRowData[i])){
+						//console.log("\tFound a Chest item");
+						CategoriesPresent.push("Chest");
+					}
+					if(CheckForGear(Legs,RequestRowData[i])){
+						//console.log("\tFound a Legs item");
+						CategoriesPresent.push("Legs");
+					}
+					if(CheckForGear(Feet,RequestRowData[i])){
+						CategoriesPresent.push("Feet");
+					}
+					if(CheckForGear(Shoulder,RequestRowData[i])){
+						CategoriesPresent.push("Shoulder");
+					}
+					if(CheckForGear(Hand,RequestRowData[i])){
+						CategoriesPresent.push("Hand");
+					}
+					if(CheckForGear(Belt,RequestRowData[i])){
+						CategoriesPresent.push("Belt");
+					}
+					if(CheckForGear(Shield,RequestRowData[i])){
+						CategoriesPresent.push("Shield");
+					}
+					if(CheckForGear(Weapon1,RequestRowData[i])){
+						CategoriesPresent.push("Weapon1");
+					}
+					if(CheckForGear(Weapon2,RequestRowData[i])){
+						CategoriesPresent.push("Weapon2");
+					}
+					if(CheckForGear(Weapon3,RequestRowData[i])){
+						CategoriesPresent.push("Weapon3");
+					}
+					
+					if(ItemCategoryFound===1){
+					//if(CheckForGear(CategoriesData[j],RequestRowData[i])){
+						
+					}
+				//}
+				if(CategoriesPresent.length>=1){	
+					console.log("\t"+RequestRowData[i].Handle+" has \n\t\t"+CategoriesPresent+" values present");
+					AllMemberData=GenerateRequestTabList(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]) + GenerateRequestTabList_Content(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]);
 					$(AllMemberData).appendTo("#table_info");
 					RequestCounter++;
 				}
@@ -104,7 +141,7 @@
 	
 	function GenerateRequestTabList(ListForMenu,ListRestrictions,RequestNumber,RequestorData){
 		var FirstItemFound=0;
-		var MenuList="<hr><h3>Request "+(RequestNumber+1)+": "+ RequestorData.Handle + "</h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
+		var MenuList="<hr><h3>Request "+(RequestNumber)+": "+ RequestorData.Handle + "</h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
 		MenuList+="<ul class=\"nav nav-tabs\">";
 		for(var k=0; k<ListForMenu.length; k++){
 			var ListItemValid=0;
@@ -115,12 +152,13 @@
 				}
 			}
 			if(ListItemValid===1){
+				console.log("Found "+ListForMenu[k]);
 				if(FirstItemFound===0){
-					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestorData.Handle+"menu1\">"+ ListForMenu[k] +"</a></li>";
+					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu1\">"+ ListForMenu[k] +"</a></li>";
 					FirstItemFound=1;
 				}
 				else{	
-					MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k-1] +"</a></li>";
+					MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k] +"</a></li>";
 				}
 			}
 		}
@@ -128,28 +166,30 @@
 		return MenuList;
 	}
 	
-	function GenerateRequestTabList_Content(ListOfItems,ListRestrictions,RequestorData){
+	function GenerateRequestTabList_Content(ListOfItems,ListRestrictions,RequestNumber,RequestorData){
+		console.log("\n\tStarting Printing of Request Tab Content");
 		var FirstItemFound=0;
 		var MenuListData="";
 			MenuListData+="<div class=\"tab-content\">";
 			for(var k=0; k<ListOfItems.length; k++){
 				var ListItemValid=0;
 				for(l=0;l<ListRestrictions.length;l++){
-					console.log("Comparing "+ListOfItems[k]+" to "+ListRestrictions[l]);
 					if(ListOfItems[k]===ListRestrictions[l]){
+						//console.log("\t\tComparing "+ListOfItems[k]+" to "+ListRestrictions[l]);
 						ListItemValid=1;
 						break;
 					}
 				}
 				if(ListItemValid===1){
-					if(FirstItemFound===0){
-						MenuListData+="<div id=\""+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">";
+				console.log("Found "+ListOfItems[k]);
+				if(FirstItemFound===0){
+						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">";
 						FirstItemFound=1;
 					}
 					else{
-						MenuListData+="<div id=\""+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
+						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
 					}
-					MenuListData+="			<h3>"+ListOfItems[k-1]+"</h3>";
+					MenuListData+="			<h3>"+ListOfItems[k]+"</h3>";
 					MenuListData+="				<p>";
 					MenuListData+="					Test";
 					MenuListData+="				</p>";
@@ -163,11 +203,12 @@
 	function CheckForGear(ItemArray, Data){
 		//DEBUGGGING: Dump all the fields
 		//console.log("This is the ItemArray: "+ItemArray);
-		for(var i=0; i<$(ItemArray).length;i++){
-			var TestString=Data[ItemArray[i]];
-			if(TestString!=""){
-				if(TestString.length>=3){
-					console.log("\tThis is "+ItemArray[i]+"'s data: "+Data[ItemArray[i]]);
+		for(var i=0; i<ItemArray.length;i++){
+			var TestString="";
+			console.log("\t\tThis is "+ItemArray[i]+"'s data: "+Data[ItemArray[i]]);
+			if(Data[ItemArray[i]]!=undefined){
+				if(Data[ItemArray[i]].length>=3){
+					
 					return 1;				
 				}
 			}
