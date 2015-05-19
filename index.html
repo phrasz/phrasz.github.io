@@ -77,55 +77,12 @@
 			}
 			
 			if(found === 0){//If the request has NOT been fulfilled, then display
-				console.log("\n\nProcessing "+RequestRowData[i].Handle+"'s data...");
-				var ItemCategoryFound=0;
-				//for(j=0;j<CategoriesData.size();j++){
-					//console.log("\tCategoriesData size: "+CategoriesData.size());
-					//console.log("\t\tChecking: "+Categories[j]);
-					//ItemCategoryFound=CheckForGear(CategoriesData[j],RequestRowData[i]);
-					if(CheckForGear(Head,RequestRowData[i])){
-						CategoriesPresent.push("Head");
-					}
-					if(CheckForGear(Chest,RequestRowData[i])){
-						//console.log("\tFound a Chest item");
-						CategoriesPresent.push("Chest");
-					}
-					if(CheckForGear(Legs,RequestRowData[i])){
-						//console.log("\tFound a Legs item");
-						CategoriesPresent.push("Legs");
-					}
-					if(CheckForGear(Feet,RequestRowData[i])){
-						CategoriesPresent.push("Feet");
-					}
-					if(CheckForGear(Shoulder,RequestRowData[i])){
-						CategoriesPresent.push("Shoulder");
-					}
-					if(CheckForGear(Hand,RequestRowData[i])){
-						CategoriesPresent.push("Hand");
-					}
-					if(CheckForGear(Belt,RequestRowData[i])){
-						CategoriesPresent.push("Belt");
-					}
-					if(CheckForGear(Shield,RequestRowData[i])){
-						CategoriesPresent.push("Shield");
-					}
-					if(CheckForGear(Weapon1,RequestRowData[i])){
-						CategoriesPresent.push("Weapon1");
-					}
-					if(CheckForGear(Weapon2,RequestRowData[i])){
-						CategoriesPresent.push("Weapon2");
-					}
-					if(CheckForGear(Weapon3,RequestRowData[i])){
-						CategoriesPresent.push("Weapon3");
-					}
-					
-					if(ItemCategoryFound===1){
-					//if(CheckForGear(CategoriesData[j],RequestRowData[i])){
-						
-					}
-				//}
+				//console.log("\n\nProcessing "+RequestRowData[i].Handle+"'s data...");
+				
+				CheckForCategoriesPresent(RequestRowData[i],CategoriesPresent);
+				
 				if(CategoriesPresent.length>=1){	
-					console.log("\t"+RequestRowData[i].Handle+" has \n\t\t"+CategoriesPresent+" values present");
+					//console.log("\t"+RequestRowData[i].Handle+" has \n\t\t"+CategoriesPresent+" values present");
 					AllMemberData=GenerateRequestTabList(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]) + GenerateRequestTabList_Content(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]);
 					$(AllMemberData).appendTo("#table_info");
 					RequestCounter++;
@@ -152,7 +109,7 @@
 				}
 			}
 			if(ListItemValid===1){
-				console.log("Found "+ListForMenu[k]);
+				//console.log("Found "+ListForMenu[k]);
 				if(FirstItemFound===0){
 					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu1\">"+ ListForMenu[k] +"</a></li>";
 					FirstItemFound=1;
@@ -167,7 +124,7 @@
 	}
 	
 	function GenerateRequestTabList_Content(ListOfItems,ListRestrictions,RequestNumber,RequestorData){
-		console.log("\n\tStarting Printing of Request Tab Content");
+		//console.log("\n\tStarting Printing of Request Tab Content");
 		var FirstItemFound=0;
 		var MenuListData="";
 			MenuListData+="<div class=\"tab-content\">";
@@ -181,8 +138,8 @@
 					}
 				}
 				if(ListItemValid===1){
-				console.log("Found "+ListOfItems[k]);
-				if(FirstItemFound===0){
+					//console.log("Found "+ListOfItems[k]);
+					if(FirstItemFound===0){
 						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">";
 						FirstItemFound=1;
 					}
@@ -205,7 +162,7 @@
 		//console.log("This is the ItemArray: "+ItemArray);
 		for(var i=0; i<ItemArray.length;i++){
 			var TestString="";
-			console.log("\t\tThis is "+ItemArray[i]+"'s data: "+Data[ItemArray[i]]);
+			//console.log("\t\tThis is "+ItemArray[i]+"'s data: "+Data[ItemArray[i]]);
 			if(Data[ItemArray[i]]!=undefined){
 				if(Data[ItemArray[i]].length>=3){
 					
@@ -217,6 +174,46 @@
 	}
 	  
 
+	function CheckForCategoriesPresent(PlayerData,CategoryStorageArray){
+		if(CheckForGear(Head,PlayerData)){
+			CategoryStorageArray.push("Head");
+		}
+		if(CheckForGear(Chest,PlayerData)){
+			//console.log("\tFound a Chest item");
+			CategoryStorageArray.push("Chest");
+		}
+		if(CheckForGear(Legs,PlayerData)){
+			//console.log("\tFound a Legs item");
+			CategoryStorageArray.push("Legs");
+		}
+		if(CheckForGear(Feet,PlayerData)){
+			CategoryStorageArray.push("Feet");
+		}
+		if(CheckForGear(Shoulder,PlayerData)){
+			CategoryStorageArray.push("Shoulder");
+		}
+		if(CheckForGear(Hand,PlayerData)){
+			CategoryStorageArray.push("Hand");
+		}
+		if(CheckForGear(Belt,PlayerData)){
+			CategoryStorageArray.push("Belt");
+		}
+		if(CheckForGear(Shield,PlayerData)){
+			CategoryStorageArray.push("Shield");
+		}
+		if(CheckForGear(Weapon1,PlayerData)){
+			CategoryStorageArray.push("Weapon1");
+		}
+		if(CheckForGear(Weapon2,PlayerData)){
+			CategoryStorageArray.push("Weapon2");
+		}
+		if(CheckForGear(Weapon3,PlayerData)){
+			CategoryStorageArray.push("Weapon3");
+		}
+		
+		return;
+	}
+	
     </script>
 	</font>
 
@@ -224,7 +221,6 @@
 </html>
 
 <!--
-
 		/*
 		Array.prototype.atIndices = function(ind) {
 			var result = [];
@@ -254,6 +250,4 @@
 			}
 		}
 		*/
-
-
 !-->
