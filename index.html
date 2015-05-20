@@ -41,33 +41,11 @@
       })
       
 	function showRequestInfo(data, tabletop){
+		UserItemIndices=[];
+		UserItemSections=[];
 		$("<h1><u><b>Current Requests</b></u></h1>").appendTo("#table_info");
 
 		var PasteString="";	
-		PasteString+="<div>";
-		PasteString+="	<ul class=\"nav nav-tabs\">";
-		PasteString+="		<li class=\"dropdown active\"><a href=\"#\" id=\"myTabDrop1\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-list\" aria-hidden=\"true\"></span>  Select Player  <span class=\"glyphicon glyphicon-arrow-down\" aria-hidden=\"true\"></span></a>";
-		PasteString+="			<ul class=\"dropdown-menu\">";
-		//PasteString+="				<li class=\"active\"><a href=\"\#default\" data-toggle=\"tab\"></a></li>";
-		PasteString+="				<li class=\"\"><a href=\"\#dropdown1\" data-toggle=\"tab\">\@fat</a></li>";
-		PasteString+="				<li class=\"\"><a href=\"\#dropdown2\" data-toggle=\"tab\">\@mdo</a></li>";
-		PasteString+="			</ul>";
-		PasteString+="		</li>";
-		PasteString+="	</ul>";
-		PasteString+="	<div class=\"tab-content\">";
-		PasteString+="		<div class=\"tab-pane fade active in\" id=\"default\">";
-		PasteString+="			<p><font size=\"1\" color=\"gray\">(Select a Player from the dropdown)</font></p>";
-		PasteString+="		</div>";
-		PasteString+="		<div class=\"tab-pane fade\" id=\"dropdown1\">";
-		PasteString+="			<p>Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>";
-		PasteString+="		</div>";
-		PasteString+="		<div class=\"tab-pane fade\" id=\"dropdown2\">";
-		PasteString+="		<p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>";
-		PasteString+="		</div>";
-		PasteString+="	</div>";
-		PasteString+="</div>";
-		
-		$(PasteString).appendTo("#table_info");
 		
 		//$("  </font>").appendTo("#tablewrapper");		
 				
@@ -98,20 +76,67 @@
 			}
 			
 			if(found === 0){//If the request has NOT been fulfilled, then display
-			console.log("<li class=\"\"><a href=\"\#dropdown1\" data-toggle=\"tab\">\@"+RequestRowData[i].Handle+" ("+RequestRowData[i].Timestamp+")</a></li>");
-				//console.log("\n\nProcessing "+RequestRowData[i].Handle+"'s data...");
-				
 				CheckForCategoriesPresent(RequestRowData[i],CategoriesPresent);
 				
 				if(CategoriesPresent.length>=1){	
+					UserItemIndices.push("<li class=\"\"><a href=\"\#dropdown"+RequestCounter+"\" data-toggle=\"tab\">\@"+RequestRowData[i].Handle+" ("+RequestRowData[i].Timestamp+")</a></li>");
 					//console.log("\t"+RequestRowData[i].Handle+" has \n\t\t"+CategoriesPresent+" values present");
 					AllMemberData=GenerateRequestTabList(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]) + GenerateRequestTabList_Content(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]);
-					$(AllMemberData).appendTo("#table_info");
+					//$(AllMemberData).appendTo("#table_info");
+					UserItemSections.push(AllMemberData);
 					RequestCounter++;
 				}
 
 			}
 		}
+
+		PasteString+="<div>";
+		PasteString+="	<ul class=\"nav nav-tabs\">";
+		PasteString+="		<li class=\"dropdown active\"><a href=\"#\" id=\"myTabDrop1\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-list\" aria-hidden=\"true\"></span>  Select Player  <span class=\"glyphicon glyphicon-arrow-down\" aria-hidden=\"true\"></span></a>";
+		PasteString+="			<ul class=\"dropdown-menu\">";
+		PasteString+="				<li class=\"active\"><a href=\"\#default\" data-toggle=\"tab\"></a></li>";
+		//$(PasteString).appendTo("#table_info");
+
+		//Print the Collection of User Data to the div element
+		for(i=0;i<UserItemSections.length;i++){
+			PasteString+=UserItemIndices[i];
+			//console.log("Drop down listing: "+UserItemIndices[i]);
+			//$(StringToSpam).appendTo("#table_info");
+		}
+
+//		PasteString+="				<li class=\"\"><a href=\"\#dropdown1\" data-toggle=\"tab\">\@fat</a></li>";
+//		PasteString+="				<li class=\"\"><a href=\"\#dropdown2\" data-toggle=\"tab\">\@mdo</a></li>";
+//		UserItemIndices=[];
+//		UserItemSections=[];
+		PasteString+="			</ul>";
+		PasteString+="		</li>";
+		PasteString+="	</ul>";
+		PasteString+="	<div class=\"tab-content\">";
+		PasteString+="		<div class=\"tab-pane fade active in\" id=\"default\">";
+		PasteString+="			<p><font size=\"1\" color=\"gray\">(Select a Player from the dropdown)</font></p>";
+		PasteString+="		</div>";
+		//$(PasteString).appendTo("#table_info");
+
+		//Print the Collection of User Data to the div element
+		for(i=0;i<UserItemSections.length;i++){
+			var StringToSpam="	<div class=\"tab-pane fade\" id=\"dropdown"+(i+1)+"\">";
+			//console.log("\nDrop Down section linking: "+StringToSpam);
+			StringToSpam+="			<p>"+UserItemSections[i];+"</p>";
+			//console.log("This is the added section: "+UserItemSections[i]);
+			StringToSpam+="		</div>";
+			PasteString+=StringToSpam;
+		}
+
+		//PasteString+="		<div class=\"tab-pane fade\" id=\"dropdown1\">";
+		//PasteString+="			<p>Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>";
+		//PasteString+="		</div>";
+		//PasteString+="		<div class=\"tab-pane fade\" id=\"dropdown2\">";
+		//PasteString+="		<p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>";
+		//PasteString+="		</div>";
+		PasteString+="	</div>";
+		PasteString+="</div>";
+		
+		$(PasteString).appendTo("#table_info");
 	}
 	
 	//function CheckForGear(Categories,RequestorData){
