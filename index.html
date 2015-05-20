@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="http://pastebin.com/raw.php?i=WtLCSUwe"></script>
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">!-->
+	<link rel="stylesheet" href="bootstrap.css">
+	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>!-->
+	<script src="jquery.js"></script>
+	<script src="bootstrap.js"></script>
+	<!--<script src="http://pastebin.com/raw.php?i=WtLCSUwe"></script>!-->
 
 	
 	    <script type="text/javascript">
@@ -39,8 +41,82 @@
                          wanted: [ "Requests", "Fulfillments" ],
                          debug: false } )
       })
-      
+	  
+function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
+	var i,j;
+	var UserIndices=[];
+	var UserTimes=[];
+
+	//var RequestRowData=tabletop.sheets("Requests").all();
+	//var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
+	//Exception handling:
+	if(RequestRowData.length <=0 ){
+		TotalUsers=1;
+	}
+	else{
+		TotalUsers=RequestRowData.length;
+	}		
+	for(i=0; i < TotalUsers;i++){
+		var found=0,found2=0;
+
+		for(j=0; j < FulfillmentsRowData;j++){
+			if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
+				found=1;
+				break;
+			}
+		}
+		
+		if(found === 0){//If the request has NOT been fulfilled, then display
+			for(j=0;j<UserIndices.length;j++){
+				if(UserIndices[j]===RequestRowData[i].Handle){
+					found2=1;
+					break;
+				}
+			}
+			if(found2===0){//Make sure there are NO duplicates of Usernames
+				UserIndices.push(RequestRowData[i].Handle);
+			}
+			UserTimes.push(RequestRowData[i].Timestamp);
+		}
+	}
+
+	//Print the form
+	$("<form>").appendTo("#Fulfillments");
+    $("<div class=\"form-group\">").appendTo("#Fulfillments");
+    $("    <span class=\"input-group-addon\"><i class=\"fa fa-male\"></i></span>").appendTo("#Fulfillments");
+    $("    <div class=\"form-group\">").appendTo("#Fulfillments");
+    $("        <input size=\"50\" maxlength=\"50\" class=\"form-control\" name=\"q\" type=\"text\"> ").appendTo("#Fulfillments");         
+    $("    </div>").appendTo("#Fulfillments");
+    $("    <div class=\"input-group-btn\">").appendTo("#Fulfillments");
+    $("        <select class=\"form-control\" name=\"category\">").appendTo("#Fulfillments");
+    $("            <option value=\"\"></option>").appendTo("#Fulfillments");
+    $("            <option value=\"0\">select1</option>").appendTo("#Fulfillments");
+    $("            <option value=\"1\">select2</option>").appendTo("#Fulfillments");
+    $("            <option value=\"2\">select3</option>").appendTo("#Fulfillments");
+    $("        </select> ").appendTo("#Fulfillments");          
+    $("    </div>").appendTo("#Fulfillments");
+    $("</div>").appendTo("#Fulfillments");
+	$("</form>").appendTo("#Fulfillments");
+	
+	$("<h1><u><b>Fulfill Request</b></u></h1>").appendTo("#Fulfillments");
+	$("<form>").appendTo("#Fulfillments");
+	$("<select class=\"form-control\" name=\"entry.1489240183\" id=\"entry_1489240183\">").appendTo("#Fulfillments");
+	for(i=0;i<UserIndices.length;i++){
+		$("<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>").appendTo("#Fulfillments");
+	}
+	$("</select>").appendTo("#Fulfillments");
+	$("<select class=\"form-control\" name=\"entry.148924018q\" id=\"entry_148924018q\">").appendTo("#Fulfillments");
+	for(i=0;i<UserTimes.length;i++){
+		$("<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>").appendTo("#Fulfillments");
+	}
+ 	$("</select>").appendTo("#Fulfillments");	
+	$("</form>").appendTo("#Fulfillments");
+	$("<hr>").appendTo("#Fulfillments");
+}	  
+
 	function showRequestInfo(data, tabletop){
+		
+		
 		UserItemIndices=[];
 		UserItemSections=[];
 		$("<h1><u><b>Current Requests</b></u></h1>").appendTo("#table_info");
@@ -49,6 +125,7 @@
 		
 		var RequestRowData=tabletop.sheets("Requests").all();
 		var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
+		CreateFulfillmentForm(RequestRowData,FulfillmentsRowData);
 		
 		var i,j,k,l;
 		var RequestCounter=1;
@@ -319,15 +396,9 @@
 
 <body style="background-color:#262626">
 	<font color="white">
-	<div id="tablewrapper"></div>
+	<div id="Fulfillments"></div>
 	<hr>
-    <div id="table_info"></div>
-    
-    <div id="explanation"></div>
-    
-    <ul id="requests"></ul>
-
-
+    <div id="table_info"></div>   
 	</font>
 <!--
 This is "http://silviomoreto.github.io/bootstrap-select/" code
