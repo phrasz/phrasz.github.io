@@ -131,7 +131,7 @@
 			}
 			if(ListItemValid===1){
 				if(FirstItemFound===0){
-					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu1\">"+ ListForMenu[k] +"</a></li>";
+					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+k+"\">"+ ListForMenu[k] +"</a></li>";
 					FirstItemFound=1;
 				}
 				else{	
@@ -152,6 +152,7 @@
 		var MenuListData="";
 		var TotalItems=0;
 		var ListAll="";
+		var ListAllStarted=0;
 			MenuListData+="<div class=\"tab-content\">";
 			for(var k=0; k<ListOfItems.length; k++){
 				var ListItemValid=0;
@@ -170,18 +171,25 @@
 					else{
 						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
 					}
-					MenuListData+="			<h3>"+ListOfItems[k]+"</h3>";
-					MenuListData+="				<p>";
+					//MenuListData+="			<h3>"+ListOfItems[k]+"</h3>";
+					//MenuListData+="				<p>";
 					//MenuListData+="					Test";
-					var Temp=PrintGear(ListOfItems[k],RequestorData);
+					var Temp=["0","1"];
+					Temp=PrintGear(ListOfItems[k],RequestorData);
 					//console.log("This is temp: "+Temp);
-					MenuListData+=Temp;
+					MenuListData+="<p><table class=\"table table-condensed\"><thead><tr>"+Temp[0]+"</tr></thead><tbody><tr>"+Temp[1]+"</tr></tbody></table></p>";
+					//MenuListData+=Temp;
 					//Temp+="<br>";
-					ListAll+="			<h3>"+ListOfItems[k]+"</h3><p>"+Temp+"</p>";
-					MenuListData+="				</p>";
+					//ListAll+="			<h3>"+ListOfItems[k]+"</h3><p>"+Temp+"</p>";
+					if(ListAllStarted===0){
+						ListAll+="<p><table class=\"table table-condensed\"><thead><tr><th></th>"+Temp[0]+"</tr></thead><tbody>";
+						ListAllStarted=1;
+					}
+					ListAll+="<tr><td>"+ListOfItems[k]+"</td>"+Temp[1]+"</tr>";
 					MenuListData+="		</div>";
 				}
 			}
+			ListAll+="</tbody></table></p>";
 			if(TotalItems>1){
 				MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in\" style=\"color:white;\">";
 				//MenuListData+="			<h3>All</h3>";
@@ -253,14 +261,18 @@
 		var Row2=""
 		for(var i=0;i<GearListItem.length;i++){
 			if(RequestorData[GearListItem[i]]!=undefined){
-				Row1+="<th>"+GearListItem[i]+"</th>";
+				//var n = GearListItem[i].search(GearCategory);
+				var start=GearListItem[i].lastIndexOf(GearCategory)+GearCategory.length;
+				var stop=GearListItem[i].length;
+				Row1+="<th>"+GearListItem[i].substring(start, stop)+"</th>";
 				Row2+="<td>"+RequestorData[GearListItem[i]]+"</td>";
 			}
 		}
 		
-		Row1+="</tr>";
-		Row2+="</tr>";
-		var GearString="<table class=\"table table-condensed\"><thead><tr>"+Row1+"</tr></thead><tbody><tr>"+Row2+"</tr></tbody></table>";
+		//Row1+="</tr>";
+		//Row2+="</tr>";
+		//var GearString="<table class=\"table table-condensed\"><thead><tr>"+Row1+"</tr></thead><tbody><tr>"+Row2+"</tr></tbody></table>";
+		var GearString=[Row1,Row2];
 		//console.log("ReturnTable:\n"+GearString+"\n\n")
 		return GearString;
 	}	
