@@ -2,13 +2,17 @@
 <html>
 <head>
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">!-->
-	<link rel="stylesheet" href="bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>!-->
-	<script src="jquery.js"></script>
-	<script src="bootstrap.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/tabletop.js"></script>
 	<!--<script src="http://pastebin.com/raw.php?i=WtLCSUwe"></script>!-->
 
-	
+	<!-- bootstrap-select
+	<link rel="stylesheet" href="css/bootstrap-select.css">
+	<script src="js/bootstrap-select.min.js"></script>
+	 !-->
 	    <script type="text/javascript">
 		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
 
@@ -34,19 +38,22 @@
 		var EmptyArray=[];
 		var ValidWords=[];
 
+onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
 
       $(document).ready( function() {
         Tabletop.init( { key: public_spreadsheet_url,
                          callback: showRequestInfo,
                          wanted: [ "Requests", "Fulfillments" ],
-                         debug: false } )
+                         debug: false } );
+		//$('.selectpicker').selectpicker();
       })
 	  
 function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	var i,j;
 	var UserIndices=[];
 	var UserTimes=[];
-
+	var PasteString="";
+	
 	//var RequestRowData=tabletop.sheets("Requests").all();
 	//var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
 	//Exception handling:
@@ -81,23 +88,26 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	}
 
 	//Print the form
+	/*
 	$("<form>").appendTo("#Fulfillments");
-    $("<div class=\"form-group\">").appendTo("#Fulfillments");
-    $("    <span class=\"input-group-addon\"><i class=\"fa fa-male\"></i></span>").appendTo("#Fulfillments");
-    $("    <div class=\"form-group\">").appendTo("#Fulfillments");
-    $("        <input size=\"50\" maxlength=\"50\" class=\"form-control\" name=\"q\" type=\"text\"> ").appendTo("#Fulfillments");         
-    $("    </div>").appendTo("#Fulfillments");
-    $("    <div class=\"input-group-btn\">").appendTo("#Fulfillments");
-    $("        <select class=\"form-control\" name=\"category\">").appendTo("#Fulfillments");
+    //$("<div class=\"form-group\">").appendTo("#Fulfillments");
+    //$("    <span class=\"input-group-addon\"><i class=\"fa fa-male\"></i></span>").appendTo("#Fulfillments");
+    //$("    <div class=\"form-group\">").appendTo("#Fulfillments");
+	//$("			<label forname=\"User\">Username: </label>").appendTo("#Fulfillments");
+//    $("        <input size=\"50\" maxlength=\"50\" class=\"form-control\" id=\"User\""> ").appendTo("#Fulfillments");         
+    $("        <select>").appendTo("#Fulfillments");
     $("            <option value=\"\"></option>").appendTo("#Fulfillments");
     $("            <option value=\"0\">select1</option>").appendTo("#Fulfillments");
     $("            <option value=\"1\">select2</option>").appendTo("#Fulfillments");
     $("            <option value=\"2\">select3</option>").appendTo("#Fulfillments");
-    $("        </select> ").appendTo("#Fulfillments");          
-    $("    </div>").appendTo("#Fulfillments");
-    $("</div>").appendTo("#Fulfillments");
+    $("        </select> ").appendTo("#Fulfillments");    $("    </div>").appendTo("#Fulfillments");
+   // $("    <div class=\"input-group-btn\">").appendTo("#Fulfillments");
+    
+    //$("    </div>").appendTo("#Fulfillments");
+   // $("</div>").appendTo("#Fulfillments");
 	$("</form>").appendTo("#Fulfillments");
-	
+	*/
+	/*
 	$("<h1><u><b>Fulfill Request</b></u></h1>").appendTo("#Fulfillments");
 	$("<form>").appendTo("#Fulfillments");
 	$("<select class=\"form-control\" name=\"entry.1489240183\" id=\"entry_1489240183\">").appendTo("#Fulfillments");
@@ -112,6 +122,26 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
  	$("</select>").appendTo("#Fulfillments");	
 	$("</form>").appendTo("#Fulfillments");
 	$("<hr>").appendTo("#Fulfillments");
+	*/
+	PasteString+="<h1><u><b>Fulfill Request</b></u></h1>";
+	PasteString+="<form action=\"https://docs.google.com/forms/d/1JiO62717EzBhxqXIlrX9GX7NsnFBF89S5waK1kJHtF0/formResponse?embedded=true\" method=\"POST\" target=\"_self\" onsubmit=\"\">";
+	PasteString+="<label for=\"Handle\">Handle: </label>";
+	PasteString+="<select id=\"Handle\" class=\"form-control\" name=\"entry_1463831978\">";
+	for(i=0;i<UserIndices.length;i++){
+		PasteString+="<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>";
+	}
+	PasteString+="</select>";
+	PasteString+="<label for=\"date\">Date: </label>";
+	PasteString+="<select id=\"date\" name=\"entry_2009906019\" class=\"form-control\">";
+	for(i=0;i<UserTimes.length;i++){
+		PasteString+="<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>";
+	}
+	PasteString+="</select>"
+	PasteString+="<br><button type=\"submit\" class=\"btn btn-default\">Submit</button>";
+	PasteString+="</form>";
+	PasteString+="<hr>";
+	document.getElementById("Fulfillments").innerHTML=PasteString;
+
 }	  
 
 	function showRequestInfo(data, tabletop){
@@ -143,8 +173,9 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			var found=0;
 			var AllMemberData="";
 			//See if a request exists (via a Handle and Timestamp) in BOTH of the sheets --> implies the request has been fulfilled
-			for(j=0; j < FulfillmentsRowData;j++){
+			for(j=0; j < FulfillmentsRowData.length;j++){			
 				if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
+					console.log("Looking at "+RequestRowData[i].Handle+" for the "+FulfillmentsRowData[j].OrderDate+" order filled");
 					found=1;
 				}
 			}
@@ -395,6 +426,30 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 </head>
 
 <body style="background-color:#262626">
+<!--
+<form role="form">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" id="pwd">
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+  <select class="form-control">
+    <option value="one">One</option>
+    <option value="two">Two</option>
+    <option value="three">Three</option>
+    <option value="four">Four</option>
+    <option value="five">Five</option>
+</select>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+<hr>
+!-->
 	<font color="white">
 	<div id="Fulfillments"></div>
 	<hr>
