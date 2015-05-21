@@ -45,7 +45,6 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
                          callback: showRequestInfo,
                          wanted: [ "Requests", "Fulfillments" ],
                          debug: false } );
-		//$('.selectpicker').selectpicker();
       })
 	  
 function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
@@ -87,76 +86,39 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 				}
 				for(k=0;k<FulfillmentsRowData.length;k++){
 					if(RequestRowData[i].Timestamp===FulfillmentsRowData[k].OrderDate){
-					found3=1;
-					break;
-				}				
-			}
-			if(found2===0){//Make sure there are NO duplicates of Usernames
-				UserIndices.push(RequestRowData[i].Handle);
-			}
-			if(found3===0){
-				UserTimes.push(RequestRowData[i].Timestamp);
+						found3=1;
+						break;
+					}				
+				}
+				if(found2===0){//Make sure there are NO duplicates of Usernames
+					UserIndices.push(RequestRowData[i].Handle);
+				}
+				if(found3===0){
+					UserTimes.push(RequestRowData[i].Timestamp);
+				}
 			}
 		}
 	}
-
-	//Print the form
-	/*
-	$("<form>").appendTo("#Fulfillments");
-    //$("<div class=\"form-group\">").appendTo("#Fulfillments");
-    //$("    <span class=\"input-group-addon\"><i class=\"fa fa-male\"></i></span>").appendTo("#Fulfillments");
-    //$("    <div class=\"form-group\">").appendTo("#Fulfillments");
-	//$("			<label forname=\"User\">Username: </label>").appendTo("#Fulfillments");
-//    $("        <input size=\"50\" maxlength=\"50\" class=\"form-control\" id=\"User\""> ").appendTo("#Fulfillments");         
-    $("        <select>").appendTo("#Fulfillments");
-    $("            <option value=\"\"></option>").appendTo("#Fulfillments");
-    $("            <option value=\"0\">select1</option>").appendTo("#Fulfillments");
-    $("            <option value=\"1\">select2</option>").appendTo("#Fulfillments");
-    $("            <option value=\"2\">select3</option>").appendTo("#Fulfillments");
-    $("        </select> ").appendTo("#Fulfillments");    $("    </div>").appendTo("#Fulfillments");
-   // $("    <div class=\"input-group-btn\">").appendTo("#Fulfillments");
-    
-    //$("    </div>").appendTo("#Fulfillments");
-   // $("</div>").appendTo("#Fulfillments");
-	$("</form>").appendTo("#Fulfillments");
-	*/
-	/*
-	$("<h1><u><b>Fulfill Request</b></u></h1>").appendTo("#Fulfillments");
-	$("<form>").appendTo("#Fulfillments");
-	$("<select class=\"form-control\" name=\"entry.1489240183\" id=\"entry_1489240183\">").appendTo("#Fulfillments");
-	for(i=0;i<UserIndices.length;i++){
-		$("<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>").appendTo("#Fulfillments");
-	}
-	$("</select>").appendTo("#Fulfillments");
-	$("<select class=\"form-control\" name=\"entry.148924018q\" id=\"entry_148924018q\">").appendTo("#Fulfillments");
-	for(i=0;i<UserTimes.length;i++){
-		$("<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>").appendTo("#Fulfillments");
-	}
- 	$("</select>").appendTo("#Fulfillments");	
-	$("</form>").appendTo("#Fulfillments");
-	$("<hr>").appendTo("#Fulfillments");
-	*/
-	PasteString+="<h1><u><b>Fulfill Request</b></u></h1>";
-	PasteString+="<form action=\"https://docs.google.com/forms/d/1JiO62717EzBhxqXIlrX9GX7NsnFBF89S5waK1kJHtF0/formResponse?embedded=true\" method=\"POST\" target=\"_self\" onsubmit=\"\">";
-	PasteString+="<label for=\"Handle\">Handle: </label>";
-	PasteString+="<select id=\"Handle\" class=\"form-control\" name=\"entry_1463831978\">";
-	for(i=0;i<UserIndices.length;i++){
-		PasteString+="<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>";
-	}
-	PasteString+="</select>";
-	PasteString+="<label for=\"date\">Date: </label>";
-	PasteString+="<select id=\"date\" name=\"entry_2009906019\" class=\"form-control\">";
-	for(i=0;i<UserTimes.length;i++){
-		PasteString+="<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>";
-	}
-	PasteString+="</select>"
-	PasteString+="<br><button type=\"submit\" class=\"btn btn-default\">Submit</button>";
-	PasteString+="</form>";
-	PasteString+="<hr>";
-	document.getElementById("Fulfillments").innerHTML=PasteString;
-
-}	  
-
+		PasteString+="<h1><u><b>Fulfill Request</b></u></h1>";
+		PasteString+="<form action=\"https://docs.google.com/forms/d/1JiO62717EzBhxqXIlrX9GX7NsnFBF89S5waK1kJHtF0/formResponse?embedded=true\" method=\"POST\" target=\"_self\" onsubmit=\"\">";
+		PasteString+="<label for=\"Handle\">Handle: </label>";
+		PasteString+="<select id=\"Handle\" class=\"form-control\" name=\"entry_1463831978\">";
+		for(i=0;i<UserIndices.length;i++){
+			PasteString+="<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>";
+		}
+		PasteString+="</select>";
+		PasteString+="<label for=\"date\">Date: </label>";
+		PasteString+="<select id=\"date\" name=\"entry_2009906019\" class=\"form-control\">";
+		for(i=0;i<UserTimes.length;i++){
+			PasteString+="<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>";
+		}
+		PasteString+="</select>"
+		PasteString+="<br><button type=\"submit\" class=\"btn btn-default\">Submit</button>";
+		PasteString+="</form>";
+		PasteString+="<hr>";
+		document.getElementById("Fulfillments").innerHTML=PasteString;
+		  
+}
 	function showRequestInfo(data, tabletop){
 		
 		
@@ -380,11 +342,19 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		
 		var Row1=""
 		var Row2=""
+
 		for(var i=0;i<GearListItem.length;i++){
+			var color="";
+			var colorEnd="";
 			if(RequestorData[GearListItem[i]]!=undefined){
 				//var n = GearListItem[i].search(GearCategory);
 				var start=GearListItem[i].lastIndexOf(GearCategory)+GearCategory.length;
 				var stop=GearListItem[i].length;
+
+				if(RequestorData[GearListItem[i]].indexOf("Blue")>=0){
+					console.log("Found Blue!");
+				}
+
 				Row1+="<th>"+GearListItem[i].substring(start, stop)+"</th>";
 				Row2+="<td>"+RequestorData[GearListItem[i]]+"</td>";
 			}
