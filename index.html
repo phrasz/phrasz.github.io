@@ -46,7 +46,60 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
                          wanted: [ "Requests", "Fulfillments" ],
                          debug: false } );
       })
-	  
+/*
+//////////////////////////////////
+//Filter Script
+(function(){
+    'use strict';
+	var $ = jQuery;
+	$.fn.extend({
+		filterTable: function(){
+			return this.each(function(){
+				$(this).on('keyup', function(e){
+					$('.filterTable_no_results').remove();
+					var $this = $(this), 
+                        search = $this.val().toLowerCase(), 
+                        target = $this.attr('data-filters'), 
+                        $target = $(target), 
+                        $rows = $target.find('tbody tr');
+                        
+					if(search == '') {
+						$rows.show(); 
+					} else {
+						$rows.each(function(){
+							var $this = $(this);
+							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+						})
+						if($target.find('tbody tr:visible').size() === 0) {
+							var col_count = $target.find('tr').first().find('td').size();
+							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+							$target.find('tbody').append(no_results);
+						}
+					}
+				});
+			});
+		}
+	});
+	$('[data-action="filter"]').filterTable();
+})(jQuery);
+
+$(function(){
+    // attach table filter plugin to inputs
+	$('[data-action="filter"]').filterTable();
+	
+	$('.container').on('click', '.panel-heading span.filter', function(e){
+		var $this = $(this), 
+			$panel = $this.parents('.panel');
+		
+		$panel.find('.panel-body').slideToggle();
+		if($this.css('display') != 'none') {
+			$panel.find('.panel-body input').focus();
+		}
+	});
+	$('[data-toggle="tooltip"]').tooltip();
+
+///////////////////////	  
+*/
 function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	var i,j;
 	var UserIndices=[];
@@ -203,6 +256,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		var FirstItemFound=0;
 		var TotalItems=0;
 		var MenuList="<h3>Request "+(RequestNumber)+": "+ RequestorData.Handle + "</h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
+
 		MenuList+="<ul class=\"nav nav-tabs\">";
 		for(var k=0; k<ListForMenu.length; k++){
 			var ListItemValid=0;
@@ -214,17 +268,15 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			}
 			if(ListItemValid===1){
 				if(FirstItemFound===0){
-					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+k+"\">"+ ListForMenu[k] +"</a></li>";
+					MenuList+="<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menuAll\">All Items</a></li>";
 					FirstItemFound=1;
 				}
 				else{	
-					MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k] +"</a></li>";
+					MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+k+"\">"+ ListForMenu[k] +"</a></li>";
+					MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+k+"\">"+ ListForMenu[k] +"</a></li>";
 				}
 				TotalItems++;
 			}
-		}
-		if(TotalItems>1){
-			MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menuAll\">All Items</a></li>";
 		}
 		MenuList+="</ul>";			
 		return MenuList;
@@ -235,8 +287,9 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		var MenuListData="";
 		var TotalItems=0;
 		var ListAll="";
+		var TotalMenuListData="";
 		var ListAllStarted=0;
-			MenuListData+="<div class=\"tab-content\">";
+			TotalMenuListData+="<div class=\"tab-content\">";
 			for(var k=0; k<ListOfItems.length; k++){
 				var ListItemValid=0;
 				for(l=0;l<ListRestrictions.length;l++){
@@ -248,11 +301,12 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 				if(ListItemValid===1){
 					TotalItems++;
 					if(FirstItemFound===0){
-						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">";
+						//MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">";
+						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in active\" style=\"color:white;\">";
 						FirstItemFound=1;
 					}
 					else{
-						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
+						TotalMenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
 					}
 					//MenuListData+="			<h3>"+ListOfItems[k]+"</h3>";
 					//MenuListData+="				<p>";
@@ -274,7 +328,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			}
 			ListAll+="</tbody></table></p>";
 			if(TotalItems>1){
-				MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in\" style=\"color:white;\">";
+//				MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in\" style=\"color:white;\">";
 				//MenuListData+="			<h3>All</h3>";
 				//MenuListData+="				<p>";
 				//MenuListData+="					Test";
@@ -439,6 +493,28 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		return;
 	}
     </script>
+<!--
+	<style>
+	    row{
+		    margin-top:40px;
+		    padding: 0 10px;
+		}
+		clickable{
+		    cursor: pointer;   
+		}
+
+		panel-heading div {
+			margin-top: -18px;
+			font-size: 15px;
+		}
+		panel-heading div span{
+			margin-left:5px;
+		}
+		panel-body{
+			display: none;
+		}
+	</style>
+!-->
 </head>
 
 <body style="background-color:#262626">
@@ -481,6 +557,61 @@ This is "http://silviomoreto.github.io/bootstrap-select/" code
 	</select>
 !-->  
   </font>
+  <br><br><hr>
+<!--
+
+<div class="container">
+    <h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>
+    <div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Developers</h3>
+				<div class="pull-right">
+					<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+						<i class="glyphicon glyphicon-filter"></i>
+					</span>
+				</div>
+			</div>
+			<div class="panel-body">
+				<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+			</div>
+			<table class="table table-hover" id="dev-table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Username</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Kilgore</td>
+						<td>Trout</td>
+						<td>kilgore</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Bob</td>
+						<td>Loblaw</td>
+						<td>boblahblah</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Holden</td>
+						<td>Caulfield</td>
+						<td>penceyreject</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
+</div>
+
+!-->
   </body>
   </html>
 
