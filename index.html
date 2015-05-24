@@ -54,9 +54,6 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	var UserTimes=[];
 	var PasteString="";
 	
-	//var RequestRowData=tabletop.sheets("Requests").all();
-	//var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
-	//Exception handling:
 	if(RequestRowData.length <=0 ){
 		TotalUsers=1;
 	}
@@ -87,42 +84,6 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		}
 	}
 
-	//Print the form
-	/*
-	$("<form>").appendTo("#Fulfillments");
-    //$("<div class=\"form-group\">").appendTo("#Fulfillments");
-    //$("    <span class=\"input-group-addon\"><i class=\"fa fa-male\"></i></span>").appendTo("#Fulfillments");
-    //$("    <div class=\"form-group\">").appendTo("#Fulfillments");
-	//$("			<label forname=\"User\">Username: </label>").appendTo("#Fulfillments");
-//    $("        <input size=\"50\" maxlength=\"50\" class=\"form-control\" id=\"User\""> ").appendTo("#Fulfillments");         
-    $("        <select>").appendTo("#Fulfillments");
-    $("            <option value=\"\"></option>").appendTo("#Fulfillments");
-    $("            <option value=\"0\">select1</option>").appendTo("#Fulfillments");
-    $("            <option value=\"1\">select2</option>").appendTo("#Fulfillments");
-    $("            <option value=\"2\">select3</option>").appendTo("#Fulfillments");
-    $("        </select> ").appendTo("#Fulfillments");    $("    </div>").appendTo("#Fulfillments");
-   // $("    <div class=\"input-group-btn\">").appendTo("#Fulfillments");
-    
-    //$("    </div>").appendTo("#Fulfillments");
-   // $("</div>").appendTo("#Fulfillments");
-	$("</form>").appendTo("#Fulfillments");
-	*/
-	/*
-	$("<h1><u><b>Fulfill Request</b></u></h1>").appendTo("#Fulfillments");
-	$("<form>").appendTo("#Fulfillments");
-	$("<select class=\"form-control\" name=\"entry.1489240183\" id=\"entry_1489240183\">").appendTo("#Fulfillments");
-	for(i=0;i<UserIndices.length;i++){
-		$("<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>").appendTo("#Fulfillments");
-	}
-	$("</select>").appendTo("#Fulfillments");
-	$("<select class=\"form-control\" name=\"entry.148924018q\" id=\"entry_148924018q\">").appendTo("#Fulfillments");
-	for(i=0;i<UserTimes.length;i++){
-		$("<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>").appendTo("#Fulfillments");
-	}
- 	$("</select>").appendTo("#Fulfillments");	
-	$("</form>").appendTo("#Fulfillments");
-	$("<hr>").appendTo("#Fulfillments");
-	*/
 	PasteString+="<h1><u><b>Fulfill Request</b></u></h1>";
 	PasteString+="<form action=\"https://docs.google.com/forms/d/1JiO62717EzBhxqXIlrX9GX7NsnFBF89S5waK1kJHtF0/formResponse?embedded=true\" method=\"POST\" target=\"_self\" onsubmit=\"\">";
 	PasteString+="<label for=\"Handle\">Handle: </label>";
@@ -145,8 +106,6 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 }	  
 
 	function showRequestInfo(data, tabletop){
-		
-		
 		UserItemIndices=[];
 		UserItemSections=[];
 		$("<h1><u><b>Current Requests</b></u></h1>").appendTo("#table_info");
@@ -176,7 +135,6 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			//See if a request exists (via a Handle and Timestamp) in BOTH of the sheets --> implies the request has been fulfilled
 			for(j=0; j < FulfillmentsRowData.length;j++){			
 				if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
-					console.log("Looking at "+RequestRowData[i].Handle+" for the "+FulfillmentsRowData[j].OrderDate+" order filled");
 					found=1;
 				}
 			}
@@ -222,9 +180,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		
 		$(PasteString).appendTo("#table_info");
 	}
-	
-
-	
+		
 	function GenerateRequestTabList(ListForMenu,ListRestrictions,RequestNumber,RequestorData){
 		var FirstItemFound=0;
 		var TotalItems=0;
@@ -280,16 +236,11 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 					else{
 						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
 					}
-					//MenuListData+="			<h3>"+ListOfItems[k]+"</h3>";
-					//MenuListData+="				<p>";
-					//MenuListData+="					Test";
+
 					var Temp=["0","1"];
 					Temp=PrintGear(ListOfItems[k],RequestorData);
-					//console.log("This is temp: "+Temp);
 					MenuListData+="<p><table class=\"table table-condensed\"><thead><tr>"+Temp[0]+"</tr></thead><tbody><tr>"+Temp[1]+"</tr></tbody></table></p>";
-					//MenuListData+=Temp;
-					//Temp+="<br>";
-					//ListAll+="			<h3>"+ListOfItems[k]+"</h3><p>"+Temp+"</p>";
+
 					if(ListAllStarted===0){
 						ListAll+="<p><table class=\"table table-condensed\"><thead><tr><th></th>"+Temp[0]+"</tr></thead><tbody>";
 						ListAllStarted=1;
@@ -301,11 +252,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			ListAll+="</tbody></table></p>";
 			if(TotalItems>1){
 				MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in\" style=\"color:white;\">";
-				//MenuListData+="			<h3>All</h3>";
-				//MenuListData+="				<p>";
-				//MenuListData+="					Test";
 				MenuListData+=ListAll;
-				//MenuListData+="				</p>";
 				MenuListData+="		</div>";
 			}
 			MenuListData+="</div>";
@@ -313,14 +260,10 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	}
 	
 	function CheckForGear(ItemArray, Data){
-		//DEBUGGGING: Dump all the fields
-		//console.log("This is the ItemArray: "+ItemArray);
 		for(var i=0; i<ItemArray.length;i++){
 			var TestString="";
-			//console.log("\t\tThis is "+ItemArray[i]+"'s data: "+Data[ItemArray[i]]);
 			if(Data[ItemArray[i]]!=undefined){
-				if(Data[ItemArray[i]].length>=3){
-					
+				if(Data[ItemArray[i]].length>=3){					
 					return 1;				
 				}
 			}
@@ -329,7 +272,6 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	}
 	  
 	function PrintGear(GearCategory,RequestorData){
-		//var Iterations=0;
 		var GearListItem=[];
 
 		if(GearCategory==="Head"){
@@ -373,34 +315,22 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			var color="";
 			var colorEnd="";
 			if(RequestorData[GearListItem[i]]!=undefined){
-				//var n = GearListItem[i].search(GearCategory);
 				var start=GearListItem[i].lastIndexOf(GearCategory)+GearCategory.length;
 				var stop=GearListItem[i].length;
 
-//				if(RequestorData[GearListItem[i]].indexOf("Blue")>=0){
-//					console.log("Found Blue!");
-//				}
-				//if(RequestorData[GearListItem[i]]=== || RequestorData[GearListItem[i]]===)
 				Row1+="<th>"+GearListItem[i].substring(start, stop)+"</th>";
-					var tuple=["1","2"];
-					console.log("Sending to CheckForColor: "+RequestorData[GearListItem[i]]);
-					tuple=CheckForColor(RequestorData[GearListItem[i]]);
-					if(tuple!=undefined){
-						console.log("Tuple[0]: "+tuple[0]+",Tuple[1]: "+tuple[1]);
-						Row2+="<td><font color=\""+tuple[1]+"\">"+tuple[0]+"</font></td>";
-					}
-					else{
-						Row2+="<td>"+RequestorData[GearListItem[i]]+"</td>";
-					}
-				//}
+				var tuple=["1","2"];
+				tuple=CheckForColor(RequestorData[GearListItem[i]]);
+				if(tuple!=undefined){
+					Row2+="<td><font color=\""+tuple[1]+"\">"+tuple[0]+"</font></td>";
+				}
+				else{
+					Row2+="<td>"+RequestorData[GearListItem[i]]+"</td>";
+				}
 			}
 		}
 		
-		//Row1+="</tr>";
-		//Row2+="</tr>";
-		//var GearString="<table class=\"table table-condensed\"><thead><tr>"+Row1+"</tr></thead><tbody><tr>"+Row2+"</tr></tbody></table>";
 		var GearString=[Row1,Row2];
-		//console.log("ReturnTable:\n"+GearString+"\n\n")
 		return GearString;
 	}
 	
@@ -443,26 +373,19 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	}
 	
 	function CheckForColor(PassedString){
-		//var TestString=["HeavyBlue","AxeGreen"];
 		var colors=["Blue","Green","Purple","Yellow"];
 
-		//var PasteString="";
-		//for(var s=0;s<TestString.length;s++){//Debugging/testing
 		for(var t=0;t<colors.length;t++){
 			if(PassedString.indexOf(colors[t])>=0){
 				stop=PassedString.indexOf(colors[t]);
-				//stop=TestString[s].length;
-		var tuple=["1","2"];
-				console.log("Parsed information: "+tuple[0]+", "+tuple[1]);
+
+				var tuple=["1","2"];
 				tuple[0]=PassedString.substring(0,stop);
 				tuple[1]=colors[t];
-				console.log("\t In method -- Tuple[0]: "+tuple[0]+",Tuple[1]: "+tuple[1]);
 				break;
 			}
 		}
 		return tuple;
-		//}
-    //document.getElementById("demo").innerHTML = PasteString;
 	}
 	
 	
