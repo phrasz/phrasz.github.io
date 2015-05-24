@@ -549,6 +549,116 @@ FilterTableString+="</div>";
   </select>
 
 <script type="text/javascript">
+function GenerateRequestFormItem(Type){
+	var ItemPrefix=Type.toLowerCase();
+	var PasteString="";
+	
+	if(Type==="Head" || Type==="Shoulder"){
+		PasteString+="<tr>";
+		PasteString+="	<td style=\"font-size:100%; color: white\">"+Type+"</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		console.log("Cost word: "+ItemPrefix+"qual");
+		PasteString+="		<select id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="			<option value=\"1\" style=\"background-color:rgb(0,255,0)\">heavy</option>";
+		PasteString+="			<option value=\"2\" style=\"background-color:rgb(0,0,255)\">heavy</option>";
+		PasteString+="			<option value=\"3\" style=\"background-color:rgb(255,0,255)\">heavy</option>";
+		PasteString+="			<option value=\"4\" style=\"background-color:rgb(255,255,0)\">heavy</option>";
+		PasteString+="			<option value=\"5\" style=\"background-color:rgb(0,255,0)\">medium</option>";
+		PasteString+="			<option value=\"6\" style=\"background-color:rgb(0,0,255)\">medium</option>";
+		PasteString+="			<option value=\"7\" style=\"background-color:rgb(255,0,255)\">medium</option>";
+		PasteString+="			<option value=\"8\" style=\"background-color:rgb(255,255,0)\">medium</option>";
+		PasteString+="			<option value=\"9\" style=\"background-color:rgb(0,255,0)\">light</option>";
+		PasteString+="			<option value=\"10\" style=\"background-color:rgb(0,0,255)\">light</option>";
+		PasteString+="			<option value=\"11\" style=\"background-color:rgb(255,0,255)\">light</option>";
+		PasteString+="			<option value=\"12\" style=\"background-color:rgb(255,255,0)\">light</option>";
+		PasteString+="		</select>";
+		PasteString+="	</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		console.log("Cost word: "+ItemPrefix+"trait");
+		PasteString+="		<select id=\""+ItemPrefix+"trait\">";
+		PasteString+="			<option value=\"1\">Divines</option>";
+		PasteString+="			<option value=\"2\">Exploration</option>";
+		PasteString+="			<option value=\"3\">Impenetrable</option>";
+		PasteString+="			<option value=\"4\">Infused</option>";
+		PasteString+="			<option value=\"5\">Nirnhoned</option>";
+		PasteString+="			<option value=\"6\">Reinforced</option>";
+		PasteString+="			<option value=\"7\">Sturdy</option>";
+		PasteString+="			<option value=\"8\">Training</option>";
+		PasteString+="			<option value=\"9\">Well Fitted</option>";
+		PasteString+="		</select>";
+		PasteString+="	</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		console.log("Cost word: "+ItemPrefix+"motif");
+		PasteString+="		<select id=\""+ItemPrefix+"motif\">";
+		PasteString+="			<option value=\"1\">High Elf</option>";
+		PasteString+="			<option value=\"2\">Wood Elf</option>";
+		PasteString+="			<option value=\"3\">Khajiit</option>";
+		PasteString+="			<option value=\"4\">Argonian</option>";
+		PasteString+="			<option value=\"5\">Nord</option>";
+		PasteString+="			<option value=\"6\">Dark Elf</option>";
+		PasteString+="			<option value=\"7\">Breton</option>";
+		PasteString+="			<option value=\"8\">Orc</option>";
+		PasteString+="			<option value=\"9\">Red Guard</option>";
+		PasteString+="			<option value=\"10\">Ancient Elf</option>";
+		PasteString+="			<option value=\"11\">Barbaric</option>";
+		PasteString+="			<option value=\"12\">Primal</option>";
+		PasteString+="			<option value=\"13\">Daedric</option>";
+		PasteString+="			<option value=\"14\">Imperial</option>";
+		PasteString+="		</select>";
+		PasteString+="	</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		console.log("Cost word: "+ItemPrefix+"ench");
+		PasteString+="		<select id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="			<option value=\"1\" style=\"background-color:rgb(0,255,0)\">health</option>";
+		PasteString+="			<option value=\"2\" style=\"background-color:rgb(0,0,255)\">health</option>";
+		PasteString+="			<option value=\"3\" style=\"background-color:rgb(255,0,255)\">health</option>";
+		PasteString+="			<option value=\"4\" style=\"background-color:rgb(255,255,0)\">health</option>";
+		PasteString+="			<option value=\"5\" style=\"background-color:rgb(0,255,0)\">magicka</option>";
+		PasteString+="			<option value=\"6\" style=\"background-color:rgb(0,0,255)\">magicka</option>";
+		PasteString+="			<option value=\"7\" style=\"background-color:rgb(255,0,255)\">magicka</option>";
+		PasteString+="			<option value=\"8\" style=\"background-color:rgb(255,255,0)\">magicka</option>";
+		PasteString+="			<option value=\"9\" style=\"background-color:rgb(0,255,0)\">stamina</option>";
+		PasteString+="			<option value=\"10\" style=\"background-color:rgb(0,0,255)\">stamina</option>";
+		PasteString+="			<option value=\"11\" style=\"background-color:rgb(255,0,255)\">stamina</option>";
+		PasteString+="			<option value=\"12\" style=\"background-color:rgb(255,255,0)\">stamina</option>";
+		PasteString+="		</select>";
+		PasteString+="	</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		console.log("Cost word: "+ItemPrefix+"set");
+		PasteString+="		<select id=\""+ItemPrefix+"set\">";
+		PasteString+="		<option value=\"1\">Night's Silence</option>";
+		PasteString+="		<option value=\"2\">Ashen Grip</option>";
+		PasteString+="		<option value=\"3\">Death's Wind</option>";
+		PasteString+="		<option value=\"4\">Torug's Pact</option>";
+		PasteString+="		<option value=\"5\">Seducer</option>";
+		PasteString+="		<option value=\"6\">Twilight's Embrace</option>";
+		PasteString+="		<option value=\"7\">Whitestrake's Retribution</option>";
+		PasteString+="		<option value=\"8\">Hist Bark</option>";
+		PasteString+="		<option value=\"9\">Magnus' Gift</option>";
+		PasteString+="		<option value=\"10\">Alessia's Bulwark</option>";
+		PasteString+="		<option value=\"11\">Song of Lamae</option>";
+		PasteString+="		<option value=\"12\">Vampire's Kiss</option>";
+		PasteString+="		<option value=\"13\">Hunding's Rage</option>";
+		PasteString+="		<option value=\"14\">Willow's Path</option>";
+		PasteString+="		<option value=\"15\">Night Mother's Gaze</option>";
+		PasteString+="		<option value=\"16\">Spectre's Eye</option>";
+		PasteString+="		<option value=\"17\">Oblivion's Foe</option>";
+		PasteString+="		<option value=\"18\">Eyes of Mara</option>";
+		PasteString+="		<option value=\"19\">Kagrenac's Hope</option>";
+		PasteString+="		<option value=\"20\">Orgnum's Scales</option>";
+		PasteString+="		<option value=\"21\">Shalidor's Curse</option>";
+		PasteString+="		<option value=\"22\">Way of the Arena</option>";
+		PasteString+="		<option value=\"23\">Twice Born Star</option>";
+		PasteString+="		</select>";
+		PasteString+="	</td>";
+		console.log("Cost word: "+ItemPrefix+"cost");
+		PasteString+="	<td id=\""+ItemPrefix+"cost\" style=\"color: white;\">0</td>";
+		PasteString+="</tr>";
+	}
+	
+	return PasteString;
+}
+
 $('#GearSelector').change(function() {
     opt = $(this).val();
 	console.log("This is opt: "+opt);
@@ -566,107 +676,14 @@ $('#GearSelector').change(function() {
 	if(opt!=null){
 		if(opt.indexOf("opt1")>=0){
 			//PasteString+="<tr>Helm</h2>I have a large house on a quiet street</p>";
-	PasteString+="<tr>";
-	PasteString+="	<td style=\"font-size:100%; color: white\">Head</td>";
-	PasteString+="	<td style=\"font-size:100%\">";
-	PasteString+="		<select id=\"headqual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
-	PasteString+="			<option value=\"1\" style=\"background-color:rgb(0,255,0)\">heavy</option>";
-	PasteString+="			<option value=\"2\" style=\"background-color:rgb(0,0,255)\">heavy</option>";
-	PasteString+="			<option value=\"3\" style=\"background-color:rgb(255,0,255)\">heavy</option>";
-	PasteString+="			<option value=\"4\" style=\"background-color:rgb(255,255,0)\">heavy</option>";
-	PasteString+="			<option value=\"5\" style=\"background-color:rgb(0,255,0)\">medium</option>";
-	PasteString+="			<option value=\"6\" style=\"background-color:rgb(0,0,255)\">medium</option>";
-	PasteString+="			<option value=\"7\" style=\"background-color:rgb(255,0,255)\">medium</option>";
-	PasteString+="			<option value=\"8\" style=\"background-color:rgb(255,255,0)\">medium</option>";
-	PasteString+="			<option value=\"9\" style=\"background-color:rgb(0,255,0)\">light</option>";
-	PasteString+="			<option value=\"10\" style=\"background-color:rgb(0,0,255)\">light</option>";
-	PasteString+="			<option value=\"11\" style=\"background-color:rgb(255,0,255)\">light</option>";
-	PasteString+="			<option value=\"12\" style=\"background-color:rgb(255,255,0)\">light</option>";
-	PasteString+="		</select>";
-	PasteString+="	</td>";
-	PasteString+="	<td style=\"font-size:100%\">";
-	PasteString+="		<select id=\"headtrait\">";
-	PasteString+="			<option value=\"1\">Divines</option>";
-	PasteString+="			<option value=\"2\">Exploration</option>";
-	PasteString+="			<option value=\"3\">Impenetrable</option>";
-	PasteString+="			<option value=\"4\">Infused</option>";
-	PasteString+="			<option value=\"5\">Nirnhoned</option>";
-	PasteString+="			<option value=\"6\">Reinforced</option>";
-	PasteString+="			<option value=\"7\">Sturdy</option>";
-	PasteString+="			<option value=\"8\">Training</option>";
-	PasteString+="			<option value=\"9\">Well Fitted</option>";
-	PasteString+="		</select>";
-	PasteString+="	</td>";
-	PasteString+="	<td style=\"font-size:100%\">";
-	PasteString+="		<select id=\"headmotif\">";
-	PasteString+="			<option value=\"1\">High Elf</option>";
-	PasteString+="			<option value=\"2\">Wood Elf</option>";
-	PasteString+="			<option value=\"3\">Khajiit</option>";
-	PasteString+="			<option value=\"4\">Argonian</option>";
-	PasteString+="			<option value=\"5\">Nord</option>";
-	PasteString+="			<option value=\"6\">Dark Elf</option>";
-	PasteString+="			<option value=\"7\">Breton</option>";
-	PasteString+="			<option value=\"8\">Orc</option>";
-	PasteString+="			<option value=\"9\">Red Guard</option>";
-	PasteString+="			<option value=\"10\">Ancient Elf</option>";
-	PasteString+="			<option value=\"11\">Barbaric</option>";
-	PasteString+="			<option value=\"12\">Primal</option>";
-	PasteString+="			<option value=\"13\">Daedric</option>";
-	PasteString+="			<option value=\"14\">Imperial</option>";
-	PasteString+="		</select>";
-	PasteString+="	</td>";
-	PasteString+="	<td style=\"font-size:100%\">";
-	PasteString+="		<select id=\"headench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
-	PasteString+="			<option value=\"1\" style=\"background-color:rgb(0,255,0)\">health</option>";
-	PasteString+="			<option value=\"2\" style=\"background-color:rgb(0,0,255)\">health</option>";
-	PasteString+="			<option value=\"3\" style=\"background-color:rgb(255,0,255)\">health</option>";
-	PasteString+="			<option value=\"4\" style=\"background-color:rgb(255,255,0)\">health</option>";
-	PasteString+="			<option value=\"5\" style=\"background-color:rgb(0,255,0)\">magicka</option>";
-	PasteString+="			<option value=\"6\" style=\"background-color:rgb(0,0,255)\">magicka</option>";
-	PasteString+="			<option value=\"7\" style=\"background-color:rgb(255,0,255)\">magicka</option>";
-	PasteString+="			<option value=\"8\" style=\"background-color:rgb(255,255,0)\">magicka</option>";
-	PasteString+="			<option value=\"9\" style=\"background-color:rgb(0,255,0)\">stamina</option>";
-	PasteString+="			<option value=\"10\" style=\"background-color:rgb(0,0,255)\">stamina</option>";
-	PasteString+="			<option value=\"11\" style=\"background-color:rgb(255,0,255)\">stamina</option>";
-	PasteString+="			<option value=\"12\" style=\"background-color:rgb(255,255,0)\">stamina</option>";
-	PasteString+="		</select>";
-	PasteString+="	</td>";
-	PasteString+="	<td style=\"font-size:100%\">";
-	PasteString+="		<select id=\"headset\">";
-	PasteString+="		<option value=\"1\">Night's Silence</option>";
-	PasteString+="		<option value=\"2\">Ashen Grip</option>";
-	PasteString+="		<option value=\"3\">Death's Wind</option>";
-	PasteString+="		<option value=\"4\">Torug's Pact</option>";
-	PasteString+="		<option value=\"5\">Seducer</option>";
-	PasteString+="		<option value=\"6\">Twilight's Embrace</option>";
-	PasteString+="		<option value=\"7\">Whitestrake's Retribution</option>";
-	PasteString+="		<option value=\"8\">Hist Bark</option>";
-	PasteString+="		<option value=\"9\">Magnus' Gift</option>";
-	PasteString+="		<option value=\"10\">Alessia's Bulwark</option>";
-	PasteString+="		<option value=\"11\">Song of Lamae</option>";
-	PasteString+="		<option value=\"12\">Vampire's Kiss</option>";
-	PasteString+="		<option value=\"13\">Hunding's Rage</option>";
-	PasteString+="		<option value=\"14\">Willow's Path</option>";
-	PasteString+="		<option value=\"15\">Night Mother's Gaze</option>";
-	PasteString+="		<option value=\"16\">Spectre's Eye</option>";
-	PasteString+="		<option value=\"17\">Oblivion's Foe</option>";
-	PasteString+="		<option value=\"18\">Eyes of Mara</option>";
-	PasteString+="		<option value=\"19\">Kagrenac's Hope</option>";
-	PasteString+="		<option value=\"20\">Orgnum's Scales</option>";
-	PasteString+="		<option value=\"21\">Shalidor's Curse</option>";
-	PasteString+="		<option value=\"22\">Way of the Arena</option>";
-	PasteString+="		<option value=\"23\">Twice Born Star</option>";
-	PasteString+="		</select>";
-	PasteString+="	</td>";
-	PasteString+="	<td id=\"headcost\" style=\"color: white;\">0</td>";
-	PasteString+="</tr>";		
-			
-			
+			PasteString+=GenerateRequestFormItem("Head");	
 		}
 		if(opt.indexOf("opt2")>=0){
+			PasteString+=GenerateRequestFormItem("Shoulder");
 			//PasteString+="<p><h2>Shoulder</h2>I drive an Audi A200</p>";
 		}
 		if(opt.indexOf("opt3")>=0){
+			PasteString+=GenerateRequestFormItem("Shield");
 			//PasteString+="<p><h2>Shield</h2>I do not need a bicycle, I have a car.</p>";
 		}
 	}
@@ -688,18 +705,6 @@ $('#GearSelector').change(function() {
 <div id="msgbox"></div>
 </form>
 	</font>
-
-<script type="text/javascript">
-console.log("Kuta is worth: "+kuta);
-</script>
-
-
-<!-- ORIG 
-
-
-	
-
-ORIG !-->
 
   </body>
   </html>
