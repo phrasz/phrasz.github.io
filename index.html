@@ -544,16 +544,21 @@ FilterTableString+="</div>";
 <div class="OrderSelect">
  <select id="GearSelector" class="selectpicker" multiple="" title="Choose one of the following..." style="display: none;">
     <option value="opt1">Helm</option>
-    <option value="opt2">Shoulder</option>
-    <option value="opt3">Shield</option>
+    <option value="opt2">Chest</option>
+    <option value="opt3">Leg</option>
+    <option value="opt4">Feet</option>
+    <option value="opt5">Shoulder</option>
+    <option value="opt6">Hand</option>
+    <option value="opt7">Belt</option>
+    <option value="opt8">Shield</option>
   </select>
 
 <script type="text/javascript">
 function GenerateRequestFormItem(Type){
 	var ItemPrefix=Type.toLowerCase();
 	var PasteString="";
-	
-	if(Type==="Head" || Type==="Shoulder"){
+
+	if(Type==="Head" || Type==="Chest" || Type==="Leg" || Type==="Feet" || Type==="Shoulder" || Type==="Hand"|| Type==="Belt" || Type==="Shield"){
 		PasteString+="<tr>";
 		PasteString+="	<td style=\"font-size:100%; color: white\">"+Type+"</td>";
 		PasteString+="	<td style=\"font-size:100%\">";
@@ -655,6 +660,8 @@ function GenerateRequestFormItem(Type){
 		PasteString+="	<td id=\""+ItemPrefix+"cost\" style=\"color: white;\">0</td>";
 		PasteString+="</tr>";
 	}
+	else if (Type==="Weapon1" || Type==="Weapon2" || Type==="Weapon3"){
+	}
 	
 	return PasteString;
 }
@@ -675,20 +682,33 @@ $('#GearSelector').change(function() {
 	PasteString+="</tr>";
 	if(opt!=null){
 		if(opt.indexOf("opt1")>=0){
-			//PasteString+="<tr>Helm</h2>I have a large house on a quiet street</p>";
 			PasteString+=GenerateRequestFormItem("Head");	
 		}
 		if(opt.indexOf("opt2")>=0){
-			PasteString+=GenerateRequestFormItem("Shoulder");
-			//PasteString+="<p><h2>Shoulder</h2>I drive an Audi A200</p>";
+			PasteString+=GenerateRequestFormItem("Chest");
 		}
 		if(opt.indexOf("opt3")>=0){
-			PasteString+=GenerateRequestFormItem("Shield");
-			//PasteString+="<p><h2>Shield</h2>I do not need a bicycle, I have a car.</p>";
+			PasteString+=GenerateRequestFormItem("Leg");	
 		}
+		if(opt.indexOf("opt4")>=0){
+			PasteString+=GenerateRequestFormItem("Feet");	
+		}
+		if(opt.indexOf("opt5")>=0){
+			PasteString+=GenerateRequestFormItem("Shoulder");	
+		}
+		if(opt.indexOf("opt6")>=0){
+			PasteString+=GenerateRequestFormItem("Hand");	
+		}
+		if(opt.indexOf("opt7")>=0){
+			PasteString+=GenerateRequestFormItem("Belt");	
+		}
+		if(opt.indexOf("opt8")>=0){
+			PasteString+=GenerateRequestFormItem("Shield");	
+		}
+
 	}
 	
-	PasteString+="	<tr>";
+	PasteString+="<tr>";
 	PasteString+="	<td style=\"font-size:100%\"></td>";
 	PasteString+="	<td style=\"font-size:100%\"></td>";
 	PasteString+="	<td style=\"font-size:100%\"></td>";
