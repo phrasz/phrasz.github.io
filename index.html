@@ -183,9 +183,9 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		
 	function GenerateRequestTabList(ListForMenu,ListRestrictions,RequestNumber,RequestorData){
 		var FirstItemFound=0;
-		var TotalItems=0;
 		var MenuList="<h3>Request "+(RequestNumber)+": "+ RequestorData.Handle + "</h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
 		MenuList+="<ul class=\"nav nav-tabs\">";
+
 		for(var k=0; k<ListForMenu.length; k++){
 			var ListItemValid=0;
 			for(l=0;l<ListRestrictions.length;l++){
@@ -196,18 +196,14 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			}
 			if(ListItemValid===1){
 				if(FirstItemFound===0){
-					MenuList+="	<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+k+"\">"+ ListForMenu[k] +"</a></li>";
+					MenuList+="<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menuAll\">All Items</a></li>";
 					FirstItemFound=1;
 				}
-				else{	
-					MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k] +"</a></li>";
-				}
-				TotalItems++;
+				
+				MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k] +"</a></li>";
 			}
 		}
-		if(TotalItems>1){
-			MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menuAll\">All Items</a></li>";
-		}
+
 		MenuList+="</ul>";			
 		return MenuList;
 	}
@@ -229,13 +225,8 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 				}
 				if(ListItemValid===1){
 					TotalItems++;
-					if(FirstItemFound===0){
-						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in active\" style=\"color:white;\">";
-						FirstItemFound=1;
-					}
-					else{
-						MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
-					}
+
+					MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
 
 					var Temp=["0","1"];
 					Temp=PrintGear(ListOfItems[k],RequestorData);
@@ -251,7 +242,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			}
 			ListAll+="</tbody></table></p>";
 			if(TotalItems>1){
-				MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in\" style=\"color:white;\">";
+				MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in active\" style=\"color:white;\">";
 				MenuListData+=ListAll;
 				MenuListData+="		</div>";
 			}
