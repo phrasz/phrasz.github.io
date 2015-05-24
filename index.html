@@ -9,10 +9,10 @@
 	<script src="js/tabletop.js"></script>
 	<!--<script src="http://pastebin.com/raw.php?i=WtLCSUwe"></script>!-->
 
-	<!-- bootstrap-select
-	<link rel="stylesheet" href="css/bootstrap-select.css">
+
+	<link rel="stylesheet" href="css/bootstrap-select.min.css">
 	<script src="js/bootstrap-select.min.js"></script>
-	 !-->
+
 	 <style>
 		.filterable {
 			margin-top: 15px;
@@ -39,6 +39,7 @@
 			color: #333;
 		}
 		</style>
+		
 	    <script type="text/javascript">
 		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
 
@@ -71,7 +72,7 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
                          callback: showRequestInfo,
                          wanted: [ "Requests", "Fulfillments" ],
                          debug: false } );
-		//$('.selectpicker').selectpicker();
+		
 		 $('.filterable .btn-filter').click(function(){
         var $panel = $(this).parents('.filterable'),
         $filters = $panel.find('.filters input'),
@@ -114,6 +115,9 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
     });
       })
 
+//Bootstrap-Select
+//$('.selectpicker').selectpicker();
+		
 function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	var i,j;
 	var UserIndices=[];
@@ -527,81 +531,54 @@ FilterTableString+="</div>";
 	<hr>
     <div id="table_info"></div>   
 	</font>
-<!--
-This is "http://silviomoreto.github.io/bootstrap-select/" code
+
+	
+	<font color="white">
 	<hr>
-	<select class="selectpicker" data-live-search="true" style="display: none;">
-		<option>Hot Dog, Fries and a Soda</option>
-		<option>Burger, Shake and a Smile</option>
-		<option>Sugar, Spice and all things nice</option>
-	</select>
-!-->  
-  </font>
+	<!--This is "http://silviomoreto.github.io/bootstrap-select/" code !-->
+<h1><b><u>Please Select Desired Items</u></b></h1>
+<form>
+<div class="OrderSelect">
+ <select id="mystuff" class="selectpicker" multiple="" title="Choose one of the following..." style="display: none;">
+    <option value="opt1">Helm</option>
+    <option value="opt2">Shoulder</option>
+    <option value="opt3">Shield</option>
+  </select>
+ <!--
+  <div class="btn-group bootstrap-select show-tick">
+  <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Mustard, Ketchup" aria-expanded="false"><span class="filter-option pull-left">Mustard, Ketchup</span>&nbsp;<span class="caret"></span></button>
+	  <div class="dropdown-menu open" style="max-height: 344px; overflow: hidden; min-height: 0px;">
+		  <ul class="dropdown-menu inner" role="menu" style="max-height: 332px; overflow-y: auto; min-height: 0px;">
+			<li data-original-index="0" class="selected"><a tabindex="0" class="" data-normalized-text="<span class=&quot;text&quot;>Mustard</span>" data-tokens="null"><span class="text">Mustard</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+			<li data-original-index="1" class="selected"><a tabindex="0" class="" data-normalized-text="<span class=&quot;text&quot;>Ketchup</span>" data-tokens="null"><span class="text">Ketchup</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+			<li data-original-index="2"><a tabindex="0" class="" data-normalized-text="<span class=&quot;text&quot;>Relish</span>" data-tokens="null"><span class="text">Relish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+		  </ul>
+	  </div>
+  </div>
+!-->
+<script type="text/javascript">
+$('#mystuff').change(function() {
+    opt = $(this).val();
+	//console.log("This is opt: "+opt);
+	var PasteString="";
+    if(opt.indexOf("opt1")>=0){
+        PasteString+="<p><h2>Helm</h2>I have a large house on a quiet street</p>";
+    }
+	if(opt.indexOf("opt2")>=0){
+        PasteString+="<p><h2>Shoulder</h2>I drive an Audi A200</p>";
+    }
+	if(opt.indexOf("opt3")>=0){
+        PasteString+="<p><h2>Shield</h2>I do not need a bicycle, I have a car.</p>";
+    }
+	document.getElementById("msgbox").innerHTML=PasteString;
+});
+</script>
+</div>
+<div id="msgbox"></div>
+</form>
+	</font>
+
 
 
   </body>
   </html>
-
-<!--
-		/*
-		Array.prototype.atIndices = function(ind) {
-			var result = [];
-			for (var i = 0; i < arguments.length; i++) {
-				if (arguments[i] in this)
-					result.push(this[arguments[i]])
-				}
-			return result;        
-		}
-		*/
-		
-		/*
-		function pluck(arr, indices) {
-			var result = [];
-			var result2 = [];
-			i = 0;
-			len = indices.length;
-
-			for (; i < len; i++) {
-				result.push(arr[indices[i]]);
-			}
-			if(result===result2){
-				return null;
-			}
-			else{
-				return result;
-			}
-		}
-		*/
-!-->
-
-<!--
-		/*
-		Array.prototype.atIndices = function(ind) {
-			var result = [];
-			for (var i = 0; i < arguments.length; i++) {
-				if (arguments[i] in this)
-					result.push(this[arguments[i]])
-				}
-			return result;        
-		}
-		*/
-		
-		/*
-		function pluck(arr, indices) {
-			var result = [];
-			var result2 = [];
-			i = 0;
-			len = indices.length;
-
-			for (; i < len; i++) {
-				result.push(arr[indices[i]]);
-			}
-			if(result===result2){
-				return null;
-			}
-			else{
-				return result;
-			}
-		}
-		*/
-!-->
