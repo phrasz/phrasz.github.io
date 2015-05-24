@@ -12,6 +12,7 @@
 
 	<link rel="stylesheet" href="css/bootstrap-select.min.css">
 	<script src="js/bootstrap-select.min.js"></script>
+	<script src="js/ETC.js"></script>
 
 	 <style>
 		.filterable {
@@ -536,40 +537,33 @@ FilterTableString+="</div>";
 	<font color="white">
 	<hr>
 	<!--This is "http://silviomoreto.github.io/bootstrap-select/" code !-->
-<h1><b><u>Please Select Desired Items</u></b></h1>
-<form>
+<h1><b><u>Crafting Order Request</u></b></h1>
+<form form style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">
+		<LABEL for="entry_1702613869">Handle: </LABEL> <INPUT name="entry.1702613869" type="text" id="entry_1702613869">
+		<br><LABEL for="entry_653355245">Level: </LABEL> <INPUT name="entry.653355245" type="text" id="entry_653355245">
 <div class="OrderSelect">
- <select id="mystuff" class="selectpicker" multiple="" title="Choose one of the following..." style="display: none;">
+ <select id="GearSelector" class="selectpicker" multiple="" title="Choose one of the following..." style="display: none;">
     <option value="opt1">Helm</option>
     <option value="opt2">Shoulder</option>
     <option value="opt3">Shield</option>
   </select>
- <!--
-  <div class="btn-group bootstrap-select show-tick">
-  <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Mustard, Ketchup" aria-expanded="false"><span class="filter-option pull-left">Mustard, Ketchup</span>&nbsp;<span class="caret"></span></button>
-	  <div class="dropdown-menu open" style="max-height: 344px; overflow: hidden; min-height: 0px;">
-		  <ul class="dropdown-menu inner" role="menu" style="max-height: 332px; overflow-y: auto; min-height: 0px;">
-			<li data-original-index="0" class="selected"><a tabindex="0" class="" data-normalized-text="<span class=&quot;text&quot;>Mustard</span>" data-tokens="null"><span class="text">Mustard</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-			<li data-original-index="1" class="selected"><a tabindex="0" class="" data-normalized-text="<span class=&quot;text&quot;>Ketchup</span>" data-tokens="null"><span class="text">Ketchup</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-			<li data-original-index="2"><a tabindex="0" class="" data-normalized-text="<span class=&quot;text&quot;>Relish</span>" data-tokens="null"><span class="text">Relish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-		  </ul>
-	  </div>
-  </div>
-!-->
+
 <script type="text/javascript">
-$('#mystuff').change(function() {
+$('#GearSelector').change(function() {
     opt = $(this).val();
-	//console.log("This is opt: "+opt);
+	console.log("This is opt: "+opt);
 	var PasteString="";
-    if(opt.indexOf("opt1")>=0){
-        PasteString+="<p><h2>Helm</h2>I have a large house on a quiet street</p>";
-    }
-	if(opt.indexOf("opt2")>=0){
-        PasteString+="<p><h2>Shoulder</h2>I drive an Audi A200</p>";
-    }
-	if(opt.indexOf("opt3")>=0){
-        PasteString+="<p><h2>Shield</h2>I do not need a bicycle, I have a car.</p>";
-    }
+	if(opt!=null){
+		if(opt.indexOf("opt1")>=0){
+			PasteString+="<p><h2>Helm</h2>I have a large house on a quiet street</p>";
+		}
+		if(opt.indexOf("opt2")>=0){
+			PasteString+="<p><h2>Shoulder</h2>I drive an Audi A200</p>";
+		}
+		if(opt.indexOf("opt3")>=0){
+			PasteString+="<p><h2>Shield</h2>I do not need a bicycle, I have a car.</p>";
+		}
+	}
 	document.getElementById("msgbox").innerHTML=PasteString;
 });
 </script>
@@ -578,7 +572,131 @@ $('#mystuff').change(function() {
 </form>
 	</font>
 
+<script type="text/javascript">
+console.log("Kuta is worth: "+kuta);
+</script>
 
+
+<!-- ORIG !-->
+
+<table style="width:100%">
+	<tr>
+	<font color="white">
+		<td style="font-size:100%"><strong> Slot </strong></td>
+		<td style="font-size:100%"><strong> Quality </strong></td>
+		<td style="font-size:100%"><strong> Trait </strong></td>
+		<td style="font-size:100%"><strong> Motif </strong></td>
+		<td style="font-size:100%"><strong> Enchant </strong</td>
+		<td style="font-size:100%"><strong> Set </strong></td>
+		<td style="font-size:100%"><strong> Cost </strong></td>
+	</font>
+	</tr>
+	<tr>
+		<td style="font-size:100%">Head</td>
+		<td style="font-size:100%">
+			<select id="headqual" style="background-color:rgb(0,255,0)" onchange=qualSelected(this)>
+				<option value="1" style="background-color:rgb(0,255,0)">heavy</option>
+				<option value="2" style="background-color:rgb(0,0,255)">heavy</option>
+				<option value="3" style="background-color:rgb(255,0,255)">heavy</option>
+				<option value="4" style="background-color:rgb(255,255,0)">heavy</option>
+				<option value="5" style="background-color:rgb(0,255,0)">medium</option>
+				<option value="6" style="background-color:rgb(0,0,255)">medium</option>
+				<option value="7" style="background-color:rgb(255,0,255)">medium</option>
+				<option value="8" style="background-color:rgb(255,255,0)">medium</option>
+				<option value="9" style="background-color:rgb(0,255,0)">light</option>
+				<option value="10" style="background-color:rgb(0,0,255)">light</option>
+				<option value="11" style="background-color:rgb(255,0,255)">light</option>
+				<option value="12" style="background-color:rgb(255,255,0)">light</option>
+			</select>
+		</td>
+		<td style="font-size:100%">
+			<select id="headtrait">
+				<option value="1">Divines</option>
+				<option value="2">Exploration</option>
+				<option value="3">Impenetrable</option>
+				<option value="4">Infused</option>
+				<option value="5">Nirnhoned</option>
+				<option value="6">Reinforced</option>
+				<option value="7">Sturdy</option>
+				<option value="8">Training</option>
+				<option value="9">Well Fitted</option>
+			</select>
+		</td>	
+		<td style="font-size:100%">
+			<select id="headmotif">
+				<option value="1">High Elf</option>
+				<option value="2">Wood Elf</option>
+				<option value="3">Khajiit</option>
+				<option value="4">Argonian</option>
+				<option value="5">Nord</option>
+				<option value="6">Dark Elf</option>
+				<option value="7">Breton</option>
+				<option value="8">Orc</option>
+				<option value="9">Red Guard</option>
+				<option value="10">Ancient Elf</option>
+				<option value="11">Barbaric</option>
+				<option value="12">Primal</option>
+				<option value="13">Daedric</option>
+				<option value="14">Imperial</option>
+			</select>
+		</td>
+		<td style="font-size:100%">
+			<select id="headench" style="background-color:rgb(0,255,0)" onchange=qualSelected(this)>
+				<option value="1" style="background-color:rgb(0,255,0)">health</option>
+				<option value="2" style="background-color:rgb(0,0,255)">health</option>
+				<option value="3" style="background-color:rgb(255,0,255)">health</option>
+				<option value="4" style="background-color:rgb(255,255,0)">health</option>
+				<option value="5" style="background-color:rgb(0,255,0)">magicka</option>
+				<option value="6" style="background-color:rgb(0,0,255)">magicka</option>
+				<option value="7" style="background-color:rgb(255,0,255)">magicka</option>
+				<option value="8" style="background-color:rgb(255,255,0)">magicka</option>
+				<option value="9" style="background-color:rgb(0,255,0)">stamina</option>
+				<option value="10" style="background-color:rgb(0,0,255)">stamina</option>
+				<option value="11" style="background-color:rgb(255,0,255)">stamina</option>
+				<option value="12" style="background-color:rgb(255,255,0)">stamina</option>
+			</select>
+		</td>
+		<td style="font-size:100%">
+			<select id="headset">
+			<option value="1">Night's Silence</option>
+			<option value="2">Ashen Grip</option>
+			<option value="3">Death's Wind</option>
+			<option value="4">Torug's Pact</option>
+			<option value="5">Seducer</option>
+			<option value="6">Twilight's Embrace</option>
+			<option value="7">Whitestrake's Retribution</option>
+			<option value="8">Hist Bark</option>
+			<option value="9">Magnus' Gift</option>
+			<option value="10">Alessia's Bulwark</option>
+			<option value="11">Song of Lamae</option>
+			<option value="12">Vampire's Kiss</option>
+			<option value="13">Hunding's Rage</option>
+			<option value="14">Willow's Path</option>
+			<option value="15">Night Mother's Gaze</option>
+			<option value="16">Spectre's Eye</option>
+			<option value="17">Oblivion's Foe</option>
+			<option value="18">Eyes of Mara</option>
+			<option value="19">Kagrenac's Hope</option>
+			<option value="20">Orgnum's Scales</option>
+			<option value="21">Shalidor's Curse</option>
+			<option value="22">Way of the Arena</option>
+			<option value="23">Twice Born Star</option>
+			</select>
+		</td>
+		<td id="headcost">0</td>
+	</tr>
+	<tr>
+		<td style="font-size:100%"></td>
+		<td style="font-size:100%"></td>
+		<td style="font-size:100%"></td>
+		<td style="font-size:100%"></td>
+		<td style="font-size:100%"></td>
+		<td style="font-size:100%"><strong> Total Cost </strong></td>
+		<td id="totalcost"><strong> 0 </strong></td>
+	</tr>
+
+</table>
+<!-- ORIG !-->
 
   </body>
   </html>
