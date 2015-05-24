@@ -551,11 +551,18 @@ FilterTableString+="</div>";
     <option value="opt6">Hand</option>
     <option value="opt7">Belt</option>
     <option value="opt8">Shield</option>
+    <option value="opt9">Weapon 1</option>
+    <option value="opt10">Weapon 2</option>
+    <option value="opt11">Weapon 3</option>
   </select>
 
 <script type="text/javascript">
 function GenerateRequestFormItem(Type){
 	var ItemPrefix=Type.toLowerCase();
+	if(Type==="Weapon1"){ItemPrefix="w1";}
+	else if(Type==="Weapon2"){ItemPrefix="w2";}
+	else if(Type==="Weapon3"){ItemPrefix="w3";}
+
 	var PasteString="";
 
 	if(Type==="Head" || Type==="Chest" || Type==="Leg" || Type==="Feet" || Type==="Shoulder" || Type==="Hand"|| Type==="Belt" || Type==="Shield"){
@@ -661,6 +668,173 @@ function GenerateRequestFormItem(Type){
 		PasteString+="</tr>";
 	}
 	else if (Type==="Weapon1" || Type==="Weapon2" || Type==="Weapon3"){
+		PasteString+="<tr>";
+		PasteString+="		<td style=\"font-size:100%\">"+Type+"</td>";
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="			<select id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="				<option value=\"1\" style=\"background-color:rgb(0,255,0)\">Axe</option>";
+		PasteString+="				<option value=\"2\" style=\"background-color:rgb(0,0,255)\">Axe</option>";
+		PasteString+="				<option value=\"3\" style=\"background-color:rgb(255,0,255)\">Axe</option>";
+		PasteString+="				<option value=\"4\" style=\"background-color:rgb(255,255,0)\">Axe</option>";
+		PasteString+="				<option value=\"5\" style=\"background-color:rgb(0,255,0)\">Sword</option>";
+		PasteString+="				<option value=\"6\" style=\"background-color:rgb(0,0,255)\">Sword</option>";
+		PasteString+="				<option value=\"7\" style=\"background-color:rgb(255,0,255)\">Sword</option>";
+		PasteString+="				<option value=\"8\" style=\"background-color:rgb(255,255,0)\">Sword</option>";
+		PasteString+="				<option value=\"9\" style=\"background-color:rgb(0,255,0)\">Mace</option>";
+		PasteString+="				<option value=\"10\" style=\"background-color:rgb(0,0,255)\">Mace</option>";
+		PasteString+="				<option value=\"11\" style=\"background-color:rgb(255,0,255)\">Mace</option>";
+		PasteString+="				<option value=\"12\" style=\"background-color:rgb(255,255,0)\">Mace</option>";
+		PasteString+="				<option value=\"13 style=\"background-color:rgb(0,255,0)\">Dagger</option>";
+		PasteString+="				<option value=\"14\" style=\"background-color:rgb(0,0,255)\">Dagger</option>";
+		PasteString+="				<option value=\"15\" style=\"background-color:rgb(255,0,255)\">Dagger</option>";
+		PasteString+="				<option value=\"16\" style=\"background-color:rgb(255,255,0)\">Dagger</option>";
+		PasteString+="				<option value=\"17\" style=\"background-color:rgb(0,255,0)\">2-H Axe</option>";
+		PasteString+="				<option value=\"18\" style=\"background-color:rgb(0,0,255)\">2-H Axe</option>";
+		PasteString+="				<option value=\"19\" style=\"background-color:rgb(255,0,255)\">2-H Axe</option>";
+		PasteString+="				<option value=\"20\" style=\"background-color:rgb(255,255,0)\">2-H Axe</option>";
+		PasteString+="				<option value=\"21\" style=\"background-color:rgb(0,255,0)\">2-H Sword</option>";
+		PasteString+="				<option value=\"22\" style=\"background-color:rgb(0,0,255)\">2-H Sword</option>";
+		PasteString+="				<option value=\"23\" style=\"background-color:rgb(255,0,255)\">2-H Sword</option>";
+		PasteString+="				<option value=\"24\" style=\"background-color:rgb(255,255,0)\">2-H Sword</option>";
+		PasteString+="				<option value=\"25\" style=\"background-color:rgb(0,255,0)\">2-H Mace</option>";
+		PasteString+="				<option value=\"26\" style=\"background-color:rgb(0,0,255)\">2-H Mace</option>";
+		PasteString+="				<option value=\"27\" style=\"background-color:rgb(255,0,255)\">2-H Mace</option>";
+		PasteString+="				<option value=\"28\" style=\"background-color:rgb(255,255,0)\">2-H Mace</option>";
+		PasteString+="				<option value=\"29\" style=\"background-color:rgb(0,255,0)\">Fire Staff</option>";
+		PasteString+="				<option value=\"30\" style=\"background-color:rgb(0,0,255)\">Fire Staff</option>";
+		PasteString+="				<option value=\"31\" style=\"background-color:rgb(255,0,255)\">Fire Staff</option>";
+		PasteString+="				<option value=\"32\" style=\"background-color:rgb(255,255,0)\">Fire Staff</option>";
+		PasteString+="				<option value=\"33\" style=\"background-color:rgb(0,255,0)\">Ice Staff</option>";
+		PasteString+="				<option value=\"34\" style=\"background-color:rgb(0,0,255)\">Ice Staff</option>";
+		PasteString+="				<option value=\"35\" style=\"background-color:rgb(255,0,255)\">Ice Staff</option>";
+		PasteString+="				<option value=\"36\" style=\"background-color:rgb(255,255,0)\">Ice Staff</option>";
+		PasteString+="				<option value=\"37\" style=\"background-color:rgb(0,255,0)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"38\" style=\"background-color:rgb(0,0,255)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"39\" style=\"background-color:rgb(255,0,255)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"40\" style=\"background-color:rgb(255,255,0)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"41\" style=\"background-color:rgb(0,255,0)\">Restoration Staff</option>";
+		PasteString+="				<option value=\"42\" style=\"background-color:rgb(0,0,255)\">Restoration Staff</option>";
+		PasteString+="				<option value=\"43\" style=\"background-color:rgb(255,0,255)\">Restoration Staff</option>";
+		PasteString+="				<option value=\"44\" style=\"background-color:rgb(255,255,0)\">Restoration Staff</option>";
+		PasteString+="			</select>";
+		PasteString+="		</td>";
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="			<select id=\""+ItemPrefix+"trait\">";
+		PasteString+="				<option value=\"1\">Charged</option>";
+		PasteString+="				<option value=\"2\">Defending</option>";
+		PasteString+="				<option value=\"3\">Infused</option>";
+		PasteString+="				<option value=\"4\">Nirnhoned</option>";
+		PasteString+="				<option value=\"5\">Powered</option>";
+		PasteString+="				<option value=\"6\">Precise</option>";
+		PasteString+="				<option value=\"7\">Sharpened</option>";
+		PasteString+="				<option value=\"8\">Training</option>";
+		PasteString+="				<option value=\"9\">Weighted</option>";
+		PasteString+="			</select>";
+		PasteString+="		</td>";	
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="			<select id=\""+ItemPrefix+"motif\">";
+		PasteString+="				<option value=\"1\">High Elf</option>";
+		PasteString+="				<option value=\"2\">Wood Elf</option>";
+		PasteString+="				<option value=\"3\">Khajiit</option>";
+		PasteString+="				<option value=\"4\">Argonian</option>";
+		PasteString+="				<option value=\"5\">Nord</option>";
+		PasteString+="				<option value=\"6\">Dark Elf</option>";
+		PasteString+="				<option value=\"7\">Breton</option>";
+		PasteString+="				<option value=\"8\">Orc</option>";
+		PasteString+="				<option value=\"9\">Red Guard</option>";
+		PasteString+="				<option value=\"10\">Ancient Elf</option>";
+		PasteString+="				<option value=\"11\">Barbaric</option>";
+		PasteString+="				<option value=\"12\">Primal</option>";
+		PasteString+="				<option value=\"13\">Daedric</option>";
+		PasteString+="				<option value=\"14\">Imperial</option>";
+		PasteString+="			</select>";
+		PasteString+="		</td>";	
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="			<select id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="				<option value=\"1\" style=\"background-color:rgb(0,255,0)\">Frost</option>";
+		PasteString+="				<option value=\"2\" style=\"background-color:rgb(0,0,255)\">Frost</option>";
+		PasteString+="				<option value=\"3\" style=\"background-color:rgb(255,0,255)\">Frost</option>";
+		PasteString+="				<option value=\"4\" style=\"background-color:rgb(255,255,0)\">Frost</option>";
+		PasteString+="				<option value=\"5\" style=\"background-color:rgb(0,255,0)\">Foulness </option>";
+		PasteString+="				<option value=\"6\" style=\"background-color:rgb(0,0,255)\">Foulness </option>";
+		PasteString+="				<option value=\"7\" style=\"background-color:rgb(255,0,255)\">Foulness </option>";
+		PasteString+="				<option value=\"8\" style=\"background-color:rgb(255,255,0)\">Foulness </option>";
+		PasteString+="				<option value=\"9\" style=\"background-color:rgb(0,255,0)\">Poison</option>";
+		PasteString+="				<option value=\"10\" style=\"background-color:rgb(0,0,255)\">Poison</option>";
+		PasteString+="				<option value=\"11\" style=\"background-color:rgb(255,0,255)\">Poison</option>";
+		PasteString+="				<option value=\"12\" style=\"background-color:rgb(255,255,0)\">Poison</option>";
+		PasteString+="				<option value=\"13\" style=\"background-color:rgb(0,255,0)\">Shock </option>";
+		PasteString+="				<option value=\"14\" style=\"background-color:rgb(0,0,255)\">Shock </option>";
+		PasteString+="				<option value=\"15\" style=\"background-color:rgb(255,0,255)\">Shock </option>";
+		PasteString+="				<option value=\"16\" style=\"background-color:rgb(255,255,0)\">Shock </option>";
+		PasteString+="				<option value=\"17\" style=\"background-color:rgb(0,255,0)\">Rage </option>";
+		PasteString+="				<option value=\"18\" style=\"background-color:rgb(0,0,255)\">Rage </option>";
+		PasteString+="				<option value=\"19\" style=\"background-color:rgb(255,0,255)\">Rage </option>";
+		PasteString+="				<option value=\"20\" style=\"background-color:rgb(255,255,0)\">Rage </option>";
+		PasteString+="				<option value=\"21\" style=\"background-color:rgb(0,255,0)\">Flame </option>";
+		PasteString+="				<option value=\"22\" style=\"background-color:rgb(0,0,255)\">Flame </option>";
+		PasteString+="				<option value=\"23\" style=\"background-color:rgb(255,0,255)\">Flame </option>";
+		PasteString+="				<option value=\"24\" style=\"background-color:rgb(255,255,0)\">Flame </option>";
+		PasteString+="				<option value=\"25\" style=\"background-color:rgb(0,255,0)\">Hardening</option>";
+		PasteString+="				<option value=\"26\" style=\"background-color:rgb(0,0,255)\">Hardening</option>";
+		PasteString+="				<option value=\"27\" style=\"background-color:rgb(255,0,255)\">Hardening</option>";
+		PasteString+="				<option value=\"28\" style=\"background-color:rgb(255,255,0)\">Hardening</option>";
+		PasteString+="				<option value=\"29\" style=\"background-color:rgb(0,255,0)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"30\" style=\"background-color:rgb(0,0,255)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"31\" style=\"background-color:rgb(255,0,255)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"32\" style=\"background-color:rgb(255,255,0)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"33\" style=\"background-color:rgb(0,255,0)\">Absorb Health </option>";
+		PasteString+="				<option value=\"34\" style=\"background-color:rgb(0,0,255)\">Absorb Health </option>";
+		PasteString+="				<option value=\"35\" style=\"background-color:rgb(255,0,255)\">Absorb Health </option>";
+		PasteString+="				<option value=\"36\" style=\"background-color:rgb(255,255,0)\">Absorb Health </option>";
+		PasteString+="				<option value=\"37\" style=\"background-color:rgb(0,255,0)\">Decrease Health</option>";
+		PasteString+="				<option value=\"38\" style=\"background-color:rgb(0,0,255)\">Decrease Health</option>";
+		PasteString+="				<option value=\"39\" style=\"background-color:rgb(255,0,255)\">Decrease Health</option>";
+		PasteString+="				<option value=\"40\" style=\"background-color:rgb(255,255,0)\">Decrease Health</option>";
+		PasteString+="				<option value=\"41\" style=\"background-color:rgb(0,255,0)\">Weakening</option>";
+		PasteString+="				<option value=\"42\" style=\"background-color:rgb(0,0,255)\">Weakening</option>";
+		PasteString+="				<option value=\"43\" style=\"background-color:rgb(255,0,255)\">Weakening</option>";
+		PasteString+="				<option value=\"44\" style=\"background-color:rgb(255,255,0)\">Weakening</option>";
+		PasteString+="				<option value=\"45\" style=\"background-color:rgb(0,255,0)\">Absorb Stamina</option>";
+		PasteString+="				<option value=\"46\" style=\"background-color:rgb(0,0,255)\">Absorb Stamina</option>";
+		PasteString+="				<option value=\"47\" style=\"background-color:rgb(255,0,255)\">Absorb Stamina</option>";
+		PasteString+="				<option value=\"48\" style=\"background-color:rgb(255,255,0)\">Absorb Staminaina</option>";
+		PasteString+="				<option value=\"49\" style=\"background-color:rgb(0,255,0)\">Crushing</option>";
+		PasteString+="				<option value=\"50\" style=\"background-color:rgb(0,0,255)\">Crushing</option>";
+		PasteString+="				<option value=\"51\" style=\"background-color:rgb(255,0,255)\">Crushing</option>";
+		PasteString+="				<option value=\"52\" style=\"background-color:rgb(255,255,0)\">Crushing</option>";
+		PasteString+="			</select>";
+		PasteString+="		</td>";	
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="			<select id=\""+ItemPrefix+"set\">";
+		PasteString+="			<option value=\"1\">Night's Silence</option>";
+		PasteString+="			<option value=\"2\">Ashen Grip</option>";
+		PasteString+="			<option value=\"3\">Death's Wind</option>";
+		PasteString+="			<option value=\"4\">Torug's Pact</option>";
+		PasteString+="			<option value=\"5\">Seducer</option>";
+		PasteString+="			<option value=\"6\">Twilight's Embrace</option>";
+		PasteString+="			<option value=\"7\">Whitestrake's Retribution</option>";
+		PasteString+="			<option value=\"8\">Hist Bark</option>";
+		PasteString+="			<option value=\"9\">Magnus' Gift</option>";
+		PasteString+="			<option value=\"10\">Alessia's Bulwark</option>";
+		PasteString+="			<option value=\"11\">Song of Lamae</option>";
+		PasteString+="			<option value=\"12\">Vampire's Kiss</option>";
+		PasteString+="			<option value=\"13\">Hunding's Rage</option>";
+		PasteString+="			<option value=\"14\">Willow's Path</option>";
+		PasteString+="			<option value=\"15\">Night Mother's Gaze</option>";
+		PasteString+="			<option value=\"16\">Spectre's Eye</option>";
+		PasteString+="			<option value=\"17\">Oblivion's Foe</option>";
+		PasteString+="			<option value=\"18\">Eyes of Mara</option>";
+		PasteString+="			<option value=\"19\">Kagrenac's Hope</option>";
+		PasteString+="			<option value=\"20\">Orgnum's Scales</option>";
+		PasteString+="			<option value=\"21\">Shalidor's Curse</option>";
+		PasteString+="			<option value=\"22\">Way of the Arena</option>";
+		PasteString+="			<option value=\"23\">Twice Born Star</option>";
+		PasteString+="			</select>";
+		PasteString+="		</td>";
+		console.log("Weapon cost: "+ItemPrefix+"cost");
+		PasteString+="		<td id=\""+ItemPrefix+"cost\">0</td>";
+		PasteString+="	</tr>";
 	}
 	
 	return PasteString;
@@ -704,6 +878,15 @@ $('#GearSelector').change(function() {
 		}
 		if(opt.indexOf("opt8")>=0){
 			PasteString+=GenerateRequestFormItem("Shield");	
+		}
+		if(opt.indexOf("opt9")>=0){
+			PasteString+=GenerateRequestFormItem("Weapon1");	
+		}
+		if(opt.indexOf("opt10")>=0){
+			PasteString+=GenerateRequestFormItem("Weapon2");	
+		}
+		if(opt.indexOf("opt11")>=0){
+			PasteString+=GenerateRequestFormItem("Weapon3");	
 		}
 
 	}
