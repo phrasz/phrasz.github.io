@@ -134,7 +134,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	for(i=0; i < TotalUsers;i++){
 		var found=0,found2=0;
 
-		for(j=0; j < FulfillmentsRowData;j++){
+		for(j=0; j < FulfillmentsRowData.length;j++){
 			if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
 				found=1;
 				break;
