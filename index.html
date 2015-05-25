@@ -566,25 +566,38 @@ function GenerateRequestFormItem(Type){
 	var PasteString="";
 
 	if(Type==="Head" || Type==="Chest" || Type==="Leg" || Type==="Feet" || Type==="Shoulder" || Type==="Hand"|| Type==="Belt" || Type==="Shield"){
-		PasteString+="<tr>";
-		PasteString+="	<td style=\"font-size:100%; color: white\">"+Type+"</td>";
-		PasteString+="	<td style=\"font-size:100%\">";
-		console.log("Cost word: "+ItemPrefix+"qual");
-		PasteString+="		<select id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
-		PasteString+="			<option value=\"1\" style=\"background-color:rgb(0,255,0)\">heavy</option>";
-		PasteString+="			<option value=\"2\" style=\"background-color:rgb(0,0,255)\">heavy</option>";
-		PasteString+="			<option value=\"3\" style=\"background-color:rgb(255,0,255)\">heavy</option>";
-		PasteString+="			<option value=\"4\" style=\"background-color:rgb(255,255,0)\">heavy</option>";
-		PasteString+="			<option value=\"5\" style=\"background-color:rgb(0,255,0)\">medium</option>";
-		PasteString+="			<option value=\"6\" style=\"background-color:rgb(0,0,255)\">medium</option>";
-		PasteString+="			<option value=\"7\" style=\"background-color:rgb(255,0,255)\">medium</option>";
-		PasteString+="			<option value=\"8\" style=\"background-color:rgb(255,255,0)\">medium</option>";
-		PasteString+="			<option value=\"9\" style=\"background-color:rgb(0,255,0)\">light</option>";
-		PasteString+="			<option value=\"10\" style=\"background-color:rgb(0,0,255)\">light</option>";
-		PasteString+="			<option value=\"11\" style=\"background-color:rgb(255,0,255)\">light</option>";
-		PasteString+="			<option value=\"12\" style=\"background-color:rgb(255,255,0)\">light</option>";
-		PasteString+="		</select>";
-		PasteString+="	</td>";
+
+			PasteString+="<tr>";
+			PasteString+="	<td style=\"font-size:100%; color: white\">"+Type+"</td>";
+		if(Type!="Shield"){
+			PasteString+="	<td style=\"font-size:100%\">";
+			console.log("Cost word: "+ItemPrefix+"qual");
+			PasteString+="		<select id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+			PasteString+="			<option value=\"1\" style=\"background-color:rgb(0,255,0)\">heavy</option>";
+			PasteString+="			<option value=\"2\" style=\"background-color:rgb(0,0,255)\">heavy</option>";
+			PasteString+="			<option value=\"3\" style=\"background-color:rgb(255,0,255)\">heavy</option>";
+			PasteString+="			<option value=\"4\" style=\"background-color:rgb(255,255,0)\">heavy</option>";
+			PasteString+="			<option value=\"5\" style=\"background-color:rgb(0,255,0)\">medium</option>";
+			PasteString+="			<option value=\"6\" style=\"background-color:rgb(0,0,255)\">medium</option>";
+			PasteString+="			<option value=\"7\" style=\"background-color:rgb(255,0,255)\">medium</option>";
+			PasteString+="			<option value=\"8\" style=\"background-color:rgb(255,255,0)\">medium</option>";
+			PasteString+="			<option value=\"9\" style=\"background-color:rgb(0,255,0)\">light</option>";
+			PasteString+="			<option value=\"10\" style=\"background-color:rgb(0,0,255)\">light</option>";
+			PasteString+="			<option value=\"11\" style=\"background-color:rgb(255,0,255)\">light</option>";
+			PasteString+="			<option value=\"12\" style=\"background-color:rgb(255,255,0)\">light</option>";
+			PasteString+="		</select>";
+			PasteString+="	</td>";
+		}
+		else{
+			PasteString+="<td style=\"font-size:100%\">";
+			PasteString+="		<select id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+			PasteString+="		<option value=\"1\" style=\"background-color:rgb(0,255,0)\">Shield</option>";
+			PasteString+="		<option value=\"2\" style=\"background-color:rgb(0,0,255)\">Shield</option>";
+			PasteString+="		<option value=\"3\" style=\"background-color:rgb(255,0,255)\">Shield</option>";
+			PasteString+="		<option value=\"4\" style=\"background-color:rgb(255,255,0)\">Shield</option>";
+			PasteString+="	</select>";
+			PasteString+="</td>";
+		}		
 		PasteString+="	<td style=\"font-size:100%\">";
 		console.log("Cost word: "+ItemPrefix+"trait");
 		PasteString+="		<select id=\""+ItemPrefix+"trait\">";
