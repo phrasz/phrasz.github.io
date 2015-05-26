@@ -1623,7 +1623,8 @@ function qualSelected(obj) {
 	totalCost = headTotalCost+chestTotalCost+legTotalCost+feetTotalCost+shoulderTotalCost+handTotalCost
 		+beltTotalCost+shieldTotalCost+w1TotalCost+w2TotalCost+w3TotalCost;
 	if(document.getElementById("totalcost")!=null){
-		document.getElementById("totalcost").innerHTML = totalCost; 
+		document.getElementById("totalcost").innerHTML = totalCost;
+		document.getElementById("FormTotalcost").value = totalCost;
 	}
 
 

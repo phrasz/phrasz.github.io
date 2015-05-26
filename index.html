@@ -251,8 +251,8 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		
 		$(PasteString).appendTo("#table_info");
 		
+/*
 		 var FilterTableString=""; 
-
 FilterTableString+="<div class=\"container pull-left\">";
 FilterTableString+="    <div class=\"row\">";
 FilterTableString+="        <div class=\"panel panel-primary filterable\" style=\"border-color: black; \">";
@@ -295,7 +295,7 @@ FilterTableString+="            </table>";
 FilterTableString+="        </div>";
 FilterTableString+="    </div>";
 FilterTableString+="</div>";
-
+*/
 //$("<br><br><hr>").appendTo("#table_info");
 //$(FilterTableString).appendTo("#table_info");
 
@@ -931,7 +931,27 @@ $('#GearSelector').change(function() {
 </script>
 </div>
 <div id="msgbox"></div>
+<input type="hidden" name="country" id="FormTotalcost" value="1000000">
+<input onclick="myFunction()" type="submit" value="Submit">
 </form>
+
+
+<script>
+function myFunction() {
+    alert("This is the total cost: "+document.getElementById("FormTotalcost").value);
+}
+</script>
+
+<!--
+<img id="image" src="smiley.gif" width="160" height="120">
+
+<script>
+
+</script>
+
+<p>The original image was smiley.gif, but the script changed it to landscape.jpg</p>
+!-->
+
 	</font>
 
   </body>
