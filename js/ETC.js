@@ -50,7 +50,7 @@ var w2TotalCost=0;
 var w3TotalCost=0;
 
 var totalCost=0;
-var finalCost=0;
+//var finalCost=0;
 
 function qualSelected(obj) {
 	obj.style.backgroundColor=obj.options[obj.selectedIndex].style.backgroundColor
@@ -1586,22 +1586,45 @@ function qualSelected(obj) {
 	w3TotalCost = w3ImpCost+w3EnchCost;
 
 
-	document.getElementById("headcost").innerHTML = headTotalCost;
-	document.getElementById("chestcost").innerHTML = chestTotalCost;
-	document.getElementById("legcost").innerHTML = legTotalCost;
-	document.getElementById("feetcost").innerHTML = feetTotalCost;
-	document.getElementById("shouldercost").innerHTML = shoulderTotalCost;
-	document.getElementById("handcost").innerHTML = handTotalCost;
-	document.getElementById("beltcost").innerHTML = beltTotalCost;
-	document.getElementById("shieldcost").innerHTML = shieldTotalCost;
-	document.getElementById("w1cost").innerHTML = w1TotalCost;
-	document.getElementById("w2cost").innerHTML = w2TotalCost;
-	document.getElementById("w3cost").innerHTML = w3TotalCost;
+	if(document.getElementById("headcost")!=null){
+		document.getElementById("headcost").innerHTML = headTotalCost;
+	}
+	if(document.getElementById("chestcost")!=null){
+		document.getElementById("chestcost").innerHTML = chestTotalCost;
+	}
+	if(document.getElementById("legcost")!=null){
+		document.getElementById("legcost").innerHTML = legTotalCost;
+	}
+	if(document.getElementById("feetcost")!=null){
+		document.getElementById("feetcost").innerHTML = feetTotalCost;
+	}
+	if(document.getElementById("shouldercost")!=null){
+		document.getElementById("shouldercost").innerHTML = shoulderTotalCost;
+	}
+	if(document.getElementById("handcost")!=null){
+		document.getElementById("handcost").innerHTML = handTotalCost;
+	}
+	if(document.getElementById("beltcost")!=null){
+		document.getElementById("beltcost").innerHTML = beltTotalCost;
+	}
+	if(document.getElementById("shieldcost")!=null){
+		document.getElementById("shieldcost").innerHTML = shieldTotalCost;
+	}
+	if(document.getElementById("w1cost")!=null){
+		document.getElementById("w1cost").innerHTML = w1TotalCost;
+	}
+	if(document.getElementById("w2cost")!=null){
+		document.getElementById("w2cost").innerHTML = w2TotalCost;
+	}
+	if(document.getElementById("w3cost")!=null){
+		document.getElementById("w3cost").innerHTML = w3TotalCost;
+	}
 
 	totalCost = headTotalCost+chestTotalCost+legTotalCost+feetTotalCost+shoulderTotalCost+handTotalCost
 		+beltTotalCost+shieldTotalCost+w1TotalCost+w2TotalCost+w3TotalCost;
-
-	document.getElementById("totalcost").innerHTML = totalCost; 
+	if(document.getElementById("totalcost")!=null){
+		document.getElementById("totalcost").innerHTML = totalCost; 
+	}
 
 
 
