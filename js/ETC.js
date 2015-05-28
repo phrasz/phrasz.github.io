@@ -53,61 +53,47 @@ var totalCost=0;
 //var finalCost=0;
 
 function qualSelected(obj) {
-	var ItemValue="";
 	obj.style.backgroundColor=obj.options[obj.selectedIndex].style.backgroundColor
 	switch(obj.id) {
 		case "headqual":
 			switch(obj.selectedIndex){
 				case 0:
 					headImpCost = 0;
-					ItemValue="HeavyGreen";
 					break;
 				case 1:
 					headImpCost = dwarvenOil;
-					ItemValue="HeavyGreen";
 					break;
 				case 2:
 					headImpCost = grainSolvent;
-					ItemValue="HeavyGreen";
 					break;
 				case 3:
 					headImpCost = temperingAlloy;
-					ItemValue="HeavyGreen";
 					break;
 				case 4:
 					headImpCost = 0;
-					ItemValue="HeavyGreen";
 					break;
 				case 5:
 					headImpCost = embroidery;
-					ItemValue="HeavyGreen";
 					break;
 				case 6:
 					headImpCost = elegantLining;
-					ItemValue="HeavyGreen";
 					break;
 				case 7:
 					headImpCost = dreughWax;
-					ItemValue="HeavyGreen";
 					break;
 				case 8:
 					headImpCost = 0;
-					ItemValue="HeavyGreen";
 					break;
 				case 9:
 					headImpCost = embroidery;
-					ItemValue="HeavyGreen";
 					break;
 				case 10:
 					headImpCost = elegantLining;
-					ItemValue="HeavyGreen";
 					break;
 				case 11:
 					headImpCost = dreughWax;
-					ItemValue="HeavyGreen";
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "chestqual":
 			switch(obj.selectedIndex){
@@ -148,7 +134,6 @@ function qualSelected(obj) {
 					chestImpCost = dreughWax;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;	
 
 		case "legqual":
@@ -190,8 +175,6 @@ function qualSelected(obj) {
 					legImpCost = dreughWax;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
-
 			break;	
 
 		case "feetqual":
@@ -233,8 +216,6 @@ function qualSelected(obj) {
 					feetImpCost = dreughWax;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
-
 			break;	
 
 		case "shoulderqual":
@@ -276,8 +257,6 @@ function qualSelected(obj) {
 					shoulderImpCost = dreughWax;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
-
 			break;	
 
 	case "handqual":
@@ -319,7 +298,6 @@ function qualSelected(obj) {
 					handImpCost = dreughWax;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;	
 
 		case "beltqual":
@@ -361,7 +339,6 @@ function qualSelected(obj) {
 					beltImpCost = dreughWax;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;	
 
 		case "shieldqual":
@@ -380,7 +357,6 @@ function qualSelected(obj) {
 					break;
 				
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;	
 
 		case "w1qual":
@@ -518,7 +494,6 @@ function qualSelected(obj) {
 					w1ImpCost = rosin;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;	
 
 		case "w2qual":
@@ -656,7 +631,6 @@ function qualSelected(obj) {
 					w2ImpCost = rosin;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;	
 		case "w3qual":
 			switch(obj.selectedIndex){
@@ -793,7 +767,6 @@ function qualSelected(obj) {
 					w3ImpCost = rosin;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;	
 		case "headench":
 			switch(obj.selectedIndex){
@@ -834,7 +807,6 @@ function qualSelected(obj) {
 					headEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "chestench":
 			switch(obj.selectedIndex){
@@ -875,7 +847,6 @@ function qualSelected(obj) {
 					chestEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "legench":
 			switch(obj.selectedIndex){
@@ -916,7 +887,6 @@ function qualSelected(obj) {
 					legEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "feetench":
 			switch(obj.selectedIndex){
@@ -957,7 +927,6 @@ function qualSelected(obj) {
 					feetEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "shoulderench":
 			switch(obj.selectedIndex){
@@ -998,7 +967,6 @@ function qualSelected(obj) {
 					shoulderEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "handench":
 			switch(obj.selectedIndex){
@@ -1039,7 +1007,6 @@ function qualSelected(obj) {
 					handEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "beltench":
 			switch(obj.selectedIndex){
@@ -1080,7 +1047,6 @@ function qualSelected(obj) {
 					beltEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "shieldench":
 			switch(obj.selectedIndex){
@@ -1121,7 +1087,6 @@ function qualSelected(obj) {
 					shieldEnchCost = kuta;
 					break;
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "w1ench":
 			switch(obj.selectedIndex){
@@ -1283,7 +1248,6 @@ function qualSelected(obj) {
 					break;
 				
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "w2ench":
 			switch(obj.selectedIndex){
@@ -1445,7 +1409,6 @@ function qualSelected(obj) {
 					break;
 				
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 		case "w3ench":
 			switch(obj.selectedIndex){
@@ -1608,7 +1571,6 @@ function qualSelected(obj) {
 				
 				
 			}
-			document.getElementById("entry_1489240183").value = ItemValue;
 			break;
 	}  
 	headTotalCost = headImpCost+headEnchCost;
@@ -1662,7 +1624,7 @@ function qualSelected(obj) {
 		+beltTotalCost+shieldTotalCost+w1TotalCost+w2TotalCost+w3TotalCost;
 	if(document.getElementById("totalcost")!=null){
 		document.getElementById("totalcost").innerHTML = totalCost;
-		document.getElementById("entry_64024218").value = totalCost;
+		document.getElementById("FormTotalcost").value = totalCost;
 	}
 
 
