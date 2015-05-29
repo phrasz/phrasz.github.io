@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/tabletop.js"></script>
+
+	<script type="text/javascript">
+		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
+
+      $(document).ready(function() {
+        Tabletop.init( { key: public_spreadsheet_url,
+                         callback: showRequestInfo,
+                         wanted: [ "Requests", "Fulfillments" ],
+                         debug: false } );
+      })
+		
+function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
+	var i,j;
+	var UserIndices=[];
+	var UserTimes=[];
+	var PasteString="";
+	var TotalUsers=0;
+	var TotalFulfillments=0;
+	
+	if(RequestRowData.length <=0 ){
+		TotalUsers=1;
+	}
+	else{
+		TotalUsers=RequestRowData.length;
+	}
+	if(FulfillmentsRowData.length <=0 ){
+		TotalFulfillments=1;
+	}
+	else{
+		TotalFulfillments=FulfillmentsRowData.length;
+	}	
+	for(i=0; i < TotalUsers;i++){
+		var found=0,found2=0;
+
+		for(j=0; j < TotalFulfillments;j++){
+			if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
+				found=1;
+				break;
+			}
+		}
+		
+		if(found === 0){//If the request has NOT been fulfilled, then display
+			for(j=0;j<UserIndices.length;j++){
+				if(UserIndices[j]===RequestRowData[i].Handle){
+					found2=1;
+					break;
+				}
+			}
+			if(found2===0){//Make sure there are NO duplicates of Usernames
+				UserIndices.push(RequestRowData[i].Handle);
+			}
+			UserTimes.push(RequestRowData[i].Timestamp);
+		}
+	}
+
+	PasteString+="<h1><u><b>Fulfill Request</b></u></h1>";
+	PasteString+="<form action=\"https://docs.google.com/forms/d/1JiO62717EzBhxqXIlrX9GX7NsnFBF89S5waK1kJHtF0/formResponse?embedded=true\" method=\"POST\" target=\"_self\" onsubmit=\"\">";
+	PasteString+="<label for=\"Handle\">Handle: </label>";
+	PasteString+="<select id=\"Handle\" class=\"form-control\" name=\"entry_1463831978\">";
+	for(i=0;i<UserIndices.length;i++){
+		PasteString+="<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>";
+	}
+	PasteString+="</select>";
+	PasteString+="<label for=\"date\">Date: </label>";
+	PasteString+="<select id=\"date\" name=\"entry_2009906019\" class=\"form-control\">";
+	for(i=0;i<UserTimes.length;i++){
+		PasteString+="<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>";
+	}
+	PasteString+="</select>"
+	PasteString+="<br><button type=\"submit\" class=\"btn btn-default\">Submit</button>";
+	PasteString+="</form>";
+	document.getElementById("Fulfillments").innerHTML=PasteString;
+}	  
+
+function showRequestInfo(data, tabletop){
+	UserItemIndices=[];
+	UserItemSections=[];
+	
+	var RequestRowData=tabletop.sheets("Requests").all();
+	var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
+	// EXPORT JSON Object to Text: console.log("\n\n\n"+JSON.stringify(RequestRowData, null, 2)+"\n\n\n");
+	CreateFulfillmentForm(RequestRowData,FulfillmentsRowData);
+
+}
+    </script>
+</head>
+
+<body style="background-color:#262626">
+	<font color="white">
+	<div id="Fulfillments"></div>
+	</font>
+
+  </body>
+  </html>
