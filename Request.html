@@ -122,7 +122,6 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
 	function showRequestInfo(data, tabletop){
 		UserItemIndices=[];
 		UserItemSections=[];
-		$("<h1><u><b>Current Requests</b></u></h1>").appendTo("#table_info");
 
 		var PasteString="";			
 		
@@ -135,337 +134,18 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
 		var RequestCounter=1;
 		var TotalUsers=0;
 		var TotalFulfillments=0;
-		
-		//Exception handling:
-		if(RequestRowData.length <=0 ){
-			TotalUsers=1;
-		}
-		else{
-			TotalUsers=RequestRowData.length;
-		}
-		if(FulfillmentsRowData.length <=0 ){
-			TotalFulfillments=1;
-		}
-		else{
-			TotalFulfillments=FulfillmentsRowData.length;
-		}
 
-		
-		for(i=0; i < TotalUsers;i++){
-			CategoriesPresent=[];
-			var found=0;
-			var AllMemberData="";
-			//See if a request exists (via a Handle and Timestamp) in BOTH of the sheets --> implies the request has been fulfilled
-			for(j=0; j < TotalFulfillments;j++){			
-				if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
-					found=1;
-				}
-			}
-			
-			if(found === 0){//If the request has NOT been fulfilled, then display
-				CheckForCategoriesPresent(RequestRowData[i],CategoriesPresent);
-				
-				if(CategoriesPresent.length>=1){	
-					UserItemIndices.push("<li class=\"\"><a href=\"\#dropdown"+RequestCounter+"\" data-toggle=\"tab\">\@"+RequestRowData[i].Handle+" ("+RequestRowData[i].Timestamp+")</a></li>");
-					AllMemberData=GenerateRequestTabList(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]) + GenerateRequestTabList_Content(Categories,CategoriesPresent,RequestCounter,RequestRowData[i]);
-					UserItemSections.push(AllMemberData);
-					RequestCounter++;
-				}
-
-			}
-		}
-
-		PasteString+="<div>";
-		PasteString+="	<ul class=\"nav nav-tabs\">";
-		PasteString+="		<li class=\"dropdown active\"><a href=\"#\" id=\"myTabDrop1\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-list\" aria-hidden=\"true\"></span>  Select Player  <span class=\"glyphicon glyphicon-arrow-down\" aria-hidden=\"true\"></span></a>";
-		PasteString+="			<ul class=\"dropdown-menu\">";
-		PasteString+="				<li class=\"active\"><a href=\"\#default\" data-toggle=\"tab\"></a></li>";
-		for(i=0;i<UserItemSections.length;i++){
-			PasteString+=UserItemIndices[i];
-		}
-		PasteString+="			</ul>";
-		PasteString+="		</li>";
-		PasteString+="	</ul>";
-		PasteString+="	<div class=\"tab-content\">";
-		PasteString+="		<div class=\"tab-pane fade active in\" id=\"default\">";
-		PasteString+="			<p><font size=\"1\" color=\"gray\">(Select a Player from the dropdown)</font></p>";
-		PasteString+="		</div>";
-
-		//Print the Collection of User Data to the div element
-		for(i=0;i<UserItemSections.length;i++){
-			var StringToSpam="	<div class=\"tab-pane fade\" id=\"dropdown"+(i+1)+"\">";
-			StringToSpam+="			<p>"+UserItemSections[i];+"</p>";
-			StringToSpam+="		</div>";
-			PasteString+=StringToSpam;
-		}
-		PasteString+="	</div>";
-		PasteString+="</div>";
-		
-		$(PasteString).appendTo("#table_info");
-		
-/*
-		 var FilterTableString=""; 
-FilterTableString+="<div class=\"container pull-left\">";
-FilterTableString+="    <div class=\"row\">";
-FilterTableString+="        <div class=\"panel panel-primary filterable\" style=\"border-color: black; \">";
-FilterTableString+="            <div class=\"panel-heading\" style=\"background-color:#262626\" style=\"border-color: black\">";
-FilterTableString+="                <h3 class=\"panel-title\">Users</h3>";
-FilterTableString+="                <div class=\"pull-right\">";
-FilterTableString+="                    <button class=\"btn btn-default btn-xs btn-filter\"><span class=\"glyphicon glyphicon-filter\"></span> Filter</button>";
-FilterTableString+="                </div>";
-FilterTableString+="            </div>";
-FilterTableString+="            <table class=\"table\" style=\"border-color: black\">";
-FilterTableString+="                <thead>";
-FilterTableString+="                    <tr class=\"filters\" style=\"border-color: black\">";
-FilterTableString+="                        <th><input type=\"text\" class=\"form-control\" placeholder=\"#\" disabled></th>";
-FilterTableString+="                        <th><input type=\"text\" class=\"form-control\" placeholder=\"First Name\" disabled></th>";
-FilterTableString+="                        <th><input type=\"text\" class=\"form-control\" placeholder=\"Last Name\" disabled></th>";
-FilterTableString+="                        <th><input type=\"text\" class=\"form-control\" placeholder=\"Username\" disabled></th>";
-FilterTableString+="                    </tr>";
-FilterTableString+="                </thead>";
-FilterTableString+="                <tbody>";
-FilterTableString+="                    <tr>";
-FilterTableString+="                        <td>1</td>";
-FilterTableString+="                        <td>Mark</td>";
-FilterTableString+="                        <td>Otto</td>";
-FilterTableString+="                        <td>@mdo</td>";
-FilterTableString+="                    </tr>";
-FilterTableString+="                    <tr>";
-FilterTableString+="                        <td>2</td>";
-FilterTableString+="                        <td>Jacob</td>";
-FilterTableString+="                        <td>Thornton</td>";
-FilterTableString+="                        <td>@fat</td>";
-FilterTableString+="                    </tr>";
-FilterTableString+="                    <tr>";
-FilterTableString+="                        <td>3</td>";
-FilterTableString+="                        <td>Larry</td>";
-FilterTableString+="                        <td>the Bird</td>";
-FilterTableString+="                        <td>@twitter</td>";
-FilterTableString+="                    </tr>";
-FilterTableString+="                </tbody>";
-FilterTableString+="            </table>";
-FilterTableString+="        </div>";
-FilterTableString+="    </div>";
-FilterTableString+="</div>";
-*/
-//$("<br><br><hr>").appendTo("#table_info");
-//$(FilterTableString).appendTo("#table_info");
-
-	}
-		
-	function GenerateRequestTabList(ListForMenu,ListRestrictions,RequestNumber,RequestorData){
-		var FirstItemFound=0;
-		var MenuList="<h3>Request "+(RequestNumber)+": "+ RequestorData.Handle + "</h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
-		MenuList+="<ul class=\"nav nav-tabs\">";
-
-		for(var k=0; k<ListForMenu.length; k++){
-			var ListItemValid=0;
-			for(l=0;l<ListRestrictions.length;l++){
-				if(ListForMenu[k]===ListRestrictions[l]){
-					ListItemValid=1;
-					break;
-				}
-			}
-			if(ListItemValid===1){
-				if(FirstItemFound===0){
-					MenuList+="<li class=\"active\"><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menuAll\">All Items</a></li>";
-					FirstItemFound=1;
-				}
-				
-				MenuList+="<li><a data-toggle=\"tab\" href=\"#"+RequestNumber+RequestorData.Handle+"menu"+ k +"\">"+ ListForMenu[k] +"</a></li>";
-			}
-		}
-
-		MenuList+="</ul>";			
-		return MenuList;
-	}
-	
-	function GenerateRequestTabList_Content(ListOfItems,ListRestrictions,RequestNumber,RequestorData){
-		var FirstItemFound=0;
-		var MenuListData="";
-		var TotalItems=0;
-		var ListAll="";
-		var ListAllStarted=0;
-			MenuListData+="<div class=\"tab-content\">";
-			for(var k=0; k<ListOfItems.length; k++){
-				var ListItemValid=0;
-				for(l=0;l<ListRestrictions.length;l++){
-					if(ListOfItems[k]===ListRestrictions[l]){
-						ListItemValid=1;
-						break;
-					}
-				}
-				if(ListItemValid===1){
-					TotalItems++;
-
-					MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menu"+k+"\" class=\"tab-pane fade in\" style=\"color:white;\">";
-
-					var Temp=["0","1"];
-					Temp=PrintGear(ListOfItems[k],RequestorData);
-					MenuListData+="<p><table class=\"table table-condensed\"><thead><tr>"+Temp[0]+"</tr></thead><tbody><tr>"+Temp[1]+"</tr></tbody></table></p>";
-
-					if(ListAllStarted===0){
-						ListAll+="<p><table class=\"table table-condensed\"><thead><tr><th></th>"+Temp[0]+"</tr></thead><tbody>";
-						ListAllStarted=1;
-					}
-					ListAll+="<tr><td><b>"+ListOfItems[k]+"</b></td>"+Temp[1]+"</tr>";
-					MenuListData+="		</div>";
-				}
-			}
-			ListAll+="</tbody></table></p>";
-			if(TotalItems>1){
-				MenuListData+="<div id=\""+RequestNumber+RequestorData.Handle+"menuAll\" class=\"tab-pane fade in active\" style=\"color:white;\">";
-				MenuListData+=ListAll;
-				MenuListData+="		</div>";
-			}
-			MenuListData+="</div>";
-		return MenuListData;
-	}
-	
-	function CheckForGear(ItemArray, Data){
-		for(var i=0; i<ItemArray.length;i++){
-			var TestString="";
-			if(Data[ItemArray[i]]!=undefined){
-				if(Data[ItemArray[i]].length>=3){					
-					return 1;				
-				}
-			}
-		} 
-		return 0;
-	}
-	  
-	function PrintGear(GearCategory,RequestorData){
-		var GearListItem=[];
-
-		if(GearCategory==="Head"){
-			GearListItem=Head;
-		}
-		else if(GearCategory==="Chest"){
-			GearListItem=Chest;
-		}
-		else if(GearCategory==="Legs"){
-			GearListItem=Legs;
-		}
-		else if(GearCategory==="Feet"){
-			GearListItem=Feet;
-		}
-		else if(GearCategory==="Shoulder"){
-			GearListItem=Shoulder;
-		}
-		else if(GearCategory==="Hand"){
-			GearListItem=Hand;
-		}
-		else if(GearCategory==="Belt"){
-			GearListItem=Belt;		
-		}
-		else if(GearCategory==="Shield"){
-			GearListItem=Shield;
-		}
-		else if(GearCategory==="Weapon1"){
-			GearListItem=Weapon1;
-		}
-		else if(GearCategory==="Weapon2"){
-			GearListItem=Weapon2;
-		}
-		else if(GearCategory==="Weapon3"){
-			GearListItem=Weapon3;
-		}
-		
-		var Row1=""
-		var Row2=""
-
-		for(var i=0;i<GearListItem.length;i++){
-			var color="";
-			var colorEnd="";
-			if(RequestorData[GearListItem[i]]!=undefined){
-				var start=GearListItem[i].lastIndexOf(GearCategory)+GearCategory.length;
-				var stop=GearListItem[i].length;
-
-				Row1+="<th>"+GearListItem[i].substring(start, stop)+"</th>";
-				var tuple=["1","2"];
-				tuple=CheckForColor(RequestorData[GearListItem[i]]);
-				if(tuple!=undefined){
-					Row2+="<td><font color=\""+tuple[1]+"\">"+tuple[0]+"</font></td>";
-				}
-				else{
-					Row2+="<td>"+RequestorData[GearListItem[i]]+"</td>";
-				}
-			}
-		}
-		
-		var GearString=[Row1,Row2];
-		return GearString;
-	}
-	
-	function CheckForCategoriesPresent(PlayerData,CategoryStorageArray){
-		if(CheckForGear(Head,PlayerData)){
-			CategoryStorageArray.push("Head");
-		}
-		if(CheckForGear(Chest,PlayerData)){
-			CategoryStorageArray.push("Chest");
-		}
-		if(CheckForGear(Legs,PlayerData)){
-			CategoryStorageArray.push("Legs");
-		}
-		if(CheckForGear(Feet,PlayerData)){
-			CategoryStorageArray.push("Feet");
-		}
-		if(CheckForGear(Shoulder,PlayerData)){
-			CategoryStorageArray.push("Shoulder");
-		}
-		if(CheckForGear(Hand,PlayerData)){
-			CategoryStorageArray.push("Hand");
-		}
-		if(CheckForGear(Belt,PlayerData)){
-			CategoryStorageArray.push("Belt");
-		}
-		if(CheckForGear(Shield,PlayerData)){
-			CategoryStorageArray.push("Shield");
-		}
-		if(CheckForGear(Weapon1,PlayerData)){
-			CategoryStorageArray.push("Weapon1");
-		}
-		if(CheckForGear(Weapon2,PlayerData)){
-			CategoryStorageArray.push("Weapon2");
-		}
-		if(CheckForGear(Weapon3,PlayerData)){
-			CategoryStorageArray.push("Weapon3");
-		}
-		
-		return;
-	}
-	
-	function CheckForColor(PassedString){
-		var colors=["Blue","Green","Purple","Yellow"];
-
-		for(var t=0;t<colors.length;t++){
-			if(PassedString.indexOf(colors[t])>=0){
-				stop=PassedString.indexOf(colors[t]);
-
-				var tuple=["1","2"];
-				tuple[0]=PassedString.substring(0,stop);
-				tuple[1]=colors[t];
-				break;
-			}
-		}
-		return tuple;
 	}
 	
     </script>
 </head>
 
 <body style="background-color:#262626">
-
-	<font color="white">
-    <div id="table_info"></div>   
-	</font>
-
 	
 	<font color="white">
-	<hr>
 	<!--This is "http://silviomoreto.github.io/bootstrap-select/" code !-->
 <h1><b><u>Crafting Order Request</u></b></h1>
-<form id="ETCOrderForm" form style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">
+<form id="ETCOrderForm" style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">
 <div class="form-group">
     <!--<label for="entry_1702613869">Handle: </label>
 			<INPUT name="entry.1702613869" type="text" id="entry_1702613869">
@@ -473,7 +153,7 @@ FilterTableString+="</div>";
 	!-->
     <input type="text" class="form-control" name="entry.1702613869" id="entry_1702613869" placeholder="Handle">
   </div>
-<div class="form-group">
+	<div class="form-group">
     <!--<label for="entry_653355245">Handle: </label>
 	<br><LABEL for="entry_653355245">Level: </LABEL> <INPUT name="entry.653355245" type="text" id="entry_653355245">
 	!-->
@@ -510,6 +190,7 @@ function GenerateRequestFormItem(Type){
 			PasteString+="	<td style=\"font-size:100%; color: white\">"+Type+"</td>";
 		if(Type!="Shield"){
 			PasteString+="	<td style=\"font-size:100%\">";
+			PasteString+="<font color=\"black\">";
 			console.log("Cost word: "+ItemPrefix+"qual");
 			PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
 			PasteString+="			<option value=\"HeavyGreen\" style=\"background-color:rgb(0,255,0)\">heavy</option>";
@@ -525,19 +206,23 @@ function GenerateRequestFormItem(Type){
 			PasteString+="			<option value=\"LightPurple\" style=\"background-color:rgb(255,0,255)\">light</option>";
 			PasteString+="			<option value=\"LightYellow\" style=\"background-color:rgb(255,255,0)\">light</option>";
 			PasteString+="		</select>";
+			PasteString+="</font>";
 			PasteString+="	</td>";
 		}
 		else{
 			PasteString+="<td style=\"font-size:100%\">";
+			PasteString+="<font color=\"black\">";
 			PasteString+="	<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
 			PasteString+="		<option value=\"ShieldGreen\" style=\"background-color:rgb(0,255,0)\">Shield</option>";
 			PasteString+="		<option value=\"ShieldBlue\" style=\"background-color:rgb(0,0,255)\">Shield</option>";
 			PasteString+="		<option value=\"ShieldPurple\" style=\"background-color:rgb(255,0,255)\">Shield</option>";
 			PasteString+="		<option value=\"ShieldYellow\" style=\"background-color:rgb(255,255,0)\">Shield</option>";
 			PasteString+="	</select>";
+			PasteString+="</font>";
 			PasteString+="</td>";
 		}		
 		PasteString+="	<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
 		console.log("Cost word: "+ItemPrefix+"trait");
 		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"trait\">";
 		PasteString+="			<option value=\"Divines\">Divines</option>";
@@ -550,8 +235,10 @@ function GenerateRequestFormItem(Type){
 		PasteString+="			<option value=\"Training\">Training</option>";
 		PasteString+="			<option value=\"Well Fitted\">Well Fitted</option>";
 		PasteString+="		</select>";
+		PasteString+="</font>";
 		PasteString+="	</td>";
 		PasteString+="	<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
 		console.log("Cost word: "+ItemPrefix+"motif");
 		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"motif\">";
 		PasteString+="			<option value=\"High Elf\">High Elf</option>";
@@ -569,9 +256,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="			<option value=\"Daedric\">Daedric</option>";
 		PasteString+="			<option value=\"Imperial\">Imperial</option>";
 		PasteString+="		</select>";
+		PasteString+="</font>";
 		PasteString+="	</td>";
 		PasteString+="	<td style=\"font-size:100%\">";
 		console.log("Cost word: "+ItemPrefix+"ench");
+		PasteString+="<font color=\"black\">";
 		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
 		PasteString+="			<option value=\"HealthGreen\" style=\"background-color:rgb(0,255,0)\">health</option>";
 		PasteString+="			<option value=\"HealthBlue\" style=\"background-color:rgb(0,0,255)\">health</option>";
@@ -586,9 +275,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="			<option value=\"StaminaPurple\" style=\"background-color:rgb(255,0,255)\">stamina</option>";
 		PasteString+="			<option value=\"StaminaYellow\" style=\"background-color:rgb(255,255,0)\">stamina</option>";
 		PasteString+="		</select>";
+		PasteString+="</font>";
 		PasteString+="	</td>";
 		PasteString+="	<td style=\"font-size:100%\">";
 		console.log("Cost word: "+ItemPrefix+"set");
+		PasteString+="<font color=\"black\">";
 		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"set\">";
 		PasteString+="		<option value=\"Night's Silence\">Night's Silence</option>";
 		PasteString+="		<option value=\"Ashen Grip\">Ashen Grip</option>";
@@ -614,6 +305,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="		<option value=\"Way of the Arena\">Way of the Arena</option>";
 		PasteString+="		<option value=\"TwIceBorn Star\">TwIceBorn Star</option>";
 		PasteString+="		</select>";
+		PasteString+="</font>";
 		PasteString+="	</td>";
 		console.log("Cost word: "+ItemPrefix+"cost");
 		PasteString+="	<td id=\""+ItemPrefix+"cost\" style=\"color: white;\">0</td>";
@@ -623,6 +315,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="<tr>";
 		PasteString+="		<td style=\"font-size:100%\">"+Type+"</td>";
 		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
 		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
 		PasteString+="				<option value=\"AxeGreen\" style=\"background-color:rgb(0,255,0)\">Axe</option>";
 		PasteString+="				<option value=\"AxeBlue\" style=\"background-color:rgb(0,0,255)\">Axe</option>";
@@ -669,8 +362,10 @@ function GenerateRequestFormItem(Type){
 		PasteString+="				<option value=\"RestorationStaffPurple\" style=\"background-color:rgb(255,0,255)\">Restoration Staff</option>";
 		PasteString+="				<option value=\"RestorationStaffYellow\" style=\"background-color:rgb(255,255,0)\">Restoration Staff</option>";
 		PasteString+="			</select>";
+		PasteString+="</font>";
 		PasteString+="		</td>";
 		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
 		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"trait\">";
 		PasteString+="				<option value=\"Charged\">Charged</option>";
 		PasteString+="				<option value=\"Defending\">Defending</option>";
@@ -682,8 +377,10 @@ function GenerateRequestFormItem(Type){
 		PasteString+="				<option value=\"Training\">Training</option>";
 		PasteString+="				<option value=\"Weighted\">Weighted</option>";
 		PasteString+="			</select>";
+		PasteString+="</font>";
 		PasteString+="		</td>";	
 		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
 		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"motif\">";
 		PasteString+="				<option value=\"High Elf\">High Elf</option>";
 		PasteString+="				<option value=\"Wood Elf\">Wood Elf</option>";
@@ -700,8 +397,10 @@ function GenerateRequestFormItem(Type){
 		PasteString+="				<option value=\"Daedric\">Daedric</option>";
 		PasteString+="				<option value=\"Imperial\">Imperial</option>";
 		PasteString+="			</select>";
+		PasteString+="</font>";
 		PasteString+="		</td>";	
 		PasteString+="		<td style=\"font-size:100%\">";
+			PasteString+="<font color=\"black\">";
 		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
 		PasteString+="				<option value=\"FrostGreen\" style=\"background-color:rgb(0,255,0)\">Frost</option>";
 		PasteString+="				<option value=\"FrostBlue\" style=\"background-color:rgb(0,0,255)\">Frost</option>";
@@ -756,8 +455,10 @@ function GenerateRequestFormItem(Type){
 		PasteString+="				<option value=\"CrushingPurple\" style=\"background-color:rgb(255,0,255)\">Crushing</option>";
 		PasteString+="				<option value=\"CrushingYellow\" style=\"background-color:rgb(255,255,0)\">Crushing</option>";
 		PasteString+="			</select>";
+		PasteString+="</font>";
 		PasteString+="		</td>";	
 		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
 		
 		if(Type==="Weapon1"){
 		//		<input type="hidden" name="entry.2033475650" id="entry_2033475650" value="">
@@ -797,6 +498,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="			<option value=\"Way of the Arena\">Way of the Arena</option>";
 		PasteString+="			<option value=\"TwIceBorn Star\">TwIceBorn Star</option>";
 		PasteString+="			</select>";
+		PasteString+="</font>";
 		PasteString+="		</td>";
 		console.log("Weapon cost: "+ItemPrefix+"cost");
 		PasteString+="		<td id=\""+ItemPrefix+"cost\">0</td>";
@@ -944,15 +646,6 @@ function myFunction() {
 }
 </script>
 
-<!--
-<img id="image" src="smiley.gif" width="160" height="120">
-
-<script>
-
-</script>
-
-<p>The original image was smiley.gif, but the script changed it to landscape.jpg</p>
-!-->
 
 	</font>
 
