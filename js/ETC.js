@@ -1625,7 +1625,6 @@ function qualSelected(obj) {
 	if(document.getElementById("totalcost")!=null){
 		document.getElementById("totalcost").innerHTML = totalCost;
 //		document.getElementById("FormTotalcost").value = totalCost;
-		document.getElementById("TotalCostSubmit").value= totalCost;
 	}
 
 
