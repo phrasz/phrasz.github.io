@@ -396,7 +396,14 @@ function GenerateRequestFormItem(Type){
 		else{
 			PasteString+="<td style=\"font-size:100%\">";
 			PasteString+="<font color=\"black\">";
-			PasteString+="	<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+
+			console.log("Cost word: "+ItemPrefix+"qual");
+
+			ItemQualGoogEntry=GetEntryID(ItemPrefix,"Quality");
+			console.log("Google Entry: "+ItemQualGoogEntry);
+			PasteString+="	<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+//			PasteString+="	<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+
 			PasteString+="		<option value=\"ShieldGreen\" style=\"background-color:rgb(0,255,0)\">Shield</option>";
 			PasteString+="		<option value=\"ShieldBlue\" style=\"background-color:rgb(0,0,255)\">Shield</option>";
 			PasteString+="		<option value=\"ShieldPurple\" style=\"background-color:rgb(255,0,255)\">Shield</option>";
@@ -408,7 +415,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="	<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
 		console.log("Cost word: "+ItemPrefix+"trait");
-		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"trait\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Trait");  
+		PasteString+="		<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"trait\">";		
+//		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"trait\">";
+
 		PasteString+="			<option value=\"Divines\">Divines</option>";
 		PasteString+="			<option value=\"Exploration\">Exploration</option>";
 		PasteString+="			<option value=\"Impenetrable\">Impenetrable</option>";
@@ -424,7 +435,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="	<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
 		console.log("Cost word: "+ItemPrefix+"motif");
-		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"motif\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Motif");
+		PasteString+="		<select form=\"ETCOrderForm\"  name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"motif\">";
+//		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"motif\">";
+
 		PasteString+="			<option value=\"High Elf\">High Elf</option>";
 		PasteString+="			<option value=\"Wood Elf\">Wood Elf</option>";
 		PasteString+="			<option value=\"Khajiit\">Khajiit</option>";
@@ -445,7 +460,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="	<td style=\"font-size:100%\">";
 		console.log("Cost word: "+ItemPrefix+"ench");
 		PasteString+="<font color=\"black\">";
-		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Enchant");
+		PasteString+="		<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+//		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+
 		PasteString+="			<option value=\"HealthGreen\" style=\"background-color:rgb(0,255,0)\">health</option>";
 		PasteString+="			<option value=\"HealthBlue\" style=\"background-color:rgb(0,0,255)\">health</option>";
 		PasteString+="			<option value=\"HealthPurple\" style=\"background-color:rgb(255,0,255)\">health</option>";
@@ -464,7 +483,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="	<td style=\"font-size:100%\">";
 		console.log("Cost word: "+ItemPrefix+"set");
 		PasteString+="<font color=\"black\">";
-		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"set\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Set");
+		PasteString+="		<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\"  id=\""+ItemPrefix+"set\">";
+//		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"set\">";
+
 		PasteString+="		<option value=\"Night's Silence\">Night's Silence</option>";
 		PasteString+="		<option value=\"Ashen Grip\">Ashen Grip</option>";
 		PasteString+="		<option value=\"Death's Wind\">Death's Wind</option>";
@@ -500,7 +523,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="		<td style=\"font-size:100%\">"+Type+"</td>";
 		PasteString+="		<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
-		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Quality");
+		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" name=\"entry."+ItemQualGoogEntry+"\" style=\"background-color:rgb(0,255,0)\"  onchange=qualSelected(this)>";
+//		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+
 		PasteString+="				<option value=\"AxeGreen\" style=\"background-color:rgb(0,255,0)\">Axe</option>";
 		PasteString+="				<option value=\"AxeBlue\" style=\"background-color:rgb(0,0,255)\">Axe</option>";
 		PasteString+="				<option value=\"AxePurple\" style=\"background-color:rgb(255,0,255)\">Axe</option>";
@@ -550,7 +577,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="		</td>";
 		PasteString+="		<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
-		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"trait\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Trait");
+		PasteString+="			<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"trait\">";
+//		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"trait\">";
+
 		PasteString+="				<option value=\"Charged\">Charged</option>";
 		PasteString+="				<option value=\"Defending\">Defending</option>";
 		PasteString+="				<option value=\"Infused\">Infused</option>";
@@ -565,7 +596,11 @@ function GenerateRequestFormItem(Type){
 		PasteString+="		</td>";	
 		PasteString+="		<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
-		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"motif\">";
+		
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Motif");
+		PasteString+="			<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"motif\">";
+//		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"motif\">";
+
 		PasteString+="				<option value=\"High Elf\">High Elf</option>";
 		PasteString+="				<option value=\"Wood Elf\">Wood Elf</option>";
 		PasteString+="				<option value=\"Khajiit\">Khajiit</option>";
@@ -584,8 +619,12 @@ function GenerateRequestFormItem(Type){
 		PasteString+="</font>";
 		PasteString+="		</td>";	
 		PasteString+="		<td style=\"font-size:100%\">";
-			PasteString+="<font color=\"black\">";
-		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="<font color=\"black\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Enchant");
+	PasteString+="			<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		//PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		
 		PasteString+="				<option value=\"FrostGreen\" style=\"background-color:rgb(0,255,0)\">Frost</option>";
 		PasteString+="				<option value=\"FrostBlue\" style=\"background-color:rgb(0,0,255)\">Frost</option>";
 		PasteString+="				<option value=\"FrostPurple\" style=\"background-color:rgb(255,0,255)\">Frost</option>";
@@ -660,7 +699,7 @@ function GenerateRequestFormItem(Type){
 		*/
 		
 		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Set");
-		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"set\" name=\"entry."+ItemQualGoogEntry+"\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"set\" name=\"entry."+ItemQualGoogEntry+"\" onchange=qualSelected(this)>";
 		
 		PasteString+="			<option value=\"Night's Silence\">Night's Silence</option>";
 		PasteString+="			<option value=\"Ashen Grip\">Ashen Grip</option>";
