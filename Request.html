@@ -118,6 +118,186 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
 
 //Bootstrap-Select
 //$('.selectpicker').selectpicker();  
+function GetEntryID(ItemPrefix,EntryType){
+	var ChosenID="";
+	if(EntryType==="Quality"){
+		if(ItemPrefix==="head"){
+			ChosenID="1489240183";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="1011545115";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1690161499";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="1720439721";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="2000701700";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="1647162210";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="1840350699";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="1836915879";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="698259331";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="1638219941";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="484526695";
+		}
+	}
+	if(EntryType==="Trait"){
+		if(ItemPrefix==="head"){
+			ChosenID="1017937000";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="312751114";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1694582759";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="1133296374";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1529761946";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="1965655231";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="1853553952";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="236191693";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="1607674200";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="211567754";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="1467971831";
+		}
+	}
+	if(EntryType==="Motif"){
+		if(ItemPrefix==="head"){
+			ChosenID="767263300";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="1189271429";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1250355338";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="424999932";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1732407402";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="231658116";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="651044863";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="467832442";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="889769491";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="1510285845";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="686541906";
+		}
+	}
+	if(EntryType==="Enchant"){
+		if(ItemPrefix==="head"){
+			ChosenID="436565891";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="148234119";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1611112354";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="1526629927";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1663559739";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="129223191";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="290252240";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="634343502";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="606898063";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="1562249603";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="692256660";
+		}
+	}
+	if(EntryType==="Set"){
+		if(ItemPrefix==="head"){
+			ChosenID="1990979763";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="40788225";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="532744097";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="2100830732";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1302141828";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="1978182581";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="2071263967";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="1007589099";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="2033475650";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="2093391613";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="2086256414";
+		}
+	}
+	return ChosenID;
+}
+
 
 	function showRequestInfo(data, tabletop){
 		UserItemIndices=[];
@@ -145,8 +325,8 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
 	<font color="white">
 	<!--This is "http://silviomoreto.github.io/bootstrap-select/" code !-->
 <h1><b><u>Crafting Order Request</u></b></h1>
-<!--<form id="ETCOrderForm" style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">!-->
-<form id="ETCOrderForm" style="color:#FFFFFF" action="http://www.w3schools.com/html/action_page.php" onsubmit="">
+<form id="ETCOrderForm" style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">
+<!--<form id="ETCOrderForm" style="color:#FFFFFF" action="http://www.w3schools.com/html/action_page.php" onsubmit="">!-->
 <div class="form-group">
     <!--<label for="entry_1702613869">Handle: </label>
 			<INPUT name="entry.1702613869" type="text" id="entry_1702613869">
@@ -177,158 +357,6 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
   </select>
 
 <script type="text/javascript">
-function GetEntryID(ItemPrefix,EntryType){
-	var ChosenID="";
-	if(EntryType==="Quality"){
-		if(ItemPrefix==="head"){
-			ChosenID="1489240183";
-		}
-		else if(ItemPrefix==="chest"){
-			ChosenID="1011545115";
-		}
-		else if(ItemPrefix==="leg"){
-			ChosenID="1690161499";
-		}
-		else if(ItemPrefix==="feet"){
-			ChosenID="1720439721";
-		}
-		else if(ItemPrefix==="shoulder"){
-			ChosenID="2000701700";
-		}
-		else if(ItemPrefix==="hand"){
-			ChosenID="1647162210";
-		}
-		else if(ItemPrefix==="belt"){
-			ChosenID="653355245";
-		}
-		/*
-		else if(ItemPrefix==="shield"){
-			ChosenID="1836915879";
-		}
-		else if(ItemPrefix==="w1"){
-			ChosenID="698259331";
-		}
-		else if(ItemPrefix==="w2"){
-			ChosenID="1638219941";
-		}
-		else if(ItemPrefix==="w3"){
-			ChosenID="484526695";
-		}
-		*/
-	}
-	if(EntryType==="Trait"){
-		if(ItemPrefix==="head"){
-			ChosenID="1489240183";
-		}
-		else if(ItemPrefix==="chest"){
-			ChosenID="1011545115";
-		}
-		else if(ItemPrefix==="leg"){
-			ChosenID="1690161499";
-		}
-		else if(ItemPrefix==="feet"){
-			ChosenID="1720439721";
-		}
-		else if(ItemPrefix==="shoulder"){
-			ChosenID="2000701700";
-		}
-		else if(ItemPrefix==="hand"){
-			ChosenID="1647162210";
-		}
-		else if(ItemPrefix==="belt"){
-			ChosenID="653355245";
-		}
-		/*
-		else if(ItemPrefix==="shield"){
-			ChosenID="1836915879";
-		}
-		else if(ItemPrefix==="w1"){
-			ChosenID="698259331";
-		}
-		else if(ItemPrefix==="w2"){
-			ChosenID="1638219941";
-		}
-		else if(ItemPrefix==="w3"){
-			ChosenID="484526695";
-		}
-		*/
-	}
-	if(EntryType==="Motif"){
-		if(ItemPrefix==="head"){
-			ChosenID="1489240183";
-		}
-		else if(ItemPrefix==="chest"){
-			ChosenID="1011545115";
-		}
-		else if(ItemPrefix==="leg"){
-			ChosenID="1690161499";
-		}
-		else if(ItemPrefix==="feet"){
-			ChosenID="1720439721";
-		}
-		else if(ItemPrefix==="shoulder"){
-			ChosenID="2000701700";
-		}
-		else if(ItemPrefix==="hand"){
-			ChosenID="1647162210";
-		}
-		else if(ItemPrefix==="belt"){
-			ChosenID="653355245";
-		}
-		/*
-		else if(ItemPrefix==="shield"){
-			ChosenID="1836915879";
-		}
-		else if(ItemPrefix==="w1"){
-			ChosenID="698259331";
-		}
-		else if(ItemPrefix==="w2"){
-			ChosenID="1638219941";
-		}
-		else if(ItemPrefix==="w3"){
-			ChosenID="484526695";
-		}
-		*/
-	}
-	if(EntryType==="Enchant"){
-		if(ItemPrefix==="head"){
-			ChosenID="1489240183";
-		}
-		else if(ItemPrefix==="chest"){
-			ChosenID="1011545115";
-		}
-		else if(ItemPrefix==="leg"){
-			ChosenID="1690161499";
-		}
-		else if(ItemPrefix==="feet"){
-			ChosenID="1720439721";
-		}
-		else if(ItemPrefix==="shoulder"){
-			ChosenID="2000701700";
-		}
-		else if(ItemPrefix==="hand"){
-			ChosenID="1647162210";
-		}
-		else if(ItemPrefix==="belt"){
-			ChosenID="653355245";
-		}
-		/*
-		else if(ItemPrefix==="shield"){
-			ChosenID="1836915879";
-		}
-		else if(ItemPrefix==="w1"){
-			ChosenID="698259331";
-		}
-		else if(ItemPrefix==="w2"){
-			ChosenID="1638219941";
-		}
-		else if(ItemPrefix==="w3"){
-			ChosenID="484526695";
-		}
-		*/
-	}
-	return ChosenID;
-}
 
 function GenerateRequestFormItem(Type){
 	var ItemPrefix=Type.toLowerCase();
@@ -616,6 +644,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="		<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
 		
+		/*
 		if(Type==="Weapon1"){
 		//		<input type="hidden" name="entry.2033475650" id="entry_2033475650" value=""> //id="ETCOrderForm"
 				PasteString+="			<select form=\"ETCOrderForm\" name=\"entry.2033475650\" id=\""+ItemPrefix+"set\">";
@@ -628,6 +657,10 @@ function GenerateRequestFormItem(Type){
 		//	<input type="hidden" name="entry.2086256414" id="entry_2086256414" value="">
 				PasteString+="			<select form=\"ETCOrderForm\" name=\"entry.2086256414\" id=\""+ItemPrefix+"set\">";
 		}
+		*/
+		
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Set");
+		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"set\" name=\"entry."+ItemQualGoogEntry+"\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
 		
 		PasteString+="			<option value=\"Night's Silence\">Night's Silence</option>";
 		PasteString+="			<option value=\"Ashen Grip\">Ashen Grip</option>";
