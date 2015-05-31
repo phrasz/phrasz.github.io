@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">!-->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>!-->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/tabletop.js"></script>
+	<!--<script src="http://pastebin.com/raw.php?i=WtLCSUwe"></script>!-->
+
+
+	<link rel="stylesheet" href="css/bootstrap-select.min.css">
+	<script src="js/bootstrap-select.min.js"></script>
+	<script src="js/ETC.js"></script>
+
+	 <style>
+		.filterable {
+			margin-top: 15px;
+		}
+		.filterable .panel-heading .pull-right {
+			margin-top: -20px;
+			color: #989898;
+		}
+		.filterable .filters input[disabled] {
+			background-color: transparent;
+			border: none;
+			cursor: auto;
+			box-shadow: none;
+			padding: 0;
+			height: auto;
+		}
+		.filterable .filters input[disabled]::-webkit-input-placeholder {
+			color: #333;
+		}
+		.filterable .filters input[disabled]::-moz-placeholder {
+			color: #333;
+		}
+		.filterable .filters input[disabled]:-ms-input-placeholder {
+			color: #333;
+		}
+		</style>
+		
+	    <script type="text/javascript">
+		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1IKrS5uJcT0dahtSlrwJsREUkNHc6Bk1FryaZfnS8bOU';
+
+		//Other Vars: "Timestamp", "Handle", "Level", "Fullfilled", "Fullfilled By", "Cost"
+		
+		var DebugFlag=0;
+				
+		var Head=["HeadQuality", "HeadTrait", "HeadMotif", "HeadEnchant", "HeadSet", "HeadCost"];
+		var Chest=["ChestQuality", "ChestTrait", "ChestMotif", "ChestEnchant", "ChestSet", "ChestCost"];
+		var Legs=["LegsQuality",  "LegsTrait", "LegsMotif", "LegsEnchant", "LegsSet"];
+		var Feet=["FeetQuality",  "FeetTrait", "FeetMotif", "FeetEnchant", "FeetSet"];
+		var Shoulder=["ShoulderQuality",  "ShoulderTrait", "ShoulderMotif", "ShoulderEnchant", "ShoulderSet"];
+		var Hand=["HandQuality",  "HandTrait", "HandMotif", "HandEnchant", "HandSet"];
+		var Belt=["BeltQuality",  "BeltTrait", "BeltMotif", "BeltEnchant", "BeltSet"];
+		var Shield=["ShieldQuality", "ShieldTrait", "ShieldMotif", "ShieldEnchant", "ShieldSet"];
+		var Weapon1=["Weapon1Quality",  "Weapon1Trait", "Weapon1Motif", "Weapon1Enchant",  "Weapon1Set"];
+		var Weapon2=["Weapon2Quality", "Weapon2Trait", "Weapon2Motif", "Weapon2Enchant", "Weapon2Set"];
+		var Weapon3=["Weapon3Quality", "Weapon3Trait",  "Weapon3Motif", "Weapon3Enchant", "Weapon3Set"];
+
+		var Categories=["Head","Chest","Legs","Feet","Shoulder","Hand","Belt","Shield","Weapon1","Weapon2","Weapon3"];
+		//var CategoriesData=[Head,Chest,Legs,Feet,Shoulder,Hand,Belt,Shield,Weapon1,Weapon2,Weapon3];
+		var CategoriesPresent= [];
+		var EmptyArray=[];
+		var ValidWords=[];
+
+onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
+
+      $(document).ready( function() {
+        Tabletop.init( { key: public_spreadsheet_url,
+                         callback: showRequestInfo,
+                         wanted: [ "Requests", "Fulfillments" ],
+                         debug: false } );
+		
+		 $('.filterable .btn-filter').click(function(){
+        var $panel = $(this).parents('.filterable'),
+        $filters = $panel.find('.filters input'),
+        $tbody = $panel.find('.table tbody');
+        if ($filters.prop('disabled') == true) {
+            $filters.prop('disabled', false);
+            $filters.first().focus();
+        } else {
+            $filters.val('').prop('disabled', true);
+            $tbody.find('.no-result').remove();
+            $tbody.find('tr').show();
+        }
+    });
+
+    $('.filterable .filters input').keyup(function(e){
+        /* Ignore tab key */
+        var code = e.keyCode || e.which;
+        if (code == '9') return;
+        /* Useful DOM data and selectors */
+        var $input = $(this),
+        inputContent = $input.val().toLowerCase(),
+        $panel = $input.parents('.filterable'),
+        column = $panel.find('.filters th').index($input.parents('th')),
+        $table = $panel.find('.table'),
+        $rows = $table.find('tbody tr');
+        /* Dirtiest filter function ever ;) */
+        var $filteredRows = $rows.filter(function(){
+            var value = $(this).find('td').eq(column).text().toLowerCase();
+            return value.indexOf(inputContent) === -1;
+        });
+        /* Clean previous no-result if exist */
+        $table.find('tbody .no-result').remove();
+        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+        $rows.show();
+        $filteredRows.hide();
+        /* Prepend no-result row if all rows are filtered */
+        if ($filteredRows.length === $rows.length) {
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+        }
+    });
+      })
+
+//Bootstrap-Select
+//$('.selectpicker').selectpicker();  
+
+	function showRequestInfo(data, tabletop){
+		UserItemIndices=[];
+		UserItemSections=[];
+
+		var PasteString="";			
+		
+		var RequestRowData=tabletop.sheets("Requests").all();
+		var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
+		// EXPORT JSON Object to Text: console.log("\n\n\n"+JSON.stringify(RequestRowData, null, 2)+"\n\n\n");
+		//CreateFulfillmentForm(RequestRowData,FulfillmentsRowData);
+		
+		var i,j,k,l;
+		var RequestCounter=1;
+		var TotalUsers=0;
+		var TotalFulfillments=0;
+
+	}
+	
+    </script>
+</head>
+
+<body style="background-color:#262626">
+	
+	<font color="white">
+	<!--This is "http://silviomoreto.github.io/bootstrap-select/" code !-->
+<h1><b><u>Crafting Order Request</u></b></h1>
+<form id="ETCOrderForm" style="color:#FFFFFF" action="https://docs.google.com/forms/d/1oS8BJbG-LicL0fvyzpTHHlptdmvt1oFpUjqejtXP8OM/formResponse?embedded=true" method="POST" onsubmit="">
+<!--<form id="ETCOrderForm" style="color:#FFFFFF" action="http://www.w3schools.com/html/action_page.php" onsubmit="">!--?
+<div class="form-group">
+    <!--<label for="entry_1702613869">Handle: </label>
+			<INPUT name="entry.1702613869" type="text" id="entry_1702613869">
+		
+	!-->
+    <input type="text" class="form-control" name="entry.1702613869" id="entry_1702613869" placeholder="Handle">
+  </div>
+	<div class="form-group">
+    <!--<label for="entry_653355245">Handle: </label>
+	<br><LABEL for="entry_653355245">Level: </LABEL> <INPUT name="entry.653355245" type="text" id="entry_653355245">
+	!-->
+    <input type="text" class="form-control" name="entry.653355245" id="entry_653355245" placeholder="Level">
+  </div>		
+
+<div class="OrderSelect">
+ <select id="GearSelector" class="selectpicker" multiple="" title="Choose one of the following..." style="display: none;">
+    <option value="opt1">Helm</option>
+    <option value="opt2">Chest</option>
+    <option value="opt3">Leg</option>
+    <option value="opt4">Feet</option>
+    <option value="opt5">Shoulder</option>
+    <option value="opt6">Hand</option>
+    <option value="opt7">Belt</option>
+    <option value="opt8">Shield</option>
+    <option value="opt9">Weapon 1</option>
+    <option value="opt10">Weapon 2</option>
+    <option value="opt11">Weapon 3</option>
+  </select>
+
+<script type="text/javascript">
+function GetEntryID(ItemPrefix,EntryType){
+	var ChosenID="";
+	if(EntryType==="Quality"){
+		if(ItemPrefix==="head"){
+			ChosenID="1489240183";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="1011545115";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1690161499";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="1720439721";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="2000701700";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="1647162210";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="653355245";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="1836915879";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="698259331";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="1638219941";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="484526695";
+		}
+	}
+	if(EntryType==="Trait"){
+		if(ItemPrefix==="head"){
+			ChosenID="1017937000";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="312751114";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1694582759";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="1133296374";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1529761946";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="1965655231";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="1853553952";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="236191693";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="1607674200";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="211567754";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="1467971831";
+		}
+	}
+	if(EntryType==="Motif"){
+		if(ItemPrefix==="head"){
+			ChosenID="767263300";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="1189271429";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1250355338";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="424999932";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1732407402";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="231658116";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="651044863";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="467832442";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="889769491";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="1510285845";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="686541906";
+		}
+	}
+	if(EntryType==="Enchant"){
+		if(ItemPrefix==="head"){
+			ChosenID="436565891";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="148234119";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="1611112354";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="1526629927";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1663559739";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="129223191";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="290252240";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="634343502";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="606898063";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="1562249603";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="692256660";
+		}
+	}
+	if(EntryType==="Set"){
+		if(ItemPrefix==="head"){
+			ChosenID="1990979763";
+		}
+		else if(ItemPrefix==="chest"){
+			ChosenID="40788225";
+		}
+		else if(ItemPrefix==="leg"){
+			ChosenID="532744097";
+		}
+		else if(ItemPrefix==="feet"){
+			ChosenID="2100830732";
+		}
+		else if(ItemPrefix==="shoulder"){
+			ChosenID="1302141828";
+		}
+		else if(ItemPrefix==="hand"){
+			ChosenID="1978182581";
+		}
+		else if(ItemPrefix==="belt"){
+			ChosenID="2071263967";
+		}
+		else if(ItemPrefix==="shield"){
+			ChosenID="1007589099";
+		}
+		else if(ItemPrefix==="w1"){
+			ChosenID="2033475650";
+		}
+		else if(ItemPrefix==="w2"){
+			ChosenID="2093391613";
+		}
+		else if(ItemPrefix==="w3"){
+			ChosenID="2086256414";
+		}
+	}
+	return ChosenID;
+}
+
+function GenerateRequestFormItem(Type){
+	var ItemPrefix=Type.toLowerCase();
+	if(Type==="Weapon1"){ItemPrefix="w1";}
+	else if(Type==="Weapon2"){ItemPrefix="w2";}
+	else if(Type==="Weapon3"){ItemPrefix="w3";}
+
+	var PasteString="";
+	var ItemGoogEntry="";
+	
+	if(Type==="Head" || Type==="Chest" || Type==="Leg" || Type==="Feet" || Type==="Shoulder" || Type==="Hand"|| Type==="Belt" || Type==="Shield"){
+
+			PasteString+="<tr>";
+			PasteString+="	<td style=\"font-size:100%; color: white\">"+Type+"</td>";
+		if(Type!="Shield"){
+			PasteString+="	<td style=\"font-size:100%\">";
+			PasteString+="<font color=\"black\">";
+			console.log("Cost word: "+ItemPrefix+"qual");
+			PasteString+="		<select name=\"entry."+ItemQualGoogEntry+"\" form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+			PasteString+="			<option value=\"HeavyGreen\" style=\"background-color:rgb(0,255,0)\">heavy</option>";
+			PasteString+="			<option value=\"HeavyBlue\" style=\"background-color:rgb(0,0,255)\">heavy</option>";
+			PasteString+="			<option value=\"HeavyPurple\" style=\"background-color:rgb(255,0,255)\">heavy</option>";
+			PasteString+="			<option value=\"HeavyYellow\" style=\"background-color:rgb(255,255,0)\">heavy</option>";
+			PasteString+="			<option value=\"MediumGreen\" style=\"background-color:rgb(0,255,0)\">medium</option>";
+			PasteString+="			<option value=\"MediumBlue\" style=\"background-color:rgb(0,0,255)\">medium</option>";
+			PasteString+="			<option value=\"MediumPurple\" style=\"background-color:rgb(255,0,255)\">medium</option>";
+			PasteString+="			<option value=\"MediumYellow\" style=\"background-color:rgb(255,255,0)\">medium</option>";
+			PasteString+="			<option value=\"LightGreen\" style=\"background-color:rgb(0,255,0)\">light</option>";
+			PasteString+="			<option value=\"LightBlue\" style=\"background-color:rgb(0,0,255)\">light</option>";
+			PasteString+="			<option value=\"LightPurple\" style=\"background-color:rgb(255,0,255)\">light</option>";
+			PasteString+="			<option value=\"LightYellow\" style=\"background-color:rgb(255,255,0)\">light</option>";
+			PasteString+="		</select>";
+			PasteString+="</font>";
+			PasteString+="	</td>";
+		}
+		else{
+			PasteString+="<td style=\"font-size:100%\">";
+			PasteString+="<font color=\"black\">";
+
+			ItemQualGoogEntry=GetEntryID(ItemPrefix,"Quality");
+
+			PasteString+="	<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+			PasteString+="		<option value=\"ShieldGreen\" style=\"background-color:rgb(0,255,0)\">Shield</option>";
+			PasteString+="		<option value=\"ShieldBlue\" style=\"background-color:rgb(0,0,255)\">Shield</option>";
+			PasteString+="		<option value=\"ShieldPurple\" style=\"background-color:rgb(255,0,255)\">Shield</option>";
+			PasteString+="		<option value=\"ShieldYellow\" style=\"background-color:rgb(255,255,0)\">Shield</option>";
+			PasteString+="	</select>";
+			PasteString+="</font>";
+			PasteString+="</td>";
+		}		
+		PasteString+="	<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Trait");  
+
+		console.log("Cost word: "+ItemPrefix+"trait");
+		PasteString+="		<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"trait\">";
+		PasteString+="			<option value=\"Divines\">Divines</option>";
+		PasteString+="			<option value=\"Exploration\">Exploration</option>";
+		PasteString+="			<option value=\"Impenetrable\">Impenetrable</option>";
+		PasteString+="			<option value=\"Infused\">Infused</option>";
+		PasteString+="			<option value=\"Nirnhoned\">Nirnhoned</option>";
+		PasteString+="			<option value=\"Reinforced\">Reinforced</option>";
+		PasteString+="			<option value=\"Sturdy\">Sturdy</option>";
+		PasteString+="			<option value=\"Training\">Training</option>";
+		PasteString+="			<option value=\"Well Fitted\">Well Fitted</option>";
+		PasteString+="		</select>";
+		PasteString+="</font>";
+		PasteString+="	</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
+		
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Motif");
+		
+		console.log("Cost word: "+ItemPrefix+"motif");
+		PasteString+="		<select form=\"ETCOrderForm\"  name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"motif\">";
+		PasteString+="			<option value=\"High Elf\">High Elf</option>";
+		PasteString+="			<option value=\"Wood Elf\">Wood Elf</option>";
+		PasteString+="			<option value=\"Khajiit\">Khajiit</option>";
+		PasteString+="			<option value=\"Argonian\">Argonian</option>";
+		PasteString+="			<option value=\"Nord\">Nord</option>";
+		PasteString+="			<option value=\"Dark Elf\">Dark Elf</option>";
+		PasteString+="			<option value=\"Breton\">Breton</option>";
+		PasteString+="			<option value=\"Orc\">Orc</option>";
+		PasteString+="			<option value=\"Red Guard\">Red Guard</option>";
+		PasteString+="			<option value=\"Ancient Elf\">Ancient Elf</option>";
+		PasteString+="			<option value=\"Barbaric\">Barbaric</option>";
+		PasteString+="			<option value=\"Primal\">Primal</option>";
+		PasteString+="			<option value=\"Daedric\">Daedric</option>";
+		PasteString+="			<option value=\"Imperial\">Imperial</option>";
+		PasteString+="		</select>";
+		PasteString+="</font>";
+		PasteString+="	</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		console.log("Cost word: "+ItemPrefix+"ench");
+		PasteString+="<font color=\"black\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Enchant");
+		
+		PasteString+="		<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="			<option value=\"HealthGreen\" style=\"background-color:rgb(0,255,0)\">health</option>";
+		PasteString+="			<option value=\"HealthBlue\" style=\"background-color:rgb(0,0,255)\">health</option>";
+		PasteString+="			<option value=\"HealthPurple\" style=\"background-color:rgb(255,0,255)\">health</option>";
+		PasteString+="			<option value=\"HealthYellow\" style=\"background-color:rgb(255,255,0)\">health</option>";
+		PasteString+="			<option value=\"MagickaGreen\" style=\"background-color:rgb(0,255,0)\">magicka</option>";
+		PasteString+="			<option value=\"MagickaBlue\" style=\"background-color:rgb(0,0,255)\">magicka</option>";
+		PasteString+="			<option value=\"MagickaPurple\" style=\"background-color:rgb(255,0,255)\">magicka</option>";
+		PasteString+="			<option value=\"MagickaYellow\" style=\"background-color:rgb(255,255,0)\">magicka</option>";
+		PasteString+="			<option value=\"StaminaGreen\" style=\"background-color:rgb(0,255,0)\">stamina</option>";
+		PasteString+="			<option value=\"StaminaBlue\" style=\"background-color:rgb(0,0,255)\">stamina</option>";
+		PasteString+="			<option value=\"StaminaPurple\" style=\"background-color:rgb(255,0,255)\">stamina</option>";
+		PasteString+="			<option value=\"StaminaYellow\" style=\"background-color:rgb(255,255,0)\">stamina</option>";
+		PasteString+="		</select>";
+		PasteString+="</font>";
+		PasteString+="	</td>";
+		PasteString+="	<td style=\"font-size:100%\">";
+		console.log("Cost word: "+ItemPrefix+"set"); 
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Quality");
+		
+		PasteString+="<font color=\"black\">";
+		PasteString+="		<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\"  id=\""+ItemPrefix+"set\">";
+		PasteString+="		<option value=\"Night's Silence\">Night's Silence</option>";
+		PasteString+="		<option value=\"Ashen Grip\">Ashen Grip</option>";
+		PasteString+="		<option value=\"Death's Wind\">Death's Wind</option>";
+		PasteString+="		<option value=\"Torug's Pact\">Torug's Pact</option>";
+		PasteString+="		<option value=\"Seducer\">Seducer</option>";
+		PasteString+="		<option value=\"Twilight's Embrace\">Twilight's Embrace</option>";
+		PasteString+="		<option value=\"Whitestrake's Retribution\">Whitestrake's Retribution</option>";
+		PasteString+="		<option value=\"Hist Bark\">Hist Bark</option>";
+		PasteString+="		<option value=\"Magnus' Gift\">Magnus' Gift</option>";
+		PasteString+="		<option value=\"Alessia's Bulwark\">Alessia's Bulwark</option>";
+		PasteString+="		<option value=\"Song of Lamae\">Song of Lamae</option>";
+		PasteString+="		<option value=\"Vampire's Kiss\">Vampire's Kiss</option>";
+		PasteString+="		<option value=\"Hunding's Rage\">Hunding's Rage</option>";
+		PasteString+="		<option value=\"Willow's Path\">Willow's Path</option>";
+		PasteString+="		<option value=\"Night Mother's Gaze\">Night Mother's Gaze</option>";
+		PasteString+="		<option value=\"Spectre's Eye\">Spectre's Eye</option>";
+		PasteString+="		<option value=\"Oblivion's Foe\">Oblivion's Foe</option>";
+		PasteString+="		<option value=\"Eyes of Mara\">Eyes of Mara</option>";
+		PasteString+="		<option value=\"Kagrenac's Hope\">Kagrenac's Hope</option>";
+		PasteString+="		<option value=\"Orgnum's Scales\">Orgnum's Scales</option>";
+		PasteString+="		<option value=\"Shalidor's Curse\">Shalidor's Curse</option>";
+		PasteString+="		<option value=\"Way of the Arena\">Way of the Arena</option>";
+		PasteString+="		<option value=\"TwIceBorn Star\">TwIceBorn Star</option>";
+		PasteString+="		</select>";
+		PasteString+="</font>";
+		PasteString+="	</td>";
+		console.log("Cost word: "+ItemPrefix+"cost");
+		PasteString+="	<td id=\""+ItemPrefix+"cost\" style=\"color: white;\">0</td>";
+		PasteString+="</tr>";
+	}
+	else if (Type==="Weapon1" || Type==="Weapon2" || Type==="Weapon3"){
+		PasteString+="<tr>";
+		PasteString+="		<td style=\"font-size:100%\">"+Type+"</td>";
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
+
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Quality");
+		
+		PasteString+="			<select form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" name=\"entry."+ItemQualGoogEntry+"\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="				<option value=\"AxeGreen\" style=\"background-color:rgb(0,255,0)\">Axe</option>";
+		PasteString+="				<option value=\"AxeBlue\" style=\"background-color:rgb(0,0,255)\">Axe</option>";
+		PasteString+="				<option value=\"AxePurple\" style=\"background-color:rgb(255,0,255)\">Axe</option>";
+		PasteString+="				<option value=\"AxeYellow\" style=\"background-color:rgb(255,255,0)\">Axe</option>";
+		PasteString+="				<option value=\"SwordGreen\" style=\"background-color:rgb(0,255,0)\">Sword</option>";
+		PasteString+="				<option value=\"SwordBlue\" style=\"background-color:rgb(0,0,255)\">Sword</option>";
+		PasteString+="				<option value=\"SwordPurple\" style=\"background-color:rgb(255,0,255)\">Sword</option>";
+		PasteString+="				<option value=\"SwordYellow\" style=\"background-color:rgb(255,255,0)\">Sword</option>";
+		PasteString+="				<option value=\"MaceGreen\" style=\"background-color:rgb(0,255,0)\">Mace</option>";
+		PasteString+="				<option value=\"MaceBlue\" style=\"background-color:rgb(0,0,255)\">Mace</option>";
+		PasteString+="				<option value=\"MacePurple\" style=\"background-color:rgb(255,0,255)\">Mace</option>";
+		PasteString+="				<option value=\"MaceYellow\" style=\"background-color:rgb(255,255,0)\">Mace</option>";
+		PasteString+="				<option value=\"DaggerGreen\" style=\"background-color:rgb(0,255,0)\">Dagger</option>";
+		PasteString+="				<option value=\"DaggerBlue\" style=\"background-color:rgb(0,0,255)\">Dagger</option>";
+		PasteString+="				<option value=\"DaggerPurple\" style=\"background-color:rgb(255,0,255)\">Dagger</option>";
+		PasteString+="				<option value=\"DaggerYellow\" style=\"background-color:rgb(255,255,0)\">Dagger</option>";
+		PasteString+="				<option value=\"2-HAxeGreen\" style=\"background-color:rgb(0,255,0)\">2-H Axe</option>";
+		PasteString+="				<option value=\"2-HAxeBlue\" style=\"background-color:rgb(0,0,255)\">2-H Axe</option>";
+		PasteString+="				<option value=\"2-HAxePurple\" style=\"background-color:rgb(255,0,255)\">2-H Axe</option>";
+		PasteString+="				<option value=\"2-HAxeYellow\" style=\"background-color:rgb(255,255,0)\">2-H Axe</option>";
+		PasteString+="				<option value=\"2-HSwordGreen\" style=\"background-color:rgb(0,255,0)\">2-H Sword</option>";
+		PasteString+="				<option value=\"2-HSwordBlue\" style=\"background-color:rgb(0,0,255)\">2-H Sword</option>";
+		PasteString+="				<option value=\"2-HSwordPurple\" style=\"background-color:rgb(255,0,255)\">2-H Sword</option>";
+		PasteString+="				<option value=\"2-HSwordYellow\" style=\"background-color:rgb(255,255,0)\">2-H Sword</option>";
+		PasteString+="				<option value=\"2-HMaceGreen\" style=\"background-color:rgb(0,255,0)\">2-H Mace</option>";
+		PasteString+="				<option value=\"2-HMaceBlue\" style=\"background-color:rgb(0,0,255)\">2-H Mace</option>";
+		PasteString+="				<option value=\"2-HMacePurple\" style=\"background-color:rgb(255,0,255)\">2-H Mace</option>";
+		PasteString+="				<option value=\"2-HMaceYellow\" style=\"background-color:rgb(255,255,0)\">2-H Mace</option>";
+		PasteString+="				<option value=\"FireStaffGreen\" style=\"background-color:rgb(0,255,0)\">Fire Staff</option>";
+		PasteString+="				<option value=\"FireStaffBlue\" style=\"background-color:rgb(0,0,255)\">Fire Staff</option>";
+		PasteString+="				<option value=\"FireStaffPurple\" style=\"background-color:rgb(255,0,255)\">Fire Staff</option>";
+		PasteString+="				<option value=\"FireStaffYellow\" style=\"background-color:rgb(255,255,0)\">Fire Staff</option>";
+		PasteString+="				<option value=\"IceStaffGreen\" style=\"background-color:rgb(0,255,0)\">Ice Staff</option>";
+		PasteString+="				<option value=\"IceStaffBlue\" style=\"background-color:rgb(0,0,255)\">Ice Staff</option>";
+		PasteString+="				<option value=\"IceStaffPurple\" style=\"background-color:rgb(255,0,255)\">Ice Staff</option>";
+		PasteString+="				<option value=\"IceStaffYellow\" style=\"background-color:rgb(255,255,0)\">Ice Staff</option>";
+		PasteString+="				<option value=\"LightningStaffGreen\" style=\"background-color:rgb(0,255,0)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"LightningStaffBlue\" style=\"background-color:rgb(0,0,255)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"LightningStaffPurple\" style=\"background-color:rgb(255,0,255)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"LightningStaffYellow\" style=\"background-color:rgb(255,255,0)\">Lightning Staff</option>";
+		PasteString+="				<option value=\"RestorationStaffGreen\" style=\"background-color:rgb(0,255,0)\">Restoration Staff</option>";
+		PasteString+="				<option value=\"RestorationStaffBlue\" style=\"background-color:rgb(0,0,255)\">Restoration Staff</option>";
+		PasteString+="				<option value=\"RestorationStaffPurple\" style=\"background-color:rgb(255,0,255)\">Restoration Staff</option>";
+		PasteString+="				<option value=\"RestorationStaffYellow\" style=\"background-color:rgb(255,255,0)\">Restoration Staff</option>";
+		PasteString+="			</select>";
+		PasteString+="</font>";
+		PasteString+="		</td>";
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
+				
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Trait");
+
+		PasteString+="			<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"trait\">";
+		PasteString+="				<option value=\"Charged\">Charged</option>";
+		PasteString+="				<option value=\"Defending\">Defending</option>";
+		PasteString+="				<option value=\"Infused\">Infused</option>";
+		PasteString+="				<option value=\"Nirnhoned\">Nirnhoned</option>";
+		PasteString+="				<option value=\"Powered\">Powered</option>";
+		PasteString+="				<option value=\"Precise\">Precise</option>";
+		PasteString+="				<option value=\"Sharpened\">Sharpened</option>";
+		PasteString+="				<option value=\"Training\">Training</option>";
+		PasteString+="				<option value=\"Weighted\">Weighted</option>";
+		PasteString+="			</select>";
+		PasteString+="</font>";
+		PasteString+="		</td>";	
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
+		
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Motif");
+
+		PasteString+="			<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"motif\">";
+		PasteString+="				<option value=\"High Elf\">High Elf</option>";
+		PasteString+="				<option value=\"Wood Elf\">Wood Elf</option>";
+		PasteString+="				<option value=\"Khajiit\">Khajiit</option>";
+		PasteString+="				<option value=\"Argonian\">Argonian</option>";
+		PasteString+="				<option value=\"Nord\">Nord</option>";
+		PasteString+="				<option value=\"Dark Elf\">Dark Elf</option>";
+		PasteString+="				<option value=\"Breton\">Breton</option>";
+		PasteString+="				<option value=\"Orc\">Orc</option>";
+		PasteString+="				<option value=\"Red Guard\">Red Guard</option>";
+		PasteString+="				<option value=\"Ancient Elf\">Ancient Elf</option>";
+		PasteString+="				<option value=\"Barbaric\">Barbaric</option>";
+		PasteString+="				<option value=\"Primal\">Primal</option>";
+		PasteString+="				<option value=\"Daedric\">Daedric</option>";
+		PasteString+="				<option value=\"Imperial\">Imperial</option>";
+		PasteString+="			</select>";
+		PasteString+="</font>";
+		PasteString+="		</td>";	
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
+		
+		//Set, Enchant, Motif, Trait, Quality
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Enchant");
+
+		PasteString+="			<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"ench\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
+		PasteString+="				<option value=\"FrostGreen\" style=\"background-color:rgb(0,255,0)\">Frost</option>";
+		PasteString+="				<option value=\"FrostBlue\" style=\"background-color:rgb(0,0,255)\">Frost</option>";
+		PasteString+="				<option value=\"FrostPurple\" style=\"background-color:rgb(255,0,255)\">Frost</option>";
+		PasteString+="				<option value=\"FrostYellow\" style=\"background-color:rgb(255,255,0)\">Frost</option>";
+		PasteString+="				<option value=\"FoulnessGreen\" style=\"background-color:rgb(0,255,0)\">Foulness </option>";
+		PasteString+="				<option value=\"FoulnessBlue\" style=\"background-color:rgb(0,0,255)\">Foulness </option>";
+		PasteString+="				<option value=\"FoulnessPurple\" style=\"background-color:rgb(255,0,255)\">Foulness </option>";
+		PasteString+="				<option value=\"FoulnessYellow\" style=\"background-color:rgb(255,255,0)\">Foulness </option>";
+		PasteString+="				<option value=\"PoisonGreen\" style=\"background-color:rgb(0,255,0)\">Poison</option>";
+		PasteString+="				<option value=\"PoisonBlue\" style=\"background-color:rgb(0,0,255)\">Poison</option>";
+		PasteString+="				<option value=\"PoisonPurple\" style=\"background-color:rgb(255,0,255)\">Poison</option>";
+		PasteString+="				<option value=\"PoisonYellow\" style=\"background-color:rgb(255,255,0)\">Poison</option>";
+		PasteString+="				<option value=\"ShockGreen\" style=\"background-color:rgb(0,255,0)\">Shock </option>";
+		PasteString+="				<option value=\"ShockBlue\" style=\"background-color:rgb(0,0,255)\">Shock </option>";
+		PasteString+="				<option value=\"ShockPurple\" style=\"background-color:rgb(255,0,255)\">Shock </option>";
+		PasteString+="				<option value=\"ShockYellow\" style=\"background-color:rgb(255,255,0)\">Shock </option>";
+		PasteString+="				<option value=\"RageGreen\" style=\"background-color:rgb(0,255,0)\">Rage </option>";
+		PasteString+="				<option value=\"RageBlue\" style=\"background-color:rgb(0,0,255)\">Rage </option>";
+		PasteString+="				<option value=\"RagePurple\" style=\"background-color:rgb(255,0,255)\">Rage </option>";
+		PasteString+="				<option value=\"RageYellow\" style=\"background-color:rgb(255,255,0)\">Rage </option>";
+		PasteString+="				<option value=\"FlameGreen\" style=\"background-color:rgb(0,255,0)\">Flame </option>";
+		PasteString+="				<option value=\"FlameBlue\" style=\"background-color:rgb(0,0,255)\">Flame </option>";
+		PasteString+="				<option value=\"FlamePurple\" style=\"background-color:rgb(255,0,255)\">Flame </option>";
+		PasteString+="				<option value=\"FlameYellow\" style=\"background-color:rgb(255,255,0)\">Flame </option>";
+		PasteString+="				<option value=\"HardeningGreen\" style=\"background-color:rgb(0,255,0)\">Hardening</option>";
+		PasteString+="				<option value=\"HardeningBlue\" style=\"background-color:rgb(0,0,255)\">Hardening</option>";
+		PasteString+="				<option value=\"HardeningPurple\" style=\"background-color:rgb(255,0,255)\">Hardening</option>";
+		PasteString+="				<option value=\"HardeningYellow\" style=\"background-color:rgb(255,255,0)\">Hardening</option>";
+		PasteString+="				<option value=\"AbsorbMagickaGreen\" style=\"background-color:rgb(0,255,0)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"AbsorbMagickaBlue\" style=\"background-color:rgb(0,0,255)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"AbsorbMagickaPurple\" style=\"background-color:rgb(255,0,255)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"AbsorbMagickaYellow\" style=\"background-color:rgb(255,255,0)\">Absorb Magicka</option>";
+		PasteString+="				<option value=\"AbsorbHealthGreen\" style=\"background-color:rgb(0,255,0)\">Absorb Health </option>";
+		PasteString+="				<option value=\"AbsorbHealthBlue\" style=\"background-color:rgb(0,0,255)\">Absorb Health </option>";
+		PasteString+="				<option value=\"AbsorbHealthPurple\" style=\"background-color:rgb(255,0,255)\">Absorb Health </option>";
+		PasteString+="				<option value=\"AbsorbHealthYellow\" style=\"background-color:rgb(255,255,0)\">Absorb Health </option>";
+		PasteString+="				<option value=\"DecreaseHealthGreen\" style=\"background-color:rgb(0,255,0)\">Decrease Health</option>";
+		PasteString+="				<option value=\"DecreaseHealthBlue\" style=\"background-color:rgb(0,0,255)\">Decrease Health</option>";
+		PasteString+="				<option value=\"DecreaseHealthPurple\" style=\"background-color:rgb(255,0,255)\">Decrease Health</option>";
+		PasteString+="				<option value=\"DecreaseHealthYellow\" style=\"background-color:rgb(255,255,0)\">Decrease Health</option>";
+		PasteString+="				<option value=\"WeakeningGreen\" style=\"background-color:rgb(0,255,0)\">Weakening</option>";
+		PasteString+="				<option value=\"WeakeningBlue\" style=\"background-color:rgb(0,0,255)\">Weakening</option>";
+		PasteString+="				<option value=\"WeakeningPurple\" style=\"background-color:rgb(255,0,255)\">Weakening</option>";
+		PasteString+="				<option value=\"WeakeningYellow\" style=\"background-color:rgb(255,255,0)\">Weakening</option>";
+		PasteString+="				<option value=\"AbsorbStaminaGreen\" style=\"background-color:rgb(0,255,0)\">Absorb Stamina</option>";
+		PasteString+="				<option value=\"AbsorbStaminaBlue\" style=\"background-color:rgb(0,0,255)\">Absorb Stamina</option>";
+		PasteString+="				<option value=\"AbsorbStaminaPurple\" style=\"background-color:rgb(255,0,255)\">Absorb Stamina</option>";
+		PasteString+="				<option value=\"AbsorbStaminaYellow\" style=\"background-color:rgb(255,255,0)\">Absorb Staminaina</option>";
+		PasteString+="				<option value=\"CrushingGreen\" style=\"background-color:rgb(0,255,0)\">Crushing</option>";
+		PasteString+="				<option value=\"CrushingBlue\" style=\"background-color:rgb(0,0,255)\">Crushing</option>";
+		PasteString+="				<option value=\"CrushingPurple\" style=\"background-color:rgb(255,0,255)\">Crushing</option>";
+		PasteString+="				<option value=\"CrushingYellow\" style=\"background-color:rgb(255,255,0)\">Crushing</option>";
+		PasteString+="			</select>";
+		PasteString+="</font>";
+		PasteString+="		</td>";	
+		PasteString+="		<td style=\"font-size:100%\">";
+		PasteString+="<font color=\"black\">";
+
+		/*
+		if(Type==="Weapon1"){
+		//		<input type="hidden" name="entry.2033475650" id="entry_2033475650" value=""> //id="ETCOrderForm"
+				PasteString+="			<select form=\"ETCOrderForm\" name=\"entry.2033475650\" id=\""+ItemPrefix+"set\">";
+		}
+		else if(Type==="Weapon2"){
+		//	<input type="hidden" name="entry.2093391613" id="entry_2093391613" value="">
+				PasteString+="			<select form=\"ETCOrderForm\" name=\"entry.2093391613\" id=\""+ItemPrefix+"set\">";
+		}
+		else{ //if(Type==="Weapon3")
+		//	<input type="hidden" name="entry.2086256414" id="entry_2086256414" value="">
+				PasteString+="			<select form=\"ETCOrderForm\" name=\"entry.2086256414\" id=\""+ItemPrefix+"set\">";
+		}
+*/
+		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Set");
+		PasteString+="			<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"set\">";
+		PasteString+="			<option value=\"Night's Silence\">Night's Silence</option>";
+		PasteString+="			<option value=\"Ashen Grip\">Ashen Grip</option>";
+		PasteString+="			<option value=\"Death's Wind\">Death's Wind</option>";
+		PasteString+="			<option value=\"Torug's Pact\">Torug's Pact</option>";
+		PasteString+="			<option value=\"Seducer\">Seducer</option>";
+		PasteString+="			<option value=\"Twilight's Embrace\">Twilight's Embrace</option>";
+		PasteString+="			<option value=\"Whitestrake's Retribution\">Whitestrake's Retribution</option>";
+		PasteString+="			<option value=\"Hist Bark\">Hist Bark</option>";
+		PasteString+="			<option value=\"Magnus' Gift\">Magnus' Gift</option>";
+		PasteString+="			<option value=\"Alessia's Bulwark\">Alessia's Bulwark</option>";
+		PasteString+="			<option value=\"Song of Lamae\">Song of Lamae</option>";
+		PasteString+="			<option value=\"Vampire's Kiss\">Vampire's Kiss</option>";
+		PasteString+="			<option value=\"Hunding's Rage\">Hunding's Rage</option>";
+		PasteString+="			<option value=\"Willow's Path\">Willow's Path</option>";
+		PasteString+="			<option value=\"Night Mother's Gaze\">Night Mother's Gaze</option>";
+		PasteString+="			<option value=\"Spectre's Eye\">Spectre's Eye</option>";
+		PasteString+="			<option value=\"Oblivion's Foe\">Oblivion's Foe</option>";
+		PasteString+="			<option value=\"Eyes of Mara\">Eyes of Mara</option>";
+		PasteString+="			<option value=\"Kagrenac's Hope\">Kagrenac's Hope</option>";
+		PasteString+="			<option value=\"Orgnum's Scales\">Orgnum's Scales</option>";
+		PasteString+="			<option value=\"Shalidor's Curse\">Shalidor's Curse</option>";
+		PasteString+="			<option value=\"Way of the Arena\">Way of the Arena</option>";
+		PasteString+="			<option value=\"TwIceBorn Star\">TwIceBorn Star</option>";
+		PasteString+="			</select>";
+		PasteString+="</font>";
+		PasteString+="		</td>";
+		console.log("Weapon cost: "+ItemPrefix+"cost");
+		PasteString+="		<td id=\""+ItemPrefix+"cost\">0</td>";
+		PasteString+="	</tr>";
+	}
+	
+	return PasteString;
+}
+
+$('#GearSelector').change(function() {
+    opt = $(this).val();
+	console.log("This is opt: "+opt);
+	var PasteString="";
+	PasteString+="<table style=\"width:100%\">";
+	PasteString+="<tr style=\"color: white;\">";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Slot </strong></td>";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Quality </strong></td>";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Trait </strong></td>";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Motif </strong></td>";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Enchant </strong</td>";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Set </strong></td>";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Cost </strong></td>";
+	PasteString+="</tr>";
+	if(opt!=null){
+		if(opt.indexOf("opt1")>=0){
+			PasteString+=GenerateRequestFormItem("Head");	
+		}
+		if(opt.indexOf("opt2")>=0){
+			PasteString+=GenerateRequestFormItem("Chest");
+		}
+		if(opt.indexOf("opt3")>=0){
+			PasteString+=GenerateRequestFormItem("Leg");	
+		}
+		if(opt.indexOf("opt4")>=0){
+			PasteString+=GenerateRequestFormItem("Feet");	
+		}
+		if(opt.indexOf("opt5")>=0){
+			PasteString+=GenerateRequestFormItem("Shoulder");	
+		}
+		if(opt.indexOf("opt6")>=0){
+			PasteString+=GenerateRequestFormItem("Hand");	
+		}
+		if(opt.indexOf("opt7")>=0){
+			PasteString+=GenerateRequestFormItem("Belt");	
+		}
+		if(opt.indexOf("opt8")>=0){
+			PasteString+=GenerateRequestFormItem("Shield");	
+		}
+		if(opt.indexOf("opt9")>=0){
+			PasteString+=GenerateRequestFormItem("Weapon1");	
+		}
+		if(opt.indexOf("opt10")>=0){
+			PasteString+=GenerateRequestFormItem("Weapon2");	
+		}
+		if(opt.indexOf("opt11")>=0){
+			PasteString+=GenerateRequestFormItem("Weapon3");	
+		}
+
+	}
+	
+	PasteString+="<tr>";
+	PasteString+="	<td style=\"font-size:100%\"></td>";
+	PasteString+="	<td style=\"font-size:100%\"></td>";
+	PasteString+="	<td style=\"font-size:100%\"></td>";
+	PasteString+="	<td style=\"font-size:100%\"></td>";
+	PasteString+="	<td style=\"font-size:100%\"></td>";
+	PasteString+="	<td style=\"font-size:100%\"><strong> Total Cost </strong></td>";
+	PasteString+="	<td id=\"totalcost\"><strong> 0 </strong></td>";
+	PasteString+="</tr>";
+	PasteString+="</table>";
+	document.getElementById("msgbox").innerHTML=PasteString;
+});
+</script>
+</div>
+<div id="msgbox"></div>
+
+<!-- COST!-->
+<input type="hidden" name="entry.64024218" id="entry_64024218" value="1000000">
+<br><input class="btn btn-default" onclick="myFunction()" type="submit" value="Submit">
+<!--<br><input class="btn btn-default" onclick="myFunction()" type="submit" value="Submit">!-->
+</form>
+
+
+<script>
+function myFunction() {
+    alert("This is the total cost: "+document.getElementById("entry_64024218").value+"\nThis is the ID's 1489240183 value: "+document.getElementById("entry_1489240183").value);
+}
+</script>
+
+
+	</font>
+
+  </body>
+  </html>
