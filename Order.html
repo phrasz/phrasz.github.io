@@ -207,7 +207,7 @@ onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
 		
 	function GenerateRequestTabList(ListForMenu,ListRestrictions,RequestNumber,RequestorData){
 		var FirstItemFound=0;
-		var MenuList="<h3>Request "+(RequestNumber)+": "+ RequestorData.Handle + "</h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
+		var MenuList="<h3>Request "+(RequestNumber)+": "+ RequestorData.Handle + "(Level: "+RequestorData.Level+", Cost: "+RequestorData.Cost+") </h3>(submitted on: "+ RequestorData.Timestamp + ")<br>";
 		MenuList+="<ul class=\"nav nav-tabs\">";
 
 		for(var k=0; k<ListForMenu.length; k++){
