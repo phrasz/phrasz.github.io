@@ -1,3 +1,4 @@
+/* //First Cut prices -- aka sometime in May
 var dwarvenOil=430*3
 var grainSolvent=dwarvenOil+825*4
 var temperingAlloy=dwarvenOil+grainSolvent+3900*8
@@ -9,6 +10,21 @@ var mastic=turpen+450*4
 var rosin=turpen+mastic+2650*8
 var denata=160
 var rekuta=720
+var kuta=4500
+*/
+
+//Current as of 2015-05-31
+var dwarvenOil=390*3
+var grainSolvent=dwarvenOil+825*4
+var temperingAlloy=dwarvenOil+grainSolvent+4500*8
+var embroidery=120*3
+var elegantLining=embroidery+380*4
+var dreughWax=embroidery+elegantLining+2600*8
+var turpen=120*3
+var mastic=turpen+390*4
+var rosin=turpen+mastic+2600*8
+var denata=120
+var rekuta=650
 var kuta=4500
 
 var headImpCost=0;
