@@ -52,7 +52,6 @@ var w1EnchCost=0;
 var w2EnchCost=0;
 var w3EnchCost=0;
 
-
 var headTotalCost=0;
 var chestTotalCost=0;
 var legTotalCost=0;
@@ -73,7 +72,10 @@ function qualSelected(obj) {
 	switch(obj.id) {
 		case "headqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					headImpCost = 0;
 					break;
 				case 1:
@@ -113,7 +115,10 @@ function qualSelected(obj) {
 			break;
 		case "chestqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					chestImpCost = 0;
 					break;
 				case 1:
@@ -154,7 +159,10 @@ function qualSelected(obj) {
 
 		case "legqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					legImpCost = 0;
 					break;
 				case 1:
@@ -195,7 +203,10 @@ function qualSelected(obj) {
 
 		case "feetqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					feetImpCost = 0;
 					break;
 				case 1:
@@ -236,7 +247,10 @@ function qualSelected(obj) {
 
 		case "shoulderqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					shoulderImpCost = 0;
 					break;
 				case 1:
@@ -277,7 +291,10 @@ function qualSelected(obj) {
 
 	case "handqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					handImpCost = 0;
 					break;
 				case 1:
@@ -318,7 +335,10 @@ function qualSelected(obj) {
 
 		case "beltqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					beltImpCost = 0;
 					break;
 				case 1:
@@ -359,7 +379,10 @@ function qualSelected(obj) {
 
 		case "shieldqual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					shieldImpCost = 0;
 					break;
 				case 1:
@@ -377,7 +400,10 @@ function qualSelected(obj) {
 
 		case "w1qual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					w1ImpCost = 0;
 					break;
 				case 1:
@@ -514,7 +540,10 @@ function qualSelected(obj) {
 
 		case "w2qual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					w2ImpCost = 0;
 					break;
 				case 1:
@@ -650,7 +679,10 @@ function qualSelected(obj) {
 			break;	
 		case "w3qual":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					w3ImpCost = 0;
 					break;
 				case 1:
@@ -786,7 +818,10 @@ function qualSelected(obj) {
 			break;	
 		case "headench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					headEnchCost = 0;
 					break;
 				case 1:
@@ -826,7 +861,10 @@ function qualSelected(obj) {
 			break;
 		case "chestench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					chestEnchCost = 0;
 					break;
 				case 1:
@@ -866,7 +904,10 @@ function qualSelected(obj) {
 			break;
 		case "legench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					legEnchCost = 0;
 					break;
 				case 1:
@@ -906,7 +947,10 @@ function qualSelected(obj) {
 			break;
 		case "feetench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					feetEnchCost = 0;
 					break;
 				case 1:
@@ -946,7 +990,10 @@ function qualSelected(obj) {
 			break;
 		case "shoulderench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					shoulderEnchCost = 0;
 					break;
 				case 1:
@@ -986,7 +1033,10 @@ function qualSelected(obj) {
 			break;
 		case "handench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					handEnchCost = 0;
 					break;
 				case 1:
@@ -1026,7 +1076,10 @@ function qualSelected(obj) {
 			break;
 		case "beltench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					beltEnchCost = 0;
 					break;
 				case 1:
@@ -1066,7 +1119,10 @@ function qualSelected(obj) {
 			break;
 		case "shieldench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					shieldEnchCost = 0;
 					break;
 				case 1:
@@ -1106,7 +1162,10 @@ function qualSelected(obj) {
 			break;
 		case "w1ench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					w1EnchCost = 0;
 					break;
 				case 1:
@@ -1231,7 +1290,7 @@ function qualSelected(obj) {
 					break;
 				case 41:
 					w1EnchCost = denata;
-					break;case 0:
+					break;
 				case 42:
 					w1EnchCost = rekuta;
 					break;
@@ -1267,7 +1326,10 @@ function qualSelected(obj) {
 			break;
 		case "w2ench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					w2EnchCost = 0;
 					break;
 				case 1:
@@ -1392,7 +1454,7 @@ function qualSelected(obj) {
 					break;
 				case 41:
 					w2EnchCost = denata;
-					break;case 0:
+					break;
 				case 42:
 					w2EnchCost = rekuta;
 					break;
@@ -1428,7 +1490,10 @@ function qualSelected(obj) {
 			break;
 		case "w3ench":
 			switch(obj.selectedIndex){
+				case null:
+				case "":
 				case 0:
+				default:
 					w3EnchCost = 0;
 					break;
 				case 1:
@@ -1553,7 +1618,7 @@ function qualSelected(obj) {
 					break;
 				case 41:
 					w3EnchCost = denata;
-					break;case 0:
+					break;
 				case 42:
 					w3EnchCost = rekuta;
 					break;

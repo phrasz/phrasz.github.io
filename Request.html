@@ -375,7 +375,7 @@ function GenerateRequestFormItem(Type){
 			PasteString+="	<td style=\"font-size:100%\">";
 			PasteString+="<font color=\"black\">";
 			ItemQualGoogEntry=GetEntryID(ItemPrefix,"Quality");
-			console.log("Cost word: "+ItemPrefix+"qual");
+			//console.log("Cost word: "+ItemPrefix+"qual");
 			PasteString+="		<select name=\"entry."+ItemQualGoogEntry+"\"form=\"ETCOrderForm\" id=\""+ItemPrefix+"qual\" style=\"background-color:rgb(0,255,0)\" onchange=qualSelected(this)>";
 			PasteString+="			<option value=\"HeavyGreen\" style=\"background-color:rgb(0,255,0)\">heavy</option>";
 			PasteString+="			<option value=\"HeavyBlue\" style=\"background-color:rgb(0,0,255)\">heavy</option>";
@@ -397,7 +397,7 @@ function GenerateRequestFormItem(Type){
 			PasteString+="<td style=\"font-size:100%\">";
 			PasteString+="<font color=\"black\">";
 
-			console.log("Cost word: "+ItemPrefix+"qual");
+			//console.log("Cost word: "+ItemPrefix+"qual");
 
 			ItemQualGoogEntry=GetEntryID(ItemPrefix,"Quality");
 			console.log("Google Entry: "+ItemQualGoogEntry);
@@ -414,7 +414,7 @@ function GenerateRequestFormItem(Type){
 		}		
 		PasteString+="	<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
-		console.log("Cost word: "+ItemPrefix+"trait");
+		//console.log("Cost word: "+ItemPrefix+"trait");
 
 		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Trait");  
 		PasteString+="		<select form=\"ETCOrderForm\" name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"trait\">";		
@@ -434,7 +434,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="	</td>";
 		PasteString+="	<td style=\"font-size:100%\">";
 		PasteString+="<font color=\"black\">";
-		console.log("Cost word: "+ItemPrefix+"motif");
+		//console.log("Cost word: "+ItemPrefix+"motif");
 
 		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Motif");
 		PasteString+="		<select form=\"ETCOrderForm\"  name=\"entry."+ItemQualGoogEntry+"\" id=\""+ItemPrefix+"motif\">";
@@ -458,7 +458,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="</font>";
 		PasteString+="	</td>";
 		PasteString+="	<td style=\"font-size:100%\">";
-		console.log("Cost word: "+ItemPrefix+"ench");
+		//console.log("Cost word: "+ItemPrefix+"ench");
 		PasteString+="<font color=\"black\">";
 
 		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Enchant");
@@ -481,7 +481,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="</font>";
 		PasteString+="	</td>";
 		PasteString+="	<td style=\"font-size:100%\">";
-		console.log("Cost word: "+ItemPrefix+"set");
+		//console.log("Cost word: "+ItemPrefix+"set");
 		PasteString+="<font color=\"black\">";
 
 		ItemQualGoogEntry=GetEntryID(ItemPrefix,"Set");
@@ -514,7 +514,7 @@ function GenerateRequestFormItem(Type){
 		PasteString+="		</select>";
 		PasteString+="</font>";
 		PasteString+="	</td>";
-		console.log("Cost word: "+ItemPrefix+"cost");
+		//console.log("Cost word: "+ItemPrefix+"cost");
 		PasteString+="	<td id=\""+ItemPrefix+"cost\" style=\"color: white;\">0</td>";
 		PasteString+="</tr>";
 	}
@@ -737,7 +737,7 @@ function GenerateRequestFormItem(Type){
 
 $('#GearSelector').change(function() {
     opt = $(this).val();
-	console.log("This is opt: "+opt);
+	//console.log("This is opt: "+opt);
 	var PasteString="";
 	PasteString+="<table style=\"width:100%\">";
 	PasteString+="<tr style=\"color: white;\">";
@@ -750,37 +750,63 @@ $('#GearSelector').change(function() {
 	PasteString+="	<td style=\"font-size:100%\"><strong> Cost </strong></td>";
 	PasteString+="</tr>";
 	if(opt!=null){
+
+
+
+
 		if(opt.indexOf("opt1")>=0){
+			headImpCost=0;
+			headEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Head");	
 		}
 		if(opt.indexOf("opt2")>=0){
+			chestImpCost=0;
+			chestEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Chest");
 		}
 		if(opt.indexOf("opt3")>=0){
+			legImpCost=0;
+			legEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Leg");	
 		}
 		if(opt.indexOf("opt4")>=0){
+			feetImpCost=0;
+			feetEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Feet");	
 		}
 		if(opt.indexOf("opt5")>=0){
+			shoulderImpCost=0;
+			shoulderEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Shoulder");	
 		}
 		if(opt.indexOf("opt6")>=0){
+			handImpCost=0;
+			handEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Hand");	
 		}
 		if(opt.indexOf("opt7")>=0){
+			beltImpCost=0;
+			beltEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Belt");	
 		}
 		if(opt.indexOf("opt8")>=0){
+			shieldImpCost=0;
+			shieldEnchCost=0;
 			PasteString+=GenerateRequestFormItem("Shield");	
 		}
 		if(opt.indexOf("opt9")>=0){
+			w1ImpCost=0;
+			w1EnchCost=0;
 			PasteString+=GenerateRequestFormItem("Weapon1");	
 		}
 		if(opt.indexOf("opt10")>=0){
+			w2ImpCost=0;
+			w2EnchCost=0;
 			PasteString+=GenerateRequestFormItem("Weapon2");	
 		}
 		if(opt.indexOf("opt11")>=0){
+			w3ImpCost=0;
+			w3EnchCost=0;
 			PasteString+=GenerateRequestFormItem("Weapon3");	
 		}
 
