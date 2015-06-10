@@ -74,6 +74,12 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		PasteString+="<option value=\""+UserTimes[i]+"\">"+UserTimes[i]+"</option>";
 	}
 	PasteString+="</select>"
+PasteString+="<br><div class=\"form-group\">";
+	PasteString+="<label for=\"Name\">Crafted By: </label>";
+PasteString+="<input type=\"text\" class=\"form-control\" name=\"entry.296739371\" id=\"Name\" placeholder=\"Name (just letters and numbers)\">";
+PasteString+="</div>";
+
+	
 	PasteString+="<br><button type=\"submit\" class=\"btn btn-default\">Submit</button>";
 	PasteString+="</form>";
 	document.getElementById("Fulfillments").innerHTML=PasteString;
