@@ -42,9 +42,10 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 		//console.log("RequestRowData[i].Handle: "+RequestRowData[i].Handle+"; FulfillmentsRowData[j].Handle: "+FulfillmentsRowData[j].Handle);
 		
 		for(j=0; j < TotalFulfillments;j++){
-			console.log("RequestRowData[i].Handle:"+RequestRowData[i].Handle+"; FulfillmentsRowData[j].Handle: "+FulfillmentsRowData[j].Handle);
-		
-			if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate || RequestRowData[i].Handle===""){
+			//console.log("RequestRowData[i].Handle: "+RequestRowData[i].Handle+"\nFulfillmentsRowData[j].Handle: "+FulfillmentsRowData[j].Handle);
+			//console.log("RequestRowData[i].Timestamp"+RequestRowData[i].Timestamp+"FulfillmentsRowData[j].OrderDate"+FulfillmentsRowData[j].OrderDate);
+
+			if((RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate) || RequestRowData[i].Handle===""){
 				found=1;
 				break;
 			}
@@ -62,7 +63,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			}
 			UserTimes.push(RequestRowData[i].Timestamp);
 		}
-		console.log("Found: "+found+"Found2: "+found2);
+		//console.log("\n\tFound: "+found+"\n\tFound2: "+found2);
 	}
 
 	PasteString+="<h1><u><b>Fulfill Request</b></u></h1>";
@@ -70,6 +71,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	PasteString+="<label for=\"Handle\">Handle: </label>";
 	PasteString+="<select id=\"Handle\" class=\"form-control\" name=\"entry_1463831978\">";
 	for(i=0;i<UserIndices.length;i++){
+		//console.log("Adding Option: "+UserIndices[i]);
 		PasteString+="<option value=\""+UserIndices[i]+"\">"+UserIndices[i]+"</option>";
 	}
 	PasteString+="</select>";
