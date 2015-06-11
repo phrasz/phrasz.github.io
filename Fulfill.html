@@ -14,8 +14,9 @@
                          callback: showRequestInfo,
                          wanted: [ "Requests", "Fulfillments" ],
                          debug: false } );
+
       })
-		
+
 function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	var i,j;
 	var UserIndices=[];
@@ -38,9 +39,12 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	}	
 	for(i=0; i < TotalUsers;i++){
 		var found=0,found2=0;
-
+		//console.log("RequestRowData[i].Handle: "+RequestRowData[i].Handle+"; FulfillmentsRowData[j].Handle: "+FulfillmentsRowData[j].Handle);
+		
 		for(j=0; j < TotalFulfillments;j++){
-			if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate){
+			console.log("RequestRowData[i].Handle:"+RequestRowData[i].Handle+"; FulfillmentsRowData[j].Handle: "+FulfillmentsRowData[j].Handle);
+		
+			if(RequestRowData[i].Handle === FulfillmentsRowData[j].Handle && RequestRowData[i].Timestamp === FulfillmentsRowData[j].OrderDate || RequestRowData[i].Handle===""){
 				found=1;
 				break;
 			}
@@ -58,6 +62,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 			}
 			UserTimes.push(RequestRowData[i].Timestamp);
 		}
+		console.log("Found: "+found+"Found2: "+found2);
 	}
 
 	PasteString+="<h1><u><b>Fulfill Request</b></u></h1>";
@@ -76,7 +81,7 @@ function CreateFulfillmentForm(RequestRowData,FulfillmentsRowData){
 	PasteString+="</select>"
 PasteString+="<br><div class=\"form-group\">";
 	PasteString+="<label for=\"Name\">Crafted By: </label>";
-PasteString+="<input type=\"text\" class=\"form-control\" name=\"entry.296739371\" id=\"Name\" placeholder=\"Name (just letters and numbers)\">";
+PasteString+="<input type=\"text\" class=\"form-control\" name=\"entry_296739371\" id=\"Name\" placeholder=\"Name (just letters and numbers)\">";
 PasteString+="</div>";
 
 	
@@ -90,8 +95,10 @@ function showRequestInfo(data, tabletop){
 	UserItemSections=[];
 	
 	var RequestRowData=tabletop.sheets("Requests").all();
+	//console.log("cols:"+tabletop.sheets("Requests").column_names);
 	var FulfillmentsRowData=tabletop.sheets("Fulfillments").all();
-	// EXPORT JSON Object to Text: console.log("\n\n\n"+JSON.stringify(RequestRowData, null, 2)+"\n\n\n");
+	// EXPORT JSON Object to Text: 
+	//console.log("\n\n\n"+JSON.stringify(RequestRowData, null, 2)+"\n\n\n");
 	CreateFulfillmentForm(RequestRowData,FulfillmentsRowData);
 
 }
