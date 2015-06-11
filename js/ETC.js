@@ -1232,34 +1232,34 @@ function qualSelected(obj) {
 					w1EnchCost = denata;
 					break;
 				case 22:
-					w1EnchCost = 0;
+					w1EnchCost = rekuta;
 					break;
 				case 23:
-					w1EnchCost = denata;
+					w1EnchCost = kuta;
 					break;
 				case 24:
-					w1EnchCost = rekuta;
+					w1EnchCost = 0;
 					break;
 				case 25:
-					w1EnchCost = kuta;
+					w1EnchCost = denata;
 					break;
 				case 26:
-					w1EnchCost = 0;
-					break;
-				case 27:
-					w1EnchCost = denata;
-					break;
-				case 28:
 					w1EnchCost = rekuta;
 					break;
-				case 29:
+				case 27:
 					w1EnchCost = kuta;
 					break;
-				case 30:
+				case 28:
 					w1EnchCost = 0;
 					break;
-				case 31:
+				case 29:
 					w1EnchCost = denata;
+					break;
+				case 30:
+					w1EnchCost = rekuta;
+					break;
+				case 31:
+					w1EnchCost = kuta;
 					break;
 				case 32:
 					w1EnchCost = 0;
@@ -1396,34 +1396,34 @@ function qualSelected(obj) {
 					w2EnchCost = denata;
 					break;
 				case 22:
-					w2EnchCost = 0;
+					w2EnchCost = rekuta;
 					break;
 				case 23:
-					w2EnchCost = denata;
+					w2EnchCost = kuta;
 					break;
 				case 24:
-					w2EnchCost = rekuta;
+					w2EnchCost = 0;
 					break;
 				case 25:
-					w2EnchCost = kuta;
+					w2EnchCost = denata;
 					break;
 				case 26:
-					w2EnchCost = 0;
-					break;
-				case 27:
-					w2EnchCost = denata;
-					break;
-				case 28:
 					w2EnchCost = rekuta;
 					break;
-				case 29:
+				case 27:
 					w2EnchCost = kuta;
 					break;
-				case 30:
+				case 28:
 					w2EnchCost = 0;
 					break;
-				case 31:
+				case 29:
 					w2EnchCost = denata;
+					break;
+				case 30:
+					w2EnchCost = rekuta;
+					break;
+				case 31:
+					w2EnchCost = kuta;
 					break;
 				case 32:
 					w2EnchCost = 0;
@@ -1560,34 +1560,34 @@ function qualSelected(obj) {
 					w3EnchCost = denata;
 					break;
 				case 22:
-					w3EnchCost = 0;
+					w3EnchCost = rekuta;
 					break;
 				case 23:
-					w3EnchCost = denata;
+					w3EnchCost = kuta;
 					break;
 				case 24:
-					w3EnchCost = rekuta;
+					w3EnchCost = 0;
 					break;
 				case 25:
-					w3EnchCost = kuta;
+					w3EnchCost = denata;
 					break;
 				case 26:
-					w3EnchCost = 0;
-					break;
-				case 27:
-					w3EnchCost = denata;
-					break;
-				case 28:
 					w3EnchCost = rekuta;
 					break;
-				case 29:
+				case 27:
 					w3EnchCost = kuta;
 					break;
-				case 30:
+				case 28:
 					w3EnchCost = 0;
 					break;
-				case 31:
+				case 29:
 					w3EnchCost = denata;
+					break;
+				case 30:
+					w3EnchCost = rekuta;
+					break;
+				case 31:
+					w3EnchCost = kuta;
 					break;
 				case 32:
 					w3EnchCost = 0;
@@ -1649,8 +1649,6 @@ function qualSelected(obj) {
 				case 51:
 					w3EnchCost = kuta;
 					break;
-				
-				
 			}
 			break;
 	}  
